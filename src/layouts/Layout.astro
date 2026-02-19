@@ -4,6 +4,7 @@ import "../styles/layout.css";
 import "../styles/components.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import { ClientRouter } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -15,6 +16,7 @@ import Footer from "../components/Footer.astro";
         <link rel="icon" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
         <title>Portfolio</title>
+        <ClientRouter />
     </head>
     <body>
         <Navbar />

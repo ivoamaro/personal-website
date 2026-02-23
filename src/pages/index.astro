@@ -2,12 +2,13 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import OscInPd from "../assets/ReceiveOSCinPD.png";
+import CustomImage from "../components/CustomImage.astro";
 ---
 
 <Layout>
     <h1>Home</h1>
     <div class="container stack">
-        <Image
+        <CustomImage
             src={OscInPd}
             alt="Demonstration of integrating OSC in Pure Data"
         />

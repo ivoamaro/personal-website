@@ -1,10 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import OscInPd from "../assets/ReceiveOSCinPD.png";
 ---
 
 <Layout>
     <h1>Home</h1>
-    <div class="stack">
+    <div class="container stack">
+        <Image
+            src={OscInPd}
+            alt="Demonstration of integrating OSC in Pure Data"
+        />
         <h1>Title</h1>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -66,7 +72,7 @@ import Layout from "../layouts/Layout.astro";
             culpa qui officia deserunt mollit anim id est laborum.
         </p>
     </div>
-    <div class="stack">
+    <div class="container stack">
         <h1>Title</h1>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

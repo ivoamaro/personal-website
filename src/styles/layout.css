@@ -4,10 +4,25 @@
   padding: var(--space-4);
 }
 
+/* GRID */
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr); /* 12 equal columns */
+  grid-template-columns: repeat(12, minmax(0, 1fr)); /* 12 equal columns */
   gap: var(--space-4); /* space between columns (gutter) */
+}
+
+/* Fluid column span using auto-fit/auto-fill */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .section {
@@ -53,4 +68,47 @@
 }
 .col-12 {
   grid-column: span 12;
+}
+
+/* Small screens (mobile) */
+@media (max-width: 600px) {
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6,
+  .col-7,
+  .col-8,
+  .col-9,
+  .col-10,
+  .col-11,
+  .col-12 {
+    grid-column: span 12; /* full width on mobile */
+  }
+}
+
+/* Medium screens (tablet) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .col-1 {
+    grid-column: span 6;
+  }
+  .col-2 {
+    grid-column: span 6;
+  }
+  .col-3 {
+    grid-column: span 4;
+  }
+  .col-4 {
+    grid-column: span 6;
+  }
+  .col-6 {
+    grid-column: span 12;
+  }
+  /* adjust others as needed */
+}
+
+/* Large screens (desktop) */
+@media (min-width: 1025px) {
+  /* original spans apply automatically */
 }

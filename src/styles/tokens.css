@@ -1,44 +1,45 @@
 :root {
-    /* LAYOUT */
-    --container: 1920px;
+  /* LAYOUT */
+  --container: 1920px;
 
-    /* COLORS */
-    --color-text: #111;
-    --color-bg: #fff;
-    --color-primary: #2563eb;
+  /* COLORS */
+  --color-text: #333434;
+  --color-bg: #fff;
+  --color-primary: #2563eb;
 
-    /* TYPOGRAPHY */
-    --font-body: system-ui, sans-serif;
+  /* TYPOGRAPHY */
+  --font-primary: "Instrument Sans", sans-serif;
+  --font-secondary: "Instrument Serif", serif;
 
-    /* Font Sizes */
+  /* Font Sizes */
 
-    --step--1: clamp(0.875rem, 0.83rem + 0.2vw, 1rem);
-    --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-    --step-1: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
-    --step-2: clamp(1.563rem, 1.3rem + 1vw, 2rem);
-    --step-3: clamp(1.953rem, 1.6rem + 1.6vw, 2.75rem);
-    --step-4: clamp(2.441rem, 2rem + 2.4vw, 3.5rem);
+  --step--1: clamp(0.875rem, 0.83rem + 0.2vw, 1rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --step-2: clamp(1.563rem, 1.3rem + 1vw, 2rem);
+  --step-3: clamp(1.953rem, 1.6rem + 1.6vw, 2.75rem);
+  --step-4: clamp(2.441rem, 2rem + 2.4vw, 3.5rem);
 
-    /* Font Weights */
-    --font-regular: 400;
-    --font-medium: 500;
-    --font-bold: 700;
+  /* Font Weights */
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-bold: 700;
 
-    /* Line Heights */
-    --leading-tight: 1.2;
-    --leading-normal: 1.5;
-    --leading-relaxed: 1.7;
+  /* Line Heights */
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
 
-    /* Letter Spacing */
-    --tracking-tight: -0.02em;
-    --tracking-normal: 0;
-    --tracking-wide: 0.05em;
+  /* Letter Spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
 
-    /* SPACING */
-    --space-1: clamp(0.25rem, 0.2rem + 0.3vw, 0.5rem);
-    --space-2: clamp(0.5rem, 0.4rem + 0.6vw, 0.75rem);
-    --space-3: clamp(0.75rem, 0.6rem + 0.8vw, 1rem);
-    --space-4: clamp(1rem, 0.8rem + 1vw, 1.5rem);
-    --space-5: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
-    --space-6: clamp(2rem, 1.6rem + 2vw, 3rem);
+  /* SPACING */
+  --space-1: clamp(0.25rem, 0.2rem + 0.3vw, 0.5rem);
+  --space-2: clamp(0.5rem, 0.4rem + 0.6vw, 0.75rem);
+  --space-3: clamp(0.75rem, 0.6rem + 0.8vw, 1rem);
+  --space-4: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  --space-5: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  --space-6: clamp(2rem, 1.6rem + 2vw, 3rem);
 }

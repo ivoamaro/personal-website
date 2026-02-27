@@ -3,48 +3,52 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-    margin: 0;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 body {
-    margin: 0;
-    font-family: var(--font-body);
-    font-size: var(--step-0);
-    color: var(--color-text);
-    background: var(--color-bg);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -o-font-smoothing: antialiased;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -o-font-smoothing: antialiased;
 }
 
 img {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
 }
 
 h1 {
-    font-size: var(--step-4);
+  font-size: var(--step-4);
 }
 
 h2 {
-    font-size: var(--step-3);
+  font-size: var(--step-3);
 }
 
 h3 {
-    font-size: var(--step-2);
+  font-size: var(--step-2);
 }
 
 h4 {
-    font-size: var(--step-1);
+  font-size: var(--step-1);
 }
 
 p {
-    font-size: var(--step-0);
+  font-size: var(--step-0);
 }
 
 .small {
-    font-size: var(--step--1);
+  font-size: var(--step--1);
+}
+
+a {
+  color: var(--color-text);
 }

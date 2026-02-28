@@ -112,3 +112,8 @@
 @media (min-width: 1025px) {
   /* original spans apply automatically */
 }
+
+.teste {
+  border-left: 1px dashed var(--color-text);
+  padding-left: var(--space-4);
+}

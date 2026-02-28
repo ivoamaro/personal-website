@@ -2,6 +2,11 @@
   /* LAYOUT */
   --container: 1920px;
 
+  /* Breakpoints */
+  --breakpoint-mobile: 768px;
+  --breakpoint-tablet: 1023px;
+  --breakpoint-desktop: 1024px;
+
   /* COLORS */
   --color-text: #333434;
   --color-bg: #fff;

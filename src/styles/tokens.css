@@ -3,6 +3,7 @@
   --container: 1920px;
 
   /* Breakpoints */
+  /* This is for reference only. It cannot be used inside a media query */
   --breakpoint-mobile: 768px;
   --breakpoint-tablet: 1023px;
   --breakpoint-desktop: 1024px;

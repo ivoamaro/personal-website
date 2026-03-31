@@ -1,0 +1,19 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export function getStaticPaths() {
+    return [
+        { params: { work: "work-1" } },
+        { params: { work: "work-2" } },
+        { params: { work: "work-3" } },
+    ];
+}
+
+const { work } = Astro.params;
+---
+
+<Layout>
+    <div class="container">
+        <h1>{work}</h1>
+    </div>
+</Layout>

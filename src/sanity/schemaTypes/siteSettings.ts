@@ -40,5 +40,6 @@ export const siteSettingsType = defineType({
         }),
       ],
     }),
+    defineField({ name: 'seo', title: 'SEO', type: 'seo' }),
   ],
 });

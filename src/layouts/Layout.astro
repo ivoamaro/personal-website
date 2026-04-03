@@ -5,23 +5,50 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 import { VisualEditing } from "@sanity/astro/visual-editing";
+import { SEO } from "astro-seo";
+import { loadQuery } from "../sanity/lib/load-query";
+import { urlForImage } from "../sanity/lib/url-for-image";
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  ogType?: string;
+  twitterCard?: "summary" | "summary_large_image";
+  structuredData?: string;
 }
 
-const {
-  title = "Astro Starter",
-  description,
-  ogImage,
-} = Astro.props;
+const props = Astro.props;
+
+const { data: siteSettings } = await loadQuery<{
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogImage?: { asset?: { _ref: string } };
+    ogType?: string;
+    twitterCard?: string;
+    structuredData?: string;
+  };
+}>({
+  query: `*[_type == "siteSettings"][0]{ seo }`,
+});
+
+const defaults = siteSettings?.seo;
+const defaultOgImage = defaults?.ogImage?.asset
+  ? urlForImage(defaults.ogImage).width(1200).url()
+  : undefined;
+
+const title = props.title ?? defaults?.metaTitle ?? "Astro Starter";
+const description = props.description ?? defaults?.metaDescription;
+const ogImage = props.ogImage ?? defaultOgImage;
+const ogType = props.ogType ?? defaults?.ogType ?? "website";
+const twitterCard = props.twitterCard ?? (defaults?.twitterCard as "summary" | "summary_large_image") ?? "summary_large_image";
+const structuredData = props.structuredData ?? defaults?.structuredData;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 
 const visualEditingEnabled =
-  import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";
+  import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "false";
 ---
 
 <!doctype html>
@@ -32,22 +59,34 @@ const visualEditingEnabled =
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
-        <link rel="canonical" href={canonicalURL} />
-        <title>{title}</title>
-        {description && <meta name="description" content={description} />}
+      
 
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={title} />
-        {description && <meta property="og:description" content={description} />}
-        {ogImage && <meta property="og:image" content={ogImage} />}
-        <meta property="og:url" content={canonicalURL} />
+        <SEO
+        title={title}
+        description={description}
+        canonical={canonicalURL}
+        openGraph={{
+          basic: {
+            title: title || "",
+            type: ogType,
+            url: canonicalURL,
+            image: ogImage || "",
+          },
+          optional: {
+            description: description || "",
+          }
+        }}
+        twitter={{
+          card: twitterCard,
+          title: title,
+          description: description || "",
+          image: ogImage || "",
+        }}
+      />
 
-        {/* Twitter */}
-        <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
-        <meta name="twitter:title" content={title} />
-        {description && <meta name="twitter:description" content={description} />}
-        {ogImage && <meta name="twitter:image" content={ogImage} />}
+        {structuredData && (
+          <script type="application/ld+json" set:html={structuredData} />
+        )}
 
         <ClientRouter />
     </head>

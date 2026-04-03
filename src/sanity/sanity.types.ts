@@ -15,11 +15,46 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type SiteSettings = {
+  _id: string;
+  _type: "siteSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  navLinks?: Array<{
+    label?: string;
+    href?: string;
+    _key: string;
+  }>;
+  footerLinks?: Array<{
+    label?: string;
+    href?: string;
+    _key: string;
+  }>;
+  seo?: Seo;
+};
+
 export type SanityImageAssetReference = {
   _ref: string;
   _type: "reference";
   _weak?: boolean;
   [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type Seo = {
+  _type: "seo";
+  metaTitle?: string;
+  metaDescription?: string;
+  ogImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  ogType?: "website" | "article" | "product" | "profile";
+  twitterCard?: "summary_large_image" | "summary";
+  structuredData?: string;
 };
 
 export type Project = {
@@ -40,19 +75,6 @@ export type Project = {
     _type: "image";
   };
   seo?: Seo;
-};
-
-export type Seo = {
-  _type: "seo";
-  metaTitle?: string;
-  metaDescription?: string;
-  ogImage?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
 };
 
 export type SanityImageCrop = {
@@ -205,9 +227,10 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | SiteSettings
   | SanityImageAssetReference
-  | Project
   | Seo
+  | Project
   | SanityImageCrop
   | SanityImageHotspot
   | BlockContent

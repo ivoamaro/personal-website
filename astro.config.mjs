@@ -13,11 +13,23 @@ export default defineConfig({
     projectId: env.PUBLIC_SANITY_PROJECT_ID,
     dataset: env.PUBLIC_SANITY_DATASET,
     useCdn: false,
-    studioBasePath: "/admin",
     apiVersion: "2026-04-02",
     token: env.SANITY_API_READ_TOKEN,  // enables draft content
+    studioBasePath: "/admin",
     stega: {
       studioUrl: "/admin",      // where clicks navigate to
     },
-  }), react()]
+  }), react()], 
+  vite: {
+    optimizeDeps: {
+      include: [
+        "react/compiler-runtime",
+        "lodash/isObject.js",
+        "lodash/groupBy.js",
+        "lodash/keyBy.js",
+        "lodash/partition.js",
+        "lodash/sortedIndex.js",
+      ],
+    },
+  },
 });

@@ -2,14 +2,39 @@
 import Layout from "../../layouts/Layout.astro";
 import type { Project } from "../../sanity/sanity.types";
 import { loadQuery } from "../../sanity/lib/load-query";
+import { urlForImage } from "../../sanity/lib/url-for-image";
 
 const projects = await loadQuery<Project[]>({
   query: `*[_type == "project"]{ title, slug, description }`,
 });
 
+const { data: page } = await loadQuery<{
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogImage?: { asset?: { _ref: string } };
+    ogType?: string;
+    twitterCard?: string;
+    structuredData?: string;
+  };
+}>({
+  query: `*[_type == "page" && slug.current == "work"][0]{ seo }`,
+});
+
+const seo = page?.seo;
+const seoOgImage = seo?.ogImage?.asset
+  ? urlForImage(seo.ogImage).width(1200).height(630).url()
+  : undefined;
 ---
 
-<Layout>
+<Layout
+  title={seo?.metaTitle || "Work"}
+  description={seo?.metaDescription}
+  ogImage={seoOgImage}
+  ogType={seo?.ogType}
+  twitterCard={seo?.twitterCard as "summary" | "summary_large_image"}
+  structuredData={seo?.structuredData}
+>
   <div class="container">
     <h1>Work</h1>
     {projects.data.map((project: Project) => (

@@ -1,9 +1,36 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
+import { loadQuery } from "../sanity/lib/load-query";
+import { urlForImage } from "../sanity/lib/url-for-image";
+
+const { data: page } = await loadQuery<{
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogImage?: { asset?: { _ref: string } };
+    ogType?: string;
+    twitterCard?: string;
+    structuredData?: string;
+  };
+}>({
+  query: `*[_type == "page" && slug.current == "about"][0]{ seo }`,
+});
+
+const seo = page?.seo;
+const seoOgImage = seo?.ogImage?.asset
+  ? urlForImage(seo.ogImage).width(1200).height(630).url()
+  : undefined;
 ---
 
-<Layout>
+<Layout
+  title={seo?.metaTitle || "About"}
+  description={seo?.metaDescription}
+  ogImage={seoOgImage}
+  ogType={seo?.ogType}
+  twitterCard={seo?.twitterCard as "summary" | "summary_large_image"}
+  structuredData={seo?.structuredData}
+>
     <div class="container">
         <h1>About</h1>
         <Button />

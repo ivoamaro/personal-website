@@ -1,12 +1,9 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
-
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
-
 import sitemap from "@astrojs/sitemap";
-
 import robotsTxt from "astro-robots-txt";
 
 const env = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");

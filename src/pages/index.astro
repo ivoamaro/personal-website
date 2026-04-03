@@ -2,9 +2,36 @@
 import Layout from "../layouts/Layout.astro";
 import OscInPd from "../assets/ReceiveOSCinPD.png";
 import CustomImage from "../components/CustomImage.astro";
+import { loadQuery } from "../sanity/lib/load-query";
+import { urlForImage } from "../sanity/lib/url-for-image";
+
+const { data: page } = await loadQuery<{
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogImage?: { asset?: { _ref: string } };
+    ogType?: string;
+    twitterCard?: string;
+    structuredData?: string;
+  };
+}>({
+  query: `*[_type == "page" && slug.current == "home"][0]{ seo }`,
+});
+
+const seo = page?.seo;
+const seoOgImage = seo?.ogImage?.asset
+  ? urlForImage(seo.ogImage).width(1200).height(630).url()
+  : undefined;
 ---
 
-<Layout>
+<Layout
+  title={seo?.metaTitle}
+  description={seo?.metaDescription}
+  ogImage={seoOgImage}
+  ogType={seo?.ogType}
+  twitterCard={seo?.twitterCard as "summary" | "summary_large_image"}
+  structuredData={seo?.structuredData}
+>
     <div class="container grid">
         <div class="col-full md:col-3 lg:col-4 stack">
             <h1 class="">Home</h1>

@@ -20,19 +20,27 @@ const { work } = Astro.params;
 const { data: project } = await loadQuery<Project>({
   query: `*[_type == "project" && slug.current == $slug][0]{
     title, description, body, image,
-    seo { metaTitle, metaDescription, ogImage { asset } }
+    seo { metaTitle, metaDescription, ogImage { asset }, ogType, twitterCard, structuredData }
   }`,
   params: { slug: work! },
 });
 
-const seoTitle = project.seo?.metaTitle || project.title || "Project";
-const seoDescription = project.seo?.metaDescription || project.description;
-const seoOgImage = project.seo?.ogImage?.asset
-  ? urlForImage(project.seo.ogImage.asset).width(1200).height(630).url()
+const seo = project.seo;
+const seoTitle = seo?.metaTitle || project.title;
+const seoDescription = seo?.metaDescription || project.description;
+const seoOgImage = seo?.ogImage?.asset
+  ? urlForImage(seo.ogImage.asset).width(1200).height(630).url()
   : undefined;
 ---
 
-<Layout title={seoTitle} description={seoDescription} ogImage={seoOgImage}>
+<Layout
+  title={seoTitle}
+  description={seoDescription}
+  ogImage={seoOgImage}
+  ogType={seo?.ogType}
+  twitterCard={seo?.twitterCard as "summary" | "summary_large_image"}
+  structuredData={seo?.structuredData}
+>
   <div class="container">
     <h2>{project.title}</h2>
     <p>{project.description}</p>

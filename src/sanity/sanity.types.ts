@@ -21,6 +21,7 @@ export type SiteSettings = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  siteTitle?: string;
   navLinks?: Array<{
     label?: string;
     href?: string;

@@ -21,6 +21,7 @@ interface Props {
 const props = Astro.props;
 
 const { data: siteSettings } = await loadQuery<{
+  siteTitle?: string;
   seo?: {
     metaTitle?: string;
     metaDescription?: string;
@@ -30,15 +31,17 @@ const { data: siteSettings } = await loadQuery<{
     structuredData?: string;
   };
 }>({
-  query: `*[_type == "siteSettings"][0]{ seo }`,
+  query: `*[_type == "siteSettings"][0]{ siteTitle, seo }`,
 });
 
 const defaults = siteSettings?.seo;
+const siteTitle = siteSettings?.siteTitle ?? "Astro Starter";
 const defaultOgImage = defaults?.ogImage?.asset
   ? urlForImage(defaults.ogImage).width(1200).url()
   : undefined;
 
-const title = props.title ?? defaults?.metaTitle ?? "Astro Starter";
+const pageTitle = props.title ?? defaults?.metaTitle;
+const title = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
 const description = props.description ?? defaults?.metaDescription;
 const ogImage = props.ogImage ?? defaultOgImage;
 const ogType = props.ogType ?? defaults?.ogType ?? "website";

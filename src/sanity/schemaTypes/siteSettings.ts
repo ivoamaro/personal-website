@@ -13,6 +13,12 @@ export const siteSettingsType = defineType({
   },
   fields: [
     defineField({
+      name: "siteTitle",
+      title: "Site Title",
+      type: "string",
+      description: "Appears after the page title in the browser tab (e.g. Page Title | Site Title).",
+    }),
+    defineField({
       name: "navLinks",
       title: "Navigation Links",
       type: "array",

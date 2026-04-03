@@ -5,10 +5,15 @@ import { loadEnv } from "vite";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 
+import sitemap from "@astrojs/sitemap";
+
+import robotsTxt from "astro-robots-txt";
+
 const env = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
 
 // https://astro.build/config
 export default defineConfig({
+  site: env.PUBLIC_URL,
   integrations: [sanity({
     projectId: env.PUBLIC_SANITY_PROJECT_ID,
     dataset: env.PUBLIC_SANITY_DATASET,
@@ -19,7 +24,7 @@ export default defineConfig({
     stega: {
       studioUrl: "/admin",      // where clicks navigate to
     },
-  }), react()], 
+  }), react(), sitemap(), robotsTxt()], 
   vite: {
     optimizeDeps: {
       include: [

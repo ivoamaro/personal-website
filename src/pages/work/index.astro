@@ -1,21 +1,16 @@
 ---
 import { sanityClient } from "sanity:client";
 import Layout from "../../layouts/Layout.astro";
+import type { Project } from "../../sanity/sanity.types";
 
-interface Project {
-  title: string;
-  slug: { current: string };
-  description: string;
-}
-
-const projects = await sanityClient.fetch(`*[_type == "project"]{ title, slug, description }`);
+const projects = await sanityClient.fetch<Project[]>(`*[_type == "project"]{ title, slug, description }`);
 ---
 
 <Layout>
   <div class="container">
     <h1>Work</h1>
     {projects.map((project: Project) => (
-      <a href={`/work/${project.slug.current}`}>
+      <a href={`/work/${project.slug?.current}`}>
         <h2>{project.title}</h2>
         <p>{project.description}</p>
       </a>

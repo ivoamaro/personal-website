@@ -1,22 +1,17 @@
 ---
 import { sanityClient } from "sanity:client";
 import Layout from "../../layouts/Layout.astro";
-
-interface Project {
-  title: string;
-  slug: { current: string };
-  description: string;
-}
+import type { Project } from "../../sanity/sanity.types";
 
 export async function getStaticPaths() {
-  const projects = await sanityClient.fetch(`*[_type == "project"]{ slug }`);
-  return projects.map((p: Project) => ({
-    params: { work: p.slug.current },
+  const projects = await sanityClient.fetch<Project[]>(`*[_type == "project"]{ slug }`);
+  return projects.map((p) => ({
+    params: { work: p.slug?.current },
   }));
 }
 
 const { work } = Astro.params;
-const project = await sanityClient.fetch(
+const project = await sanityClient.fetch<Project>(
   `*[_type == "project" && slug.current == $slug][0]{ title, description, image }`,
   { slug: work }
 );

@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "typegen": "sanity typegen generate"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.2",

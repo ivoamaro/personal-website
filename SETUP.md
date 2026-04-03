@@ -3,75 +3,117 @@
 ## Project Structure
 
 ```
-├── astro.config.mjs          # Astro config — integrations, Sanity client, stega
-├── sanity.config.ts           # Sanity Studio config — schema, plugins, preview
-├── sanity.cli.ts              # Sanity CLI config — typegen, project API settings
-├── .env                       # Public env vars (committed)
-├── .env.local                 # Secrets like API tokens (gitignored)
-├── tsconfig.json              # TypeScript config (extends Astro strict)
+├── astro.config.mjs             # Astro config — integrations, Sanity client, stega
+├── sanity.config.ts             # Sanity Studio config — schema, plugins, preview
+├── sanity.cli.ts                # Sanity CLI config — typegen, project API settings
+├── .env                         # Public env vars (committed)
+├── .env.local                   # Secrets like API tokens (gitignored)
+├── tsconfig.json                # TypeScript config (extends Astro strict)
+├── schema.json                  # Extracted schema (generated, gitignored)
 ├── src/
-│   ├── env.d.ts               # Type references for Astro + Sanity modules
-│   ├── sanity.types.ts        # Auto-generated types (from sanity typegen)
+│   ├── env.d.ts                 # Type references for Astro + Sanity modules
 │   ├── sanity/
-│   │   └── schemaTypes/
-│   │       ├── index.ts       # Schema registry — exports all types
-│   │       └── project.ts     # "project" document schema
-│   ├── pages/
-│   │   ├── index.astro        # Home page
-│   │   ├── about.astro        # About page
-│   │   └── work/
-│   │       ├── index.astro    # Project listing — fetches all projects
-│   │       └── [work].astro   # Dynamic project page — fetches by slug
+│   │   ├── sanity.types.ts      # Auto-generated types (sanity typegen)
+│   │   ├── schemaTypes/
+│   │   │   ├── index.ts         # Schema registry — exports all types
+│   │   │   ├── blockContent.ts  # Reusable rich-text (Portable Text) schema
+│   │   │   ├── seo.ts           # Reusable SEO object (meta title, desc, OG image)
+│   │   │   └── project.ts       # "project" document schema
+│   │   └── lib/
+│   │       ├── load-query.ts    # Wrapper around sanityClient.fetch
+│   │       └── url-for-image.ts # Image URL builder helper
+│   ├── components/
+│   │   ├── PortableText/
+│   │   │   ├── PortableText.astro       # Portable Text renderer
+│   │   │   └── PortableTextImage.astro  # Custom image block component
+│   │   ├── Navbar.astro
+│   │   ├── Footer.astro
+│   │   ├── Button.astro
+│   │   └── CustomImage.astro
 │   ├── layouts/
-│   │   └── Layout.astro       # Base HTML layout
-│   ├── components/            # Reusable Astro components
-│   └── scripts/               # Client-side scripts (GSAP, Lenis)
-└── schema.json                # Extracted schema (generated, gitignored)
+│   │   └── Layout.astro         # Base HTML layout
+│   ├── pages/
+│   │   ├── index.astro          # Home page
+│   │   ├── about.astro          # About page
+│   │   └── work/
+│   │       ├── index.astro      # Project listing — fetches all projects
+│   │       └── [work].astro     # Dynamic project page — fetches by slug
+│   └── scripts/
+│       └── SmoothScroll.ts      # Client-side Lenis smooth scroll
 ```
+
+---
 
 ## What Each File Does
 
-### `astro.config.mjs`
-Configures the Astro build. Loads environment variables via Vite's `loadEnv`,
-sets up the `@sanity/astro` integration (project ID, dataset, API token, visual
-editing via stega), and the `@astrojs/react` integration for React components.
+### Config Files
 
-### `sanity.config.ts`
-Configures the embedded Sanity Studio (served at `/admin`). Defines which
-plugins to use (Structure tool for content editing, Presentation tool for visual
-editing preview) and registers the schema types.
+**`astro.config.mjs`** — Configures the Astro build. Loads environment variables
+via Vite's `loadEnv`, sets up `@sanity/astro` (project ID, dataset, API token,
+visual editing via stega) and `@astrojs/react` for React components.
 
-### `sanity.cli.ts`
-Configures the Sanity CLI for commands like `sanity schema extract` and
-`sanity typegen generate`. Specifies the project ID, dataset, and where to
-output generated types.
+**`sanity.config.ts`** — Configures the embedded Sanity Studio at `/admin`.
+Registers plugins (Structure tool for content editing, Presentation tool for
+visual editing) and the schema. Uses `import.meta.env` with `process.env`
+fallbacks so it works in both Vite and CLI contexts.
 
-### `.env` / `.env.local`
-- `.env` — public variables safe to commit: `PUBLIC_SANITY_PROJECT_ID`,
+**`sanity.cli.ts`** — Configures the Sanity CLI for `sanity schema extract` and
+`sanity typegen generate`. Specifies the project API and where to output types.
+
+### Environment Variables
+
+- **`.env`** — Public, safe to commit: `PUBLIC_SANITY_PROJECT_ID`,
   `PUBLIC_SANITY_DATASET`, `PUBLIC_URL`
-- `.env.local` — secrets (gitignored): `SANITY_API_READ_TOKEN`
+- **`.env.local`** — Secrets (gitignored): `SANITY_API_READ_TOKEN`
 
-### `src/env.d.ts`
-TypeScript reference declarations. Tells the compiler about Astro's client
-types and the `sanity:client` module provided by `@sanity/astro`.
+### Sanity Library (`src/sanity/`)
 
-### `src/sanity.types.ts`
-Auto-generated by `sanity typegen generate`. Contains TypeScript interfaces
-for every Sanity schema type (Project, Slug, image types, etc.). **Do not edit
-manually** — regenerate with `npm run typegen`.
+**`sanity.types.ts`** — Auto-generated by `sanity typegen generate`. Contains
+TypeScript interfaces for all schema types (Project, Slug, image types, etc.).
+**Never edit manually** — regenerate with `npm run typegen`.
 
-### `src/sanity/schemaTypes/`
-Where Sanity document and object schemas live. Each schema file exports a
-`defineType()` call. The `index.ts` barrel file collects them into a single
-`schema` object used by `sanity.config.ts`.
+**`schemaTypes/blockContent.ts`** — Reusable Portable Text schema. Defines the
+rich-text editor with heading styles (h1–h4), blockquote, bullet lists,
+strong/emphasis decorators, link annotations, and inline images with alt text
+and hotspot cropping. Reference it from any document with `type: "blockContent"`.
 
-### `src/pages/work/index.astro`
-Lists all projects. Fetches from Sanity with GROQ query
-`*[_type == "project"]{ title, slug, description }` and renders links.
+**`schemaTypes/seo.ts`** — Reusable SEO object type with meta title (max 60
+chars), meta description (max 160 chars), and Open Graph image with hotspot.
+Reference it from any document with `type: "seo"`.
 
-### `src/pages/work/[work].astro`
-Dynamic route for individual projects. Uses `getStaticPaths()` to generate a
-page for each project slug, then fetches the full document by slug.
+**`schemaTypes/project.ts`** — Defines the "project" document schema with
+fields: title (string), slug, description (text), body (blockContent), image,
+seo.
+
+**`schemaTypes/index.ts`** — Barrel file that collects all schema types into a
+single `schema` object used by `sanity.config.ts`.
+
+**`lib/load-query.ts`** — Wrapper around `sanityClient.fetch()` that returns
+`{ data: result }`. Uses `filterResponse: false` to get the raw response,
+which is needed for visual editing/stega to work correctly.
+
+**`lib/url-for-image.ts`** — Creates a Sanity image URL builder from the client.
+Call `urlForImage(source)` to get a chainable builder for transforms like
+`.width(800).format("webp").url()`.
+
+### Portable Text (`src/components/PortableText/`)
+
+**`PortableText.astro`** — Wrapper around `astro-portabletext`. Accepts a
+`portableText` prop and renders it with custom component overrides. Currently
+maps `image` blocks to the custom `PortableTextImage` component.
+
+**`PortableTextImage.astro`** — Custom renderer for image blocks inside Portable
+Text. Extracts the asset reference, builds URLs via `urlForImage`, and renders
+a `<picture>` element with WebP source and fallback.
+
+### Pages
+
+**`work/index.astro`** — Lists all projects fetched via `loadQuery`. Uses the
+generated `Project` type for type safety.
+
+**`work/[work].astro`** — Dynamic route. `getStaticPaths()` fetches all project
+slugs to generate pages at build time. Each page fetches the full project
+document by slug and passes SEO data to the layout.
 
 ---
 
@@ -92,6 +134,162 @@ npx sanity schema extract && npm run typegen
 
 ---
 
+## Portable Text
+
+Sanity stores rich text as **Portable Text** — a structured JSON array of blocks
+rather than raw HTML. This gives you full control over rendering.
+
+### How It Works
+
+1. Define a reusable `blockContent` schema type (see `schemaTypes/blockContent.ts`),
+   then reference it in any document field:
+
+```ts
+defineField({ name: "body", title: "Body", type: "blockContent" })
+```
+
+2. In your Astro page, pass the data to the `PortableText` component:
+
+```astro
+---
+import PortableText from "../components/PortableText/PortableText.astro";
+
+const project = await sanityClient.fetch<Project>(
+  `*[_type == "project" && slug.current == $slug][0]{ title, body }`,
+  { slug: work }
+);
+---
+
+<PortableText portableText={project.body} />
+```
+
+### What `blockContent` Enables
+
+The current `blockContent.ts` configures these features in the Studio editor:
+
+| Feature | What it renders | Schema config |
+|---|---|---|
+| **Paragraphs** | `<p>` | `style: "normal"` (default) |
+| **Headings** | `<h1>` to `<h4>` | `styles: [h1, h2, h3, h4]` |
+| **Blockquote** | `<blockquote>` | `styles: [blockquote]` |
+| **Bullet lists** | `<ul><li>` | `lists: [bullet]` |
+| **Bold** | `<strong>` | `decorators: [strong]` |
+| **Italic** | `<em>` | `decorators: [em]` |
+| **Links** | `<a href>` | `annotations: [link]` |
+| **Images** | `<picture>` (via PortableTextImage) | `defineArrayMember({ type: "image" })` |
+
+To add more features (numbered lists, underline, strikethrough, code), add
+entries to the relevant arrays in `blockContent.ts`:
+
+```ts
+lists: [
+  { title: "Bullet", value: "bullet" },
+  { title: "Numbered", value: "number" },   // add this
+],
+decorators: [
+  { title: "Strong", value: "strong" },
+  { title: "Emphasis", value: "em" },
+  { title: "Underline", value: "underline" },       // add this
+  { title: "Strikethrough", value: "strike-through" }, // add this
+  { title: "Code", value: "code" },                  // add this
+],
+```
+
+### Custom Block Overrides
+
+The `components` object in `PortableText.astro` maps custom types to Astro
+components. Current setup:
+
+```ts
+const components = {
+  type: {
+    image: PortableTextImage,  // renders image blocks with <picture>
+  }
+};
+```
+
+You can override any block or mark. Common patterns:
+
+```ts
+const components = {
+  type: {
+    image: PortableTextImage,     // custom block types
+    code: CodeBlock,              // e.g. syntax-highlighted code
+    video: VideoEmbed,            // e.g. embedded video player
+  },
+  block: {
+    h1: CustomH1,                 // override heading rendering
+    blockquote: CustomBlockquote, // custom blockquote style
+    normal: CustomParagraph,      // override default paragraph
+  },
+  mark: {
+    link: CustomLink,             // override link rendering (e.g. target="_blank")
+    highlight: HighlightMark,     // custom annotation mark
+  },
+  list: {
+    bullet: CustomBulletList,     // override <ul>
+    number: CustomNumberList,     // override <ol>
+  },
+  listItem: {
+    bullet: CustomBulletItem,     // override <li> in bullet lists
+  },
+};
+```
+
+### Adding a New Custom Block
+
+1. Add the type to your schema:
+
+```ts
+defineField({
+  name: "body",
+  type: "array",
+  of: [
+    { type: "block" },
+    { type: "image" },
+    {
+      type: "object",
+      name: "codeBlock",
+      title: "Code Block",
+      fields: [
+        defineField({ name: "language", type: "string" }),
+        defineField({ name: "code", type: "text" }),
+      ],
+    },
+  ],
+})
+```
+
+2. Create the component (`src/components/PortableText/CodeBlock.astro`):
+
+```astro
+---
+const { language, code } = Astro.props.node;
+---
+<pre><code class={`language-${language}`}>{code}</code></pre>
+```
+
+3. Register it in `PortableText.astro`:
+
+```ts
+import CodeBlock from "./CodeBlock.astro";
+
+const components = {
+  type: {
+    image: PortableTextImage,
+    codeBlock: CodeBlock,
+  }
+};
+```
+
+4. Re-extract and regenerate types:
+
+```bash
+npx sanity schema extract && npm run typegen
+```
+
+---
+
 ## Quick-Start: New Project From Scratch
 
 ### 1. Create the Astro project
@@ -104,7 +302,7 @@ cd my-project
 ### 2. Install dependencies
 
 ```bash
-npm install @sanity/astro @sanity/client sanity @astrojs/react react react-dom @types/react @types/react-dom react-is styled-components
+npm install @sanity/astro @sanity/client @sanity/image-url sanity @astrojs/react react react-dom @types/react @types/react-dom react-is styled-components astro-portabletext @portabletext/types
 ```
 
 ### 3. Configure `astro.config.mjs`
@@ -154,7 +352,14 @@ SANITY_API_READ_TOKEN=your-token-here
 /// <reference types="@sanity/astro/module" />
 ```
 
-### 6. Create your first schema
+### 6. Create your schemas
+
+`src/sanity/schemaTypes/blockContent.ts` — reusable rich-text type (see the
+full file in the repo for the complete definition with styles, marks, and
+image support).
+
+`src/sanity/schemaTypes/seo.ts` — reusable SEO object (see the full file in
+the repo for meta title, meta description with validation, and OG image).
 
 `src/sanity/schemaTypes/project.ts`:
 ```ts
@@ -168,7 +373,9 @@ export const projectType = defineType({
     defineField({ name: "title", type: "string" }),
     defineField({ name: "slug", type: "slug", options: { source: "title" } }),
     defineField({ name: "description", type: "text" }),
+    defineField({ name: "body", title: "Body", type: "blockContent" }),
     defineField({ name: "image", type: "image" }),
+    defineField({ name: "seo", title: "SEO", type: "seo" }),
   ],
 });
 ```
@@ -177,9 +384,11 @@ export const projectType = defineType({
 ```ts
 import type { SchemaTypeDefinition } from "sanity";
 import { projectType } from "./project";
+import { blockContentType } from "./blockContent";
+import { seoType } from "./seo";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [projectType],
+  types: [blockContentType, seoType, projectType],
 };
 ```
 
@@ -209,36 +418,89 @@ import { defineCliConfig } from "sanity/cli";
 
 export default defineCliConfig({
   api: { projectId: "your-id", dataset: "production" },
-  typegen: { generates: "./src/sanity.types.ts" },
+  typegen: { generates: "./src/sanity/sanity.types.ts" },
 });
 ```
 
-### 9. Generate types
+### 9. Create helper utilities
+
+`src/sanity/lib/load-query.ts`:
+```ts
+import type { QueryParams } from "sanity";
+import { sanityClient } from "sanity:client";
+
+export async function loadQuery<QueryResponse>({
+  query,
+  params,
+}: {
+  query: string;
+  params?: QueryParams;
+}) {
+  const { result } = await sanityClient.fetch<QueryResponse>(
+    query,
+    params ?? {},
+    { filterResponse: false }
+  );
+  return { data: result };
+}
+```
+
+`src/sanity/lib/url-for-image.ts`:
+```ts
+import { sanityClient } from "sanity:client";
+import { createImageUrlBuilder, type SanityImageSource } from "@sanity/image-url";
+
+export const imageBuilder = createImageUrlBuilder(sanityClient);
+
+export function urlForImage(source: SanityImageSource) {
+  return imageBuilder.image(source);
+}
+```
+
+### 10. Create Portable Text components
+
+`src/components/PortableText/PortableText.astro`:
+```astro
+---
+import { PortableText as PortableTextInternal } from "astro-portabletext";
+import PortableTextImage from "./PortableTextImage.astro";
+
+const { portableText } = Astro.props;
+
+const components = {
+  type: {
+    image: PortableTextImage,
+  },
+};
+---
+
+<PortableTextInternal value={portableText} components={components} />
+```
+
+`src/components/PortableText/PortableTextImage.astro`:
+```astro
+---
+import { urlForImage } from "../../sanity/lib/url-for-image";
+
+const { asset, alt } = Astro.props.node;
+
+const url = urlForImage(asset).url();
+const webpUrl = urlForImage(asset).format("webp").url();
+---
+
+<picture>
+  <source srcset={webpUrl} type="image/webp" />
+  <img class="responsive__img" src={url} alt={alt} />
+</picture>
+```
+
+### 11. Generate types
 
 ```bash
 npx sanity schema extract && npx sanity typegen generate
 ```
 
-### 10. Fetch content in a page
-
-```astro
----
-import { sanityClient } from "sanity:client";
-import type { Project } from "../sanity.types";
-
-const projects = await sanityClient.fetch<Project[]>(
-  `*[_type == "project"]{ title, slug, description }`
-);
----
-
-<ul>
-  {projects.map((p) => (
-    <li><a href={`/work/${p.slug?.current}`}>{p.title}</a></li>
-  ))}
-</ul>
-```
-
-### 11. Add to `.gitignore`
+### 12. Add to `.gitignore`
 
 ```
 .env
@@ -247,7 +509,7 @@ const projects = await sanityClient.fetch<Project[]>(
 schema.json
 ```
 
-### 12. Run it
+### 13. Run it
 
 ```bash
 npm run dev

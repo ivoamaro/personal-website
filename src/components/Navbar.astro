@@ -1,3 +1,15 @@
+---
+import { loadQuery } from "../sanity/lib/load-query";
+import { stegaClean } from "@sanity/client/stega";
+
+const { data: settings } = await loadQuery<{
+  navLinks: { label: string; href: string }[];
+}>({
+  query: `*[_type == "siteSettings"][0]{ navLinks }`,
+});
+
+---
+
 <nav class="container">
     <div>
         <a href="/">Ivo Amaro</a>
@@ -11,10 +23,9 @@
      </label>
 
     <ul class="menu">
-        <li> <a href="/work">Work</a></li>
-        <li> <a href="/contact">Contact</a></li>
-        <li> <a href="/about">About</a></li>
-        <li> <a href="/exploratory">Exploratory</a></li>
+        {settings.navLinks?.map((link) => (
+            <li><a href={stegaClean(link.href)}>{stegaClean(link.label)}</a></li>
+        ))}
     </ul>
 
 </nav>

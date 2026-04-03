@@ -11,7 +11,20 @@ export default defineConfig({
   projectId,
   dataset,
   plugins: [
-    structureTool(),
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title("Content")
+          .items([
+            S.listItem()
+              .title("Site Settings")
+              .child(S.document().schemaType("siteSettings").documentId("siteSettings")),
+            S.divider(),
+            ...S.documentTypeListItems().filter(
+              (item) => item.getId() !== "siteSettings"
+            ),
+          ]),
+    }),
     presentationTool({
       resolve,
       previewUrl: location.origin,

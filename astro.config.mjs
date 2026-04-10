@@ -13,7 +13,6 @@ const env = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
 // https://astro.build/config
 export default defineConfig({
   site: env.PUBLIC_URL,
-
   integrations: [sanity({
     projectId: env.PUBLIC_SANITY_PROJECT_ID,
     dataset: env.PUBLIC_SANITY_DATASET,
@@ -25,6 +24,10 @@ export default defineConfig({
       studioUrl: "/admin",      // where clicks navigate to
     },
   }), react(), sitemap(), robotsTxt()],
+  image: {
+    domains: ["m.media-amazon.com"],
+    remotePatterns: [{ protocol: "https" }],
+  },
 
   vite: {
     optimizeDeps: {

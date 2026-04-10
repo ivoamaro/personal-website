@@ -1,0 +1,225 @@
+---
+export const prerender = false;
+import Button from "../../components/Button.astro";
+import CustomImage from "../../components/CustomImage.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getSearchResults } from "../../scripts/movie-search";
+
+const searchQ = Astro.url.searchParams.get("search")?.trim() || "";
+const typeQ = Astro.url.searchParams.get("type")?.trim() || undefined;
+const yearQ = Astro.url.searchParams.get("year")?.trim() || undefined;
+const pageRaw = Number.parseInt(Astro.url.searchParams.get("page") ?? "1", 10);
+const currentPage = Number.isFinite(pageRaw) && pageRaw >= 1 ? pageRaw : 1;
+
+let searchResults: any = {
+    results: [],
+    error: "",
+    totalResults: 0,
+    totalPages: 0,
+    currentPage: 1,
+};
+
+if (searchQ !== "") {
+    // searchResults = await getSearchResults(
+    //     searchQ,
+    //     typeQ || undefined,
+    //     yearQ || undefined,
+    //     currentPage,
+    // );
+}
+
+const movies = [
+    {
+        Title: "Guardians of the Galaxy Vol. 2",
+        Year: "2017",
+        Rated: "PG-13",
+        Released: "05 May 2017",
+        Runtime: "136 min",
+        Genre: "Action, Adventure, Comedy",
+        Director: "James Gunn",
+        Writer: "James Gunn, Dan Abnett, Andy Lanning",
+        Actors: "Chris Pratt, Zoe Saldaña, Dave Bautista",
+        Plot: "The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's encounter with his father, the ambitious celestial being Ego.",
+        Language: "English",
+        Country: "United States",
+        Awards: "Nominated for 1 Oscar. 15 wins & 60 nominations total",
+        Poster: "https://m.media-amazon.com/images/M/MV5BNWE5MGI3MDctMmU5Ni00YzI2LWEzMTQtZGIyZDA5MzQzNDBhXkEyXkFqcGc@._V1_SX300.jpg",
+        Ratings: [
+            { Source: "Internet Movie Database", Value: "7.6/10" },
+            { Source: "Rotten Tomatoes", Value: "85%" },
+            { Source: "Metacritic", Value: "67/100" },
+        ],
+        Metascore: "67",
+        imdbRating: "7.6",
+        imdbVotes: "823,054",
+        imdbID: "tt3896198",
+        Type: "movie",
+        DVD: "N/A",
+        BoxOffice: "$389,813,101",
+        Production: "N/A",
+        Website: "N/A",
+        Response: "True",
+    },
+];
+---
+
+<Layout title={"Movie Search"}>
+    <div class="container">
+        <div class="movie-search-container">
+            <form action="/movie-search" method="get">
+                <input
+                    id="search"
+                    type="text"
+                    name="search"
+                    placeholder="Search for a movie"
+                    value={searchQ}
+                />
+                <select id="type" name="type">
+                    <option value="" selected={!typeQ}>All</option>
+                    <option value="movie" selected={typeQ === "movie"}>Movie</option>
+                    <option value="series" selected={typeQ === "series"}>Series</option>
+                    <option value="episode" selected={typeQ === "episode"}>Episode</option>
+                </select>
+                
+                <input
+                    id="year"
+                    name="year"
+                    type="text"
+                    inputmode="numeric"
+                    pattern="[0-9]{0,4}"
+                    placeholder="Year"
+                    maxlength="4"
+                    value={yearQ ?? ""}
+                />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="movie-search-results">
+            <h2>Search Results</h2>
+            <ul class="movie-grid" role="list">
+                {
+                    searchResults.results.length > 0 ? (
+                        searchResults.results.map((movie: any) => (
+                            <li class="movie-item">
+                                <article class="movie-card">
+                                    {movie.Poster !== "N/A" ? (
+                                        <figure class="movie-poster">
+                                            <CustomImage
+                                                width={300}
+                                                height={450}
+                                                src={movie.Poster}
+                                                alt={`${movie.Title} poster`}
+                                            />
+                                        </figure>
+                                    ) : (
+                                       <div class="movie-poster"></div>
+                                    )}
+                                    
+                                    <h2>{movie.Title}</h2>
+                                    <p>
+                                        <time datetime={String(movie.Year)}>
+                                            {movie.Year}
+                                        </time>
+                                    </p>
+                                </article>
+                            </li>
+                        ))
+                    ) : (
+                        <p>No results found</p>
+                    )
+                }
+            </ul>
+
+            <div class="movie-search-pagination">
+                {
+                    searchResults.totalPages > 0 &&
+                        Array.from(
+                            { length: searchResults.totalPages },
+                            (_, i) => i + 1,
+                        ).map((pageNum) => {
+                            const params = new URLSearchParams();
+                            params.set("search", searchQ);
+                            if (typeQ) params.set("type", typeQ);
+                            if (yearQ) params.set("year", yearQ);
+                            params.set("page", String(pageNum));
+                            const href = `/movie-search?${params.toString()}`;
+                            return (
+                                <Button
+                                    isButton={false}
+                                    href={href}
+                                    title={String(pageNum)}
+                                />
+                            );
+                        })
+                }
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .movie-search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: var(--space-4) 0;
+        form {
+            display: flex;
+            gap: 10px;
+            #search {
+                min-width: 300px;
+            }
+            #year,
+            #type {
+                min-width: 100px;
+            }
+        }
+        #search,
+        #type,
+        #year,
+        button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    }
+    .movie-search-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .movie-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 20px;
+        padding: 0;
+        margin: 0;
+        .movie-item {
+            list-style: none;
+            .movie-card {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                h2 {
+                    font-family: var(--font-primary);
+                    font-size: var(--step-0);
+                }
+                .movie-poster {
+                    background-color: gray;
+                    aspect-ratio: 2/3;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+</style>

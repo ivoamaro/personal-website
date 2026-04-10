@@ -4,6 +4,7 @@ let {
     isExternal = false,
     href = "",
     title = "",
+    onClick = () => {},
 } = Astro.props;
 
 if (title === "" && isButton) title = "Button";
@@ -47,7 +48,7 @@ else if (title === "" && !isButton) title = "Link";
 
 {
     isButton ? (
-        <button class="button-component" role="button">
+        <button {...(onClick ? { onclick: onClick } : {})} class="button-component" role="button">
             <span class="text">{title}</span>
         </button>
     ) : isExternal ? (

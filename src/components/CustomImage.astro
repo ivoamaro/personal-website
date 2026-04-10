@@ -1,11 +1,14 @@
 ---
 import { Image } from "astro:assets";
-const { src, alt } = Astro.props;
+const { src, alt, width = "", height = "", inferSize = false } = Astro.props;
 ---
 
 <Image
+    inferSize={inferSize}
     src={src}
     alt={alt}
+    width={width}
+    height={height}
     class="fade-image"
     loading="lazy"
     decoding="async"

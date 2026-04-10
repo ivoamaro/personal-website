@@ -45,62 +45,77 @@ const title = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
 const description = props.description ?? defaults?.metaDescription;
 const ogImage = props.ogImage ?? defaultOgImage;
 const ogType = props.ogType ?? defaults?.ogType ?? "website";
-const twitterCard = props.twitterCard ?? (defaults?.twitterCard as "summary" | "summary_large_image") ?? "summary_large_image";
+const twitterCard =
+  props.twitterCard ??
+  (defaults?.twitterCard as "summary" | "summary_large_image") ??
+  "summary_large_image";
 const structuredData = props.structuredData ?? defaults?.structuredData;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 
 const visualEditingEnabled =
   import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "false";
+
+const underDev = true;
 ---
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="generator" content={Astro.generator} />
-      
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
 
-        <SEO
-        title={title}
-        description={description}
-        canonical={canonicalURL}
-        openGraph={{
-          basic: {
-            title: title || "",
-            type: ogType,
-            url: canonicalURL,
-            image: ogImage || "",
-          },
-          optional: {
-            description: description || "",
-          }
-        }}
-        twitter={{
-          card: twitterCard,
-          title: title,
-          description: description || "",
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonicalURL}
+      openGraph={{
+        basic: {
+          title: title || "",
+          type: ogType,
+          url: canonicalURL,
           image: ogImage || "",
-        }}
-      />
+        },
+        optional: {
+          description: description || "",
+        },
+      }}
+      twitter={{
+        card: twitterCard,
+        title: title,
+        description: description || "",
+        image: ogImage || "",
+      }}
+    />
 
-        {structuredData && (
-          <script type="application/ld+json" set:html={structuredData} />
-        )}
+    {
+      structuredData && (
+        <script type="application/ld+json" set:html={structuredData} />
+      )
+    }
 
-        <ClientRouter />
-    </head>
-    <body>
-        <Navbar />
-        <slot />
-        <Footer />
+    <ClientRouter />
+  </head>
+  <body>
+    {
+      !underDev ? (
+        <div>
+          <Navbar />
+          <slot />
+          <Footer />
 
-        <script>
-            import "../scripts/SmoothScroll.ts";
-        </script>
-        <VisualEditing enabled={visualEditingEnabled} />
-    </body>
+          <script>import "../scripts/SmoothScroll.ts";</script>
+          <VisualEditing enabled={visualEditingEnabled} />
+        </div>
+      ) : (
+        <div class="container">
+          <h1>Under Development</h1>
+          <p style="margin-top: var(--space-2);">This site is under development. Please check back soon.</p>
+        </div>
+      )
+    }
+  </body>
 </html>

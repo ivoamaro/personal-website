@@ -20,12 +20,12 @@ let searchResults: any = {
 };
 
 if (searchQ !== "") {
-    // searchResults = await getSearchResults(
-    //     searchQ,
-    //     typeQ || undefined,
-    //     yearQ || undefined,
-    //     currentPage,
-    // );
+    searchResults = await getSearchResults(
+        searchQ,
+        typeQ || undefined,
+        yearQ || undefined,
+        currentPage,
+    );
 }
 
 const movies = [

@@ -23,7 +23,7 @@ export const getSearchResults = async (
     const response = await fetch(url);
     const data = await response.json();
 
-     
+
     if (data.Response === "False") {
         return {
             results: [],
@@ -42,3 +42,7 @@ export const getSearchResults = async (
         currentPage: page,
     };
 };
+
+
+
+

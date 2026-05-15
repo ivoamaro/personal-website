@@ -53,6 +53,6 @@
   --space-6: clamp(2rem, 1.6rem + 2vw, 3rem);
 
   /* HEIGHT */
-  --height-navbar: 70px;
-  --height-footer: 70px;
+  --height-navbar: calc(var(--space-5) * 2);
+  --height-footer: calc(var(--space-5) * 2);
 }

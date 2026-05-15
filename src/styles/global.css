@@ -1,5 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap");
 @import "./tokens.css";
+
+html {
+  /* Avoid width jumping when the vertical scrollbar appears (helps near the 768px breakpoint) */
+  scrollbar-gutter: stable;
+}
 
 *,
 *::before,
@@ -9,7 +13,6 @@
 }
 
 body {
-  margin: 0;
   font-family: var(--font-primary);
   font-size: var(--step-0);
   color: var(--color-text);
@@ -17,6 +20,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -o-font-smoothing: antialiased;
+  position: relative;
 }
 
 h1,

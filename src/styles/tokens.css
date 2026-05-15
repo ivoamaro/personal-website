@@ -12,6 +12,10 @@
   --color-bg: #fff;
   --color-primary: #2563eb;
 
+  /* BORDER */
+  --border-width: 2px;
+
+
   /* TYPOGRAPHY */
   --font-primary: "Instrument Sans", sans-serif;
   --font-secondary: "Instrument Serif", serif;
@@ -47,4 +51,8 @@
   --space-4: clamp(1rem, 0.8rem + 1vw, 1.5rem);
   --space-5: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
   --space-6: clamp(2rem, 1.6rem + 2vw, 3rem);
+
+  /* HEIGHT */
+  --height-navbar: 70px;
+  --height-footer: 70px;
 }

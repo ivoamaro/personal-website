@@ -8,22 +8,39 @@ import { ClientRouter } from "astro:transitions";
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="generator" content={Astro.generator} />
-        <title>Astro Starter</title>
-        <ClientRouter />
-    </head>
-    <body>
-        <Navbar />
-        <slot />
-        <Footer />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Ivo Amaro</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <Navbar />
+    <div class="content">
+      <slot />
+    </div>
+    <Footer />
 
-        <script>
-            import "../scripts/SmoothScroll.ts";
-        </script>
-    </body>
+    <script>
+      import "../scripts/SmoothScroll.ts";
+    </script>
+  </body>
 </html>
+
+<style>
+  .content {
+    border-inline: var(--border-width) dashed var(--color-text);
+    margin-inline: var(--space-4);
+    padding-top: var(--height-navbar);
+    padding-bottom: var(--height-footer);
+  }
+</style>

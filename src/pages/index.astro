@@ -6,6 +6,74 @@ import Block from "../components/ui/Block.astro";
 const header = {
   title:
     "Creative designer and developer working at the intersection of design and code. I’m naturally curious and love learning and discovering new things.",
+  work: {
+    title: "Work",
+    items: [
+      {
+        title: "Pollock — Krasner House",
+      },
+      {
+        title: "Talkhouse",
+      },
+      {
+        title: "Encore",
+      },
+      {
+        title: "Larota",
+      },
+    ],
+  },
+  skills: {
+    title: "Skills",
+    items: [
+      {
+        title: "Design",
+        skills: [
+          {
+            title: "Figma",
+          },
+          {
+            title: "Adobe Creative Suite",
+          },
+        ],
+      },
+    ],
+  },
+  education: {
+    title: "Education",
+    items: [
+      {
+        degree:
+          "Bachelor’s degree in Design and Multimedia | University of Coimbra",
+        year: "2015 - 2018",
+      },
+      {
+        degree: "Master’s degree in Multimedia | University of Porto",
+        year: "2018 - 2020",
+      },
+    ],
+  },
+  experience: {
+    title: "Experience",
+    items: [
+      {
+        title: "Prémio Jovem Criador",
+        year: "2018",
+      },
+      {
+        title: "Freelancer",
+        year: "2021",
+      },
+      {
+        title: "Made by Sea",
+        year: "2021-Current",
+      },
+    ],
+  },
+  about: {
+    p1: "Creative developer and designer with 5 years of experience working at the intersection of design and code. Over the years, I’ve worked with JavaScript frameworks and technologies such as React (Next.js), Svelte (SvelteKit), and TypeScript. ",
+    p2: "A core part of my workflow has been collaborating closely with design teams across both design and development, bridging the gap between visual intent and technical execution.",
+  },
 };
 ---
 
@@ -13,28 +81,70 @@ const header = {
   <Header title={header.title} />
   <section class="container grid gap-0">
     <Block class="b-bottom md:b-right lg:b-remove-bottom col-full md:col-4">
-      <h2>Work</h2>
-      <p>{header.title}</p>
+      <h2>{header.work.title}</h2>
+      <ul>
+        {
+          header.work.items.map((item) => (
+            <li>
+              <p>{item.title}</p>
+            </li>
+          ))
+        }
+      </ul>
     </Block>
     <Block class="b-bottom lg:b-right lg:b-remove-bottom col-full md:col-2">
-      <h2>Skills</h2>
-      <p>{header.title}</p>
+      <h2>{header.skills.title}</h2>
+      <ul>
+        {
+          header.skills.items.map((item) => (
+            <li>
+              <span class="small">{item.title}</span>
+              <ul>
+                {item.skills.map((skill) => (
+                  <li>
+                    <p>{skill.title}</p>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
     </Block>
     <Block
       class="b-bottom md:b-right md:b-remove-bottom col-full md:col-3 p-none"
     >
       <Block class="b-bottom">
-        <h2>Education</h2>
-        <p>{header.title}</p>
+        <h2>{header.education.title}</h2>
+        <ul>
+          {
+            header.education.items.map((item) => (
+              <li>
+                <span class="small">{item.year}</span>
+                <p>{item.degree}</p>
+              </li>
+            ))
+          }
+        </ul>
       </Block>
       <Block class="">
-        <h2>Experience</h2>
-        <p>{header.title}</p>
+        <h2>{header.experience.title}</h2>
+        <ul>
+          {
+            header.experience.items.map((item) => (
+              <li>
+                <span class="small">{item.year}</span>
+                <p>{item.title}</p>
+              </li>
+            ))
+          }
+        </ul>
       </Block>
     </Block>
     <Block class="col-full md:col-3">
       <h2>About</h2>
-      <p>{header.title}</p>
+      <p>{header.about.p1}</p>
+      <p>{header.about.p2}</p>
     </Block>
   </section>
 </Layout>

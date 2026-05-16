@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/design-system/Header.astro";
+import Block from "../components/ui/Block.astro";
 
 const header = {
   title:
@@ -9,7 +10,13 @@ const header = {
 ---
 
 <Layout>
-  <div class="container">
-    <Header title={header.title} />
-  </div>
+  <Header title={header.title} />
+  <section class="container grid gap-0">
+    <Block side="right">
+      <p>Work</p>
+    </Block>
+    <Block side="right">
+      <p>{header.title}</p>
+    </Block>
+  </section>
 </Layout>

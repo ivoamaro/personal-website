@@ -20,6 +20,10 @@
   gap: var(--space-4);
 }
 
+.gap-0 {
+  gap: 0;
+}
+
 .col-full {
   grid-column: span var(--mobile-cols);
 }

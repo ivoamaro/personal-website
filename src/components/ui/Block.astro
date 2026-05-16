@@ -1,29 +1,12 @@
 ---
 export interface Props {
-  side?: "left" | "right" | "top" | "bottom";
+  class?: string;
 }
 
-const { side = "left" } = Astro.props;
-
-let border = "var(--border-width) dashed var(--color-text)";
-
-switch (side) {
-  case "right":
-    border = "border-right: var(--border-width) dashed var(--color-text)";
-    break;
-  case "top":
-    border = "border-top: var(--border-width) dashed var(--color-text)";
-    break;
-  case "bottom":
-    border = "border-bottom: var(--border-width) dashed var(--color-text)";
-    break;
-  default:
-    border = "border-left: var(--border-width) dashed var(--color-text)";
-    break;
-}
+const { class: className } = Astro.props;
 ---
 
-<div class="design-system-block col-3" style={border}>
+<div class:list={["design-system-block", className]}>
   <slot />
 </div>
 
@@ -31,11 +14,9 @@ switch (side) {
   .design-system-block {
     padding: var(--space-4);
     font-family: var(--font-secondary);
-    &:last-child {
-      border-right: none;
-    }
-    &:first-child {
-      border-left: none;
-    }
+  }
+
+  .p-none {
+    padding: 0;
   }
 </style>

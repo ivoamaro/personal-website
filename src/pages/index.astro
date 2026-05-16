@@ -12,11 +12,21 @@ const header = {
 <Layout>
   <Header title={header.title} />
   <section class="container grid gap-0">
-    <Block side="right">
+    <Block class="b-bottom md:b-right md:b-remove-bottom col-full md:col-3">
       <p>Work</p>
     </Block>
-    <Block side="right">
-      <p>{header.title}</p>
+
+    <Block class="b-none lg:b-right col-full md:col-3 p-none">
+      <Block class="b-bottom">
+        <p>{header.title}</p>
+      </Block>
+      <Block>
+        <p>{header.title}</p>
+      </Block>
+    </Block>
+
+    <Block class="b-top lg:b-remove-top col-full md:col-6">
+      <p>Work</p>
     </Block>
   </section>
 </Layout>

@@ -12,21 +12,29 @@ const header = {
 <Layout>
   <Header title={header.title} />
   <section class="container grid gap-0">
-    <Block class="b-bottom md:b-right md:b-remove-bottom col-full md:col-3">
-      <p>Work</p>
+    <Block class="b-bottom md:b-right lg:b-remove-bottom col-full md:col-4">
+      <h2>Work</h2>
+      <p>{header.title}</p>
     </Block>
-
-    <Block class="b-none lg:b-right col-full md:col-3 p-none">
+    <Block class="b-bottom lg:b-right lg:b-remove-bottom col-full md:col-2">
+      <h2>Skills</h2>
+      <p>{header.title}</p>
+    </Block>
+    <Block
+      class="b-bottom md:b-right md:b-remove-bottom col-full md:col-3 p-none"
+    >
       <Block class="b-bottom">
+        <h2>Education</h2>
         <p>{header.title}</p>
       </Block>
-      <Block>
+      <Block class="">
+        <h2>Experience</h2>
         <p>{header.title}</p>
       </Block>
     </Block>
-
-    <Block class="b-top lg:b-remove-top col-full md:col-6">
-      <p>Work</p>
+    <Block class="col-full md:col-3">
+      <h2>About</h2>
+      <p>{header.title}</p>
     </Block>
   </section>
 </Layout>

@@ -1,0 +1,30 @@
+---
+import Button from "../ui/Button.astro";
+
+const { title } = Astro.props;
+---
+
+<section class="container grid header">
+  <div class="col-full md:col-6 lg:col-9">
+    <h1 class="title">{title}</h1>
+    <div class="button-container">
+      <Button title="Let's chat" isButton={true} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .header {
+    border-bottom: var(--border-width) dashed var(--color-text);
+    padding: var(--space-4);
+    .title {
+      font-size: var(--step-4);
+      font-weight: var(--font-bold);
+      margin-top: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+    .button-container {
+      margin-bottom: var(--space-6);
+    }
+  }
+</style>

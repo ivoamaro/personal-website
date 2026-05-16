@@ -1,1 +1,49 @@
-<footer></footer>
+<footer class="container">
+   <div>
+    <a href="/">email</a>
+  </div>
+  <ul >
+    <li><a href="/work">Behance</a></li>
+    <li><a href="/contact">Github</a></li>
+    <li><a href="/about">Linkedin</a></li>
+  </ul>
+</footer>
+
+<style>
+ footer {
+   font-family: var(--font-secondary);
+    text-transform: uppercase;
+    font-weight: var(--font-regular);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - var(--space-4));
+    padding-left: calc(var(--space-4) * 2);
+    padding-right: var(--space-4);
+    height: var(--height-navbar);
+    border-top: var(--border-width) dashed var(--color-text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    ul {
+      display: flex;
+      > * + * {
+        margin-left: var(--space-4);
+      }
+      li {
+        list-style-type: none;
+      }
+    }
+    a {
+      letter-spacing: var(--tracking-wide);
+      text-decoration: none;
+      transition: 0.2s ease-in-out;
+      &:hover {
+        opacity: 0.1;
+      }
+    }
+
+   
+
+ 
+</style>

@@ -13,12 +13,17 @@
   --color-bg: #fff;
   --color-primary: #2563eb;
 
+  /* BORDER */
+  --border-width: 2px;
+
+
   /* TYPOGRAPHY */
   --font-primary: "Instrument Sans", sans-serif;
-  --font-secondary: "Instrument Serif", serif;
+  --font-secondary: "IBM Plex Mono", monospace;
 
   /* Font Sizes */
 
+  --step--2: clamp(0.625rem, 0.58rem + 0.2vw, 0.75rem);
   --step--1: clamp(0.875rem, 0.83rem + 0.2vw, 1rem);
   --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   --step-1: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
@@ -48,4 +53,8 @@
   --space-4: clamp(1rem, 0.8rem + 1vw, 1.5rem);
   --space-5: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
   --space-6: clamp(2rem, 1.6rem + 2vw, 3rem);
+
+  /* HEIGHT */
+  --height-navbar: calc(var(--space-5) * 2);
+  --height-footer: calc(var(--space-5) * 2);
 }

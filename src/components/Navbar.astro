@@ -1,3 +1,7 @@
+---
+import ThemeIcon from "./ui/ThemeIcon.astro";
+---
+
 <nav class="container">
   <div>
     <a href="/">Ivo Amaro</a>
@@ -12,10 +16,24 @@
 
   <ul class="menu">
     <li><a href="/exploratory">Exploratory</a></li>
+    <li><ThemeIcon /></li>
   </ul>
 </nav>
 
 <style>
+  :global(.dark) nav {
+    border-bottom: var(--border-width) dashed var(--color-bg);
+    .hamburger span {
+      background-color: var(--color-bg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    :global(.dark) nav .menu {
+      background-color: var(--color-text);
+      border-bottom: var(--border-width) dashed var(--color-bg);
+    }
+  }
   nav {
     font-family: var(--font-secondary);
     text-transform: uppercase;
@@ -38,6 +56,9 @@
       }
       li {
         list-style-type: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
     a {

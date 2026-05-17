@@ -4,6 +4,7 @@ import "../styles/layout.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
+import InDevelopmentBanner from "../components/InDevelopmentBanner.astro";
 ---
 
 <!doctype html>
@@ -26,22 +27,37 @@ import { ClientRouter } from "astro:transitions";
     <meta name="generator" content={Astro.generator} />
     <title>Ivo Amaro</title>
     <ClientRouter />
-  </head>
-  <body>
-    <!-- <Navbar /> -->
-    <div class="content">
-      <h1>Under Development</h1>
-      <!-- <slot /> -->
-    </div>
-    <!-- <Footer /> -->
 
-    <script>
-      import "../scripts/SmoothScroll.ts";
+    <script is:inline>
+      (() => {
+        const theme = localStorage.getItem("theme");
+
+        if (
+          theme === "dark" ||
+          (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      })();
     </script>
-  </body>
+  </head>
 </html>
-
-<style>
+<body>
+  <!-- <Navbar />
+  <div class="content">
+    <slot />
+  </div>
+  <Footer /> -->
+  <InDevelopmentBanner />
+  <script>
+    import "../scripts/SmoothScroll.ts";
+  </script>
+</body><style>
+  .dark .content {
+    border-inline: var(--border-width) dashed var(--color-bg);
+  }
   .content {
     border-inline: var(--border-width) dashed var(--color-text);
     margin-inline: var(--space-4);

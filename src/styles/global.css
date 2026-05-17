@@ -12,11 +12,15 @@ html {
   margin: 0;
 }
 
+html.dark {
+  color: var(--color-bg);
+  background: var(--color-text);
+  transition: background-color 500ms;
+}
+
 body {
   font-family: var(--font-primary);
   font-size: var(--step-0);
-  color: var(--color-text);
-  background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -o-font-smoothing: antialiased; 
@@ -82,4 +86,8 @@ h2, p {
 
 a {
   color: var(--color-text);
+}
+
+.dark a {
+  color: var(--color-bg);
 }

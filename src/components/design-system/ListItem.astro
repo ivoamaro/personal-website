@@ -1,0 +1,50 @@
+---
+export interface NestedEntry {
+  title: string;
+}
+
+export interface Props {
+  subItem?: string;
+  mainItem?: string;
+  nested?: NestedEntry[];
+}
+
+let { subItem = "", mainItem = "", nested = [] } = Astro.props;
+---
+
+<li>
+  {subItem && <span class="small">{subItem}</span>}
+  {mainItem && <p>{mainItem}</p>}
+  {
+    nested.length > 0 && (
+      <ul class="nested">
+        {nested.map((entry) => (
+          <li>
+            <p>{entry.title}</p>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</li>
+
+<style>
+  li {
+    margin-bottom: var(--space-2);
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .nested {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-2) 0 0;
+    li {
+      margin-bottom: var(--space-1);
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+</style>

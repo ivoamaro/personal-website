@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/design-system/Header.astro";
 import Block from "../components/ui/Block.astro";
+import ListItem from "../components/design-system/ListItem.astro";
 
 const header = {
   title:
@@ -83,13 +84,7 @@ const header = {
     <Block class="b-bottom md:b-right lg:b-remove-bottom col-full md:col-4">
       <h2>{header.work.title}</h2>
       <ul>
-        {
-          header.work.items.map((item) => (
-            <li>
-              <p>{item.title}</p>
-            </li>
-          ))
-        }
+        {header.work.items.map((item) => <ListItem mainItem={item.title} />)}
       </ul>
     </Block>
     <Block class="b-bottom lg:b-right lg:b-remove-bottom col-full md:col-2">
@@ -97,16 +92,7 @@ const header = {
       <ul>
         {
           header.skills.items.map((item) => (
-            <li>
-              <span class="small">{item.title}</span>
-              <ul>
-                {item.skills.map((skill) => (
-                  <li>
-                    <p>{skill.title}</p>
-                  </li>
-                ))}
-              </ul>
-            </li>
+            <ListItem subItem={item.title} nested={item.skills} />
           ))
         }
       </ul>
@@ -119,10 +105,7 @@ const header = {
         <ul>
           {
             header.education.items.map((item) => (
-              <li>
-                <span class="small">{item.year}</span>
-                <p>{item.degree}</p>
-              </li>
+              <ListItem subItem={item.year} mainItem={item.degree} />
             ))
           }
         </ul>
@@ -132,10 +115,7 @@ const header = {
         <ul>
           {
             header.experience.items.map((item) => (
-              <li>
-                <span class="small">{item.year}</span>
-                <p>{item.title}</p>
-              </li>
+              <ListItem subItem={item.year} mainItem={item.title} />
             ))
           }
         </ul>

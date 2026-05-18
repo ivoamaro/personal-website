@@ -7,5 +7,7 @@ content:
     fields:
       - name: title
         type: string
+      - name: teste
+        type: string
       - name: body
         type: rich-text

@@ -9,6 +9,7 @@ components:
   link:
     type: object
     label: Link
+    list: true
     fields:
      - name: title
        type: string

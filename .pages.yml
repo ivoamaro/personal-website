@@ -49,6 +49,16 @@ content:
     label: Home
     type: collection
     path: content/homepage
+    fields:
+      - name: status
+        component: status
+        label: Status
+      - name: about
+        type: rich-text
+      - name: seo
+        component: seo
+        label: Meta
+      
   - name: pages
     label: Pages
     type: collection

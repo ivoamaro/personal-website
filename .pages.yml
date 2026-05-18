@@ -8,6 +8,7 @@ components:
     fields:
      - name: title
        type: string
+       label: Title
      - name: href
        type: string
      - name: category

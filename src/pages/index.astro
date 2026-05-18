@@ -12,15 +12,19 @@ const header = {
     items: [
       {
         title: "Pollock — Krasner House",
+        category: ["Design", "Development"],
       },
       {
         title: "Talkhouse",
+        category: ["Design", "Development"],
       },
       {
         title: "Encore",
+        category: ["Design", "Development"],
       },
       {
         title: "Larota",
+        category: ["Design", "Development"],
       },
     ],
   },
@@ -34,7 +38,27 @@ const header = {
             title: "Figma",
           },
           {
-            title: "Adobe Creative Suite",
+            title: "Adobe",
+          },
+        ],
+      },
+      {
+        title: "Development",
+        skills: [
+          {
+            title: "React",
+          },
+          {
+            title: "Astro",
+          },
+          {
+            title: "JavaScript",
+          },
+          {
+            title: "HTML",
+          },
+          {
+            title: "CSS",
           },
         ],
       },
@@ -44,13 +68,12 @@ const header = {
     title: "Education",
     items: [
       {
-        degree:
-          "Bachelor’s degree in Design and Multimedia | University of Coimbra",
-        year: "2015 - 2018",
+        degree: "Bachelor’s degree in Design and Multimedia",
+        year: "University of Coimbra | 2015 - 2018 ",
       },
       {
-        degree: "Master’s degree in Multimedia | University of Porto",
-        year: "2018 - 2020",
+        degree: "Master’s degree in Multimedia",
+        year: "University of Porto | 2018 - 2020",
       },
     ],
   },
@@ -81,10 +104,21 @@ const header = {
 <Layout>
   <Header title={header.title} />
   <section class="container grid gap-0">
-    <Block class="b-bottom md:b-right lg:b-remove-bottom col-full md:col-4">
+    <Block
+      class="col-full lg:col-4 b-bottom lg:b-remove-bottom md:b-remove-right lg:b-right"
+    >
+      <h2>About</h2>
+      <p>{header.about.p1}</p>
+      <p>{header.about.p2}</p>
+    </Block>
+    <Block class="b-bottom md:b-right lg:b-remove-bottom col-full md:col-3">
       <h2>{header.work.title}</h2>
       <ul>
-        {header.work.items.map((item) => <ListItem mainItem={item.title} />)}
+        {
+          header.work.items.map((item) => (
+            <ListItem mainItem={item.title} category={item.category} />
+          ))
+        }
       </ul>
     </Block>
     <Block class="b-bottom lg:b-right lg:b-remove-bottom col-full md:col-2">
@@ -97,20 +131,8 @@ const header = {
         }
       </ul>
     </Block>
-    <Block
-      class="b-bottom md:b-right md:b-remove-bottom col-full md:col-3 p-none"
-    >
+    <Block class="col-full lg:col-3 p-none">
       <Block class="b-bottom">
-        <h2>{header.education.title}</h2>
-        <ul>
-          {
-            header.education.items.map((item) => (
-              <ListItem subItem={item.year} mainItem={item.degree} />
-            ))
-          }
-        </ul>
-      </Block>
-      <Block>
         <h2>{header.experience.title}</h2>
         <ul>
           {
@@ -120,11 +142,16 @@ const header = {
           }
         </ul>
       </Block>
-    </Block>
-    <Block class="col-full md:col-3">
-      <h2>About</h2>
-      <p>{header.about.p1}</p>
-      <p>{header.about.p2}</p>
+      <Block>
+        <h2>{header.education.title}</h2>
+        <ul>
+          {
+            header.education.items.map((item) => (
+              <ListItem subItem={item.year} mainItem={item.degree} />
+            ))
+          }
+        </ul>
+      </Block>
     </Block>
   </section>
 </Layout>

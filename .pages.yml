@@ -23,6 +23,8 @@ components:
   seo:
     type: object
     label: SEO
+    list:
+      collapsible: true
     fields:
       - name: title
         type: string
@@ -44,8 +46,6 @@ content:
     label: Pages
     type: collection
     path: docs
-    list:
-      collapsible: true
     fields:
       - name: status
         component: status

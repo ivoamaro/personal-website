@@ -1,4 +1,6 @@
-media: media
+media:
+  input: blog/assets
+  output: assets
 content:
   - name: pages
     label: Pages

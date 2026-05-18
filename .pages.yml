@@ -23,8 +23,11 @@ components:
   seo:
     type: object
     label: SEO
-    options:
-      collapsed: true
+    list:
+      min: 1
+      max: 6
+      collapsible:
+        collapsed: true
     fields:
       - name: title
         type: string

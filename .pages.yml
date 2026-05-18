@@ -45,6 +45,8 @@ content:
     type: collection
     path: content/homepage
     fields:
+      - name: title
+        type: string
       - name: status
         component: status
         label: Status

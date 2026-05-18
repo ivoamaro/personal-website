@@ -2,6 +2,10 @@ media:
   input: src/assets
   output: assets
 components:
+  status:
+    type: select
+    options:
+      values: [Draft, Review, Published]
   link:
     type: object
     label: Link
@@ -40,6 +44,9 @@ content:
     type: collection
     path: docs
     fields:
+      - name: status
+        component: status
+        label: Status
       - name: title
         type: string
       - name: body

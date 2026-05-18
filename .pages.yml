@@ -2,6 +2,18 @@ media:
   input: src/assets
   output: assets
 components:
+  link:
+    type: object
+    label: Link
+    fields:
+     - name: title
+       type: string
+     - name: href
+       type: string
+     - name: category
+       type: select
+       options:
+         values: [Email, Tel, Hyperlink]
   seo:
     type: object
     label: SEO

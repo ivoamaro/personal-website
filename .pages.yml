@@ -12,7 +12,7 @@ components:
         type: text
 content:
   - name: pages
-    label: Pages
+    label: Pes
     type: collection
     path: docs
     fields:

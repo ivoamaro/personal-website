@@ -45,6 +45,10 @@ components:
           format: javascript
 
 content:
+  - name: homepage
+    label: Home
+    type: collection
+    path: content/homepage
   - name: pages
     label: Pages
     type: collection

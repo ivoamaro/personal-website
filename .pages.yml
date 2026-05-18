@@ -44,6 +44,8 @@ content:
     label: Pages
     type: collection
     path: docs
+    list:
+      collapsible: true
     fields:
       - name: status
         component: status

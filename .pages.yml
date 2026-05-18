@@ -8,8 +8,19 @@ components:
     fields:
       - name: title
         type: string
+        options:
+          maxLength: 60
       - name: description
         type: text
+        options:
+          maxLength: 160
+      - name: schema
+        type: code
+        label: Structured Data (Schema.org)
+        description: "JSON-LD structured data for rich results in search engines."
+        options:
+          format: javascript
+
 content:
   - name: pages
     label: Pages

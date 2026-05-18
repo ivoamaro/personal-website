@@ -25,6 +25,7 @@ components:
     label: SEO
     list:
       collapsible: true
+      max: 1
     fields:
       - name: title
         type: string

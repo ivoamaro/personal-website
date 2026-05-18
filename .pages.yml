@@ -46,3 +46,6 @@ content:
       - name: seo
         component: seo
         label: Meta
+      - name: button
+        component: link
+        label: Button

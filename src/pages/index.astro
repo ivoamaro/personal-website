@@ -3,6 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/design-system/Header.astro";
 import Block from "../components/ui/Block.astro";
 import ListItem from "../components/design-system/ListItem.astro";
+import { getCollection, getEntry } from "astro:content";
+
+const allHomepage = await getCollection("homepage");
+console.log(allHomepage);
 
 const header = {
   title:

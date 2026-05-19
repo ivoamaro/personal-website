@@ -49,7 +49,7 @@ content:
         component: seo
         label: SEO
   - name: homepage
-    label: Home
+    label: Homepage
     type: file
     path: content/pages/homepage.json
     fields:

@@ -7,12 +7,22 @@ export interface Props {
   subItem?: string;
   mainItem?: string;
   nested?: NestedEntry[];
+  category?: string[];
 }
 
-let { subItem = "", mainItem = "", nested = [] } = Astro.props;
+let { subItem = "", mainItem = "", nested = [], category = [] } = Astro.props;
 ---
 
 <li>
+  {
+    category.length > 0 && (
+      <ul class="category">
+        {category.map((entry) => (
+          <li class="category-item">{entry}</li>
+        ))}
+      </ul>
+    )
+  }
   {subItem && <span class="small">{subItem}</span>}
   {mainItem && <p>{mainItem}</p>}
   {
@@ -36,15 +46,28 @@ let { subItem = "", mainItem = "", nested = [] } = Astro.props;
     }
   }
 
-  .nested {
+  .nested,
+  .category {
     list-style: none;
     padding: 0;
-    margin: var(--space-2) 0 0;
+
     li {
-      margin-bottom: var(--space-1);
+      margin-bottom: 0;
       &:last-child {
         margin-bottom: 0;
       }
+    }
+  }
+  .category {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    .category-item {
+      font-size: var(--step--2);
+      font-weight: var(--font-bold);
+      letter-spacing: var(--tracking-wide);
     }
   }
 </style>

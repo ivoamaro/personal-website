@@ -1,11 +1,84 @@
-media: media
+media:
+  input: src/assets
+  output: assets
+components:
+  status:
+    type: select
+    options:
+      values: [Draft, Review, Published]
+  link:
+    type: object
+    label: Link
+    list: true
+    fields:
+     - name: title
+       type: string
+       label: Title
+     - name: href
+       type: string
+     - name: category
+       type: select
+       options:
+         values: [Email, Tel, Hyperlink]
+  seo:
+    type: object
+    label: SEO
+    fields:
+      - name: title
+        type: string
+        options:
+          maxLength: 60
+      - name: description
+        type: text
+        options:
+          maxLength: 160
+      - name: schema
+        type: code
+        label: Structured Data (Schema.org)
+        description: "JSON-LD structured data for rich results in search engines."
+        options:
+          format: javascript
+
 content:
+  - name: site-settings
+    label: Site Settings
+    path: content/site-settings.json
+    type: file
+    fields:
+      - name: seo
+        component: seo
+        label: SEO
+  - name: homepage
+    label: Homepage
+    type: file
+    path: content/pages/homepage.json
+    fields:
+      - name: title
+        type: string
+      - name: status
+        component: status
+        label: Status
+      - name: about
+        type: rich-text
+      - name: seo
+        component: seo
+        label: SEO
+      
   - name: pages
     label: Pages
     type: collection
     path: docs
     fields:
+      - name: status
+        component: status
+        label: Status
       - name: title
         type: string
       - name: body
         type: rich-text
+      - name: seo
+        component: seo
+        label: SEO
+      - name: button
+        component: link
+        label: Button

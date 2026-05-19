@@ -4,6 +4,7 @@ import "../styles/layout.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
+import InDevelopmentBanner from "../components/design-system/InDevelopmentBanner.astro";
 ---
 
 <!doctype html>
@@ -44,12 +45,12 @@ import { ClientRouter } from "astro:transitions";
   </head>
 </html>
 <body>
-  <Navbar />
+  <!-- <Navbar />
   <div class="content">
     <slot />
   </div>
-  <Footer />
-  <!-- <InDevelopmentBanner /> -->
+  <Footer /> -->
+  <InDevelopmentBanner />
   <script>
     import "../scripts/SmoothScroll.ts";
   </script>

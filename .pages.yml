@@ -42,8 +42,8 @@ components:
 content:
   - name: homepage
     label: Home
-    type: collection
-    path: content/homepage
+    type: file
+    path: content/pages/homepage.json
     fields:
       - name: title
         type: string

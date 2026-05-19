@@ -40,6 +40,14 @@ components:
           format: javascript
 
 content:
+  - name: site-settings
+    label: Site Settings
+    path: content/site-settings.json
+    type: file
+    fields:
+      - name: seo
+        component: seo
+        label: SEO
   - name: homepage
     label: Home
     type: file
@@ -54,7 +62,7 @@ content:
         type: rich-text
       - name: seo
         component: seo
-        label: Meta
+        label: SEO
       
   - name: pages
     label: Pages
@@ -70,7 +78,7 @@ content:
         type: rich-text
       - name: seo
         component: seo
-        label: Meta
+        label: SEO
       - name: button
         component: link
         label: Button

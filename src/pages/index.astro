@@ -16,19 +16,31 @@ const header = {
     items: [
       {
         title: "Pollock — Krasner House",
-        category: ["Design", "Development"],
+        description:
+          "A website for the Pollock — Krasner House, a museum and research center dedicated to the life and work of the artists Jackson Pollock and Lee Krasner.",
+        tags: ["Design", "Development"],
+        links: [
+          {
+            title: "Website",
+            href: "https://www.pollock.com",
+          },
+          {
+            title: "GitHub",
+            href: "https://github.com/pollock-krasner-house",
+          },
+        ],
       },
       {
         title: "Talkhouse",
-        category: ["Design", "Development"],
+        tags: ["Design", "Development"],
       },
       {
         title: "Encore",
-        category: ["Design", "Development"],
+        tags: ["Design", "Development"],
       },
       {
         title: "Larota",
-        category: ["Design", "Development"],
+        tags: ["Design", "Development"],
       },
     ],
   },
@@ -120,7 +132,12 @@ const header = {
       <ul>
         {
           header.work.items.map((item) => (
-            <ListItem mainItem={item.title} category={item.category} />
+            <ListItem
+              title={item.title}
+              description={item.description}
+              tags={item.tags}
+              links={item.links}
+            />
           ))
         }
       </ul>
@@ -128,11 +145,7 @@ const header = {
     <Block class="b-bottom lg:b-right lg:b-remove-bottom col-full md:col-2">
       <h2>{header.skills.title}</h2>
       <ul>
-        {
-          header.skills.items.map((item) => (
-            <ListItem subItem={item.title} nested={item.skills} />
-          ))
-        }
+        {header.skills.items.map((item) => <ListItem skillsList={item} />)}
       </ul>
     </Block>
     <Block class="col-full lg:col-3 p-none">
@@ -141,7 +154,7 @@ const header = {
         <ul>
           {
             header.experience.items.map((item) => (
-              <ListItem subItem={item.year} mainItem={item.title} />
+              <ListItem subtitle={item.year} title={item.title} />
             ))
           }
         </ul>
@@ -151,7 +164,7 @@ const header = {
         <ul>
           {
             header.education.items.map((item) => (
-              <ListItem subItem={item.year} mainItem={item.degree} />
+              <ListItem subtitle={item.year} title={item.degree} />
             ))
           }
         </ul>

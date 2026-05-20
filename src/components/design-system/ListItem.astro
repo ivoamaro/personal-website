@@ -1,73 +1,130 @@
 ---
-export interface NestedEntry {
+export interface LinkEntry {
   title: string;
+  href: string;
+}
+
+export interface SkillSection {
+  title: string;
+  skills: {
+    title: string;
+  }[];
 }
 
 export interface Props {
-  subItem?: string;
-  mainItem?: string;
-  nested?: NestedEntry[];
-  category?: string[];
+  subtitle?: string;
+  title?: string;
+  tags?: string[];
+  links?: LinkEntry[];
+  description?: string;
+  /** One skill group, or several (e.g. from CMS). */
+  skillsList?: SkillSection | SkillSection[];
 }
 
-let { subItem = "", mainItem = "", nested = [], category = [] } = Astro.props;
+let {
+  subtitle = "",
+  title = "",
+  tags = [],
+  links = [],
+  description = "",
+  skillsList,
+} = Astro.props;
+
+const skillSections =
+  skillsList == null
+    ? []
+    : Array.isArray(skillsList)
+      ? skillsList
+      : [skillsList];
 ---
 
-<li>
+<li class="list-item">
+  {subtitle && <span class="small">{subtitle}</span>}
+  {title && <p>{title}</p>}
+  <div class="info-container">
+    {
+      links.length > 0 && (
+        <ul class="links">
+          {links.map((link) => (
+            <li class="link-item">
+              <a href={link.href} target="_blank" rel="noreferrer">
+                {link.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+    {
+      tags.length > 0 && (
+        <ul class="tags">
+          {tags.map((tag) => (
+            <li>
+              <span>{tag}</span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+
   {
-    category.length > 0 && (
-      <ul class="category">
-        {category.map((entry) => (
-          <li class="category-item">{entry}</li>
-        ))}
-      </ul>
-    )
+    skillSections.length > 0 &&
+      skillSections.map((section) => (
+        <>
+          <h3 class="small">{section.title}</h3>
+          <ul class="skills">
+            {section.skills.map((skill) => (
+              <li>
+                <span>{skill.title}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      ))
   }
-  {subItem && <span class="small">{subItem}</span>}
-  {mainItem && <p>{mainItem}</p>}
-  {
-    nested.length > 0 && (
-      <ul class="nested">
-        {nested.map((entry) => (
-          <li>
-            <p>{entry.title}</p>
-          </li>
-        ))}
-      </ul>
-    )
-  }
+
 </li>
 
 <style>
-  li {
-    margin-bottom: var(--space-2);
+  .list-item {
+    margin-bottom: var(--space-3);
     &:last-child {
       margin-bottom: 0;
     }
   }
-
-  .nested,
-  .category {
-    list-style: none;
-    padding: 0;
-
-    li {
-      margin-bottom: 0;
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
+  .info-container {
+    display: flex;
+    gap: var(--space-1);
   }
-  .category {
-    list-style: none;
-    padding: 0;
+  .tags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-1);
-    .category-item {
+    span {
+      display: block;
       font-size: var(--step--2);
-      font-weight: var(--font-bold);
+      font-weight: var(--font-light);
       letter-spacing: var(--tracking-wide);
+      font-style: italic;
     }
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    li {
+      display: block;
+      list-style: none;
+      a {
+        display: block;
+        font-size: var(--step--2);
+        font-weight: var(--font-bold);
+        letter-spacing: var(--tracking-wide);
+      }
+    }
+  }
+  .skills li:last-child {
+    margin-bottom: var(--space-3);
   }
 </style>

@@ -5,6 +5,11 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 import InDevelopmentBanner from "../components/design-system/InDevelopmentBanner.astro";
+
+const isProtected = Boolean(import.meta.env.SITE_PASSWORD);
+const isAuthenticated = Astro.cookies.get("auth")?.value === "true";
+const showSite = !isProtected || isAuthenticated;
+const authError = Astro.url.searchParams.has("authError");
 ---
 
 <!doctype html>
@@ -43,26 +48,34 @@ import InDevelopmentBanner from "../components/design-system/InDevelopmentBanner
       })();
     </script>
   </head>
+  <body>
+    {
+      showSite ? (
+        <>
+          <Navbar />
+          <div class="content">
+            <slot />
+          </div>
+          <Footer />
+        </>
+      ) : (
+        <InDevelopmentBanner error={authError} />
+      )
+    }
+
+    <script>
+      import "../scripts/SmoothScroll.ts";
+    </script>
+  </body><style>
+    .dark .content {
+      border-inline: var(--border-width) dashed var(--color-bg);
+    }
+    .content {
+      border-inline: var(--border-width) dashed var(--color-text);
+      margin-inline: var(--space-4);
+      padding-top: calc(var(--space-5) * 2);
+      padding-bottom: var(--height-footer);
+      /* min-height: 100vh; */
+    }
+  </style>
 </html>
-<body>
-  <Navbar />
-  <div class="content">
-    <slot />
-  </div>
-  <Footer />
-  <!-- <InDevelopmentBanner /> -->
-  <script>
-    import "../scripts/SmoothScroll.ts";
-  </script>
-</body><style>
-  .dark .content {
-    border-inline: var(--border-width) dashed var(--color-bg);
-  }
-  .content {
-    border-inline: var(--border-width) dashed var(--color-text);
-    margin-inline: var(--space-4);
-    padding-top: calc(var(--space-5) * 2);
-    padding-bottom: var(--height-footer);
-    /* min-height: 100vh; */
-  }
-</style>

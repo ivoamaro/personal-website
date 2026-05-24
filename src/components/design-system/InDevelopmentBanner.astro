@@ -1,7 +1,29 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+  error?: boolean;
+}
+
+const { error = false } = Astro.props;
+---
+
 <section class="container">
   <div class="content">
     <h2>This page is under development</h2>
     <p>Please check back later for updates.</p>
+
+    <form method="POST" action="/api/unlock">
+      <input
+        type="password"
+        name="password"
+        placeholder="Enter password"
+        required
+      />
+
+      <Button title="Unlock" isButton={true} />
+    </form>
+    {error && <p>Wrong password</p>}
   </div>
 </section>
 
@@ -11,5 +33,16 @@
     padding-top: calc(var(--space-5) * 2);
     padding-bottom: var(--height-footer);
     min-height: 100vh;
+    form {
+      margin-top: var(--space-4);
+      input {
+        border: var(--border-width) solid var(--color-text);
+        padding: var(--space-2);
+        margin-bottom: var(--space-2);
+        width: 100%;
+        max-width: 300px;
+        border-radius: var(--border-radius);
+      }
+    }
   }
 </style>

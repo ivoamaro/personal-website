@@ -50,7 +50,7 @@ const authError = Astro.url.searchParams.has("authError");
     </script>
   </head>
   <body>
-    <!-- {
+    {
       showSite ? (
         <>
           <Navbar />
@@ -62,8 +62,7 @@ const authError = Astro.url.searchParams.has("authError");
       ) : (
         <InDevelopmentBanner error={authError} />
       )
-    } -->
-    <InDevelopmentBanner error={authError} />
+    }
 
     <script>
       import "../scripts/SmoothScroll.ts";

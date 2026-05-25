@@ -8,8 +8,8 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     cookies.set("auth", "true", {
       path: "/",
       httpOnly: true,
-      sameSite: "lax",
-      secure: import.meta.env.PROD,
+      secure: true,
+      sameSite: "strict",
     });
 
     return redirect("/");

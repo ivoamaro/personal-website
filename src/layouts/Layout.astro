@@ -8,6 +8,7 @@ import InDevelopmentBanner from "../components/design-system/InDevelopmentBanner
 
 const isProtected = Boolean(import.meta.env.SITE_PASSWORD);
 const isAuthenticated = Astro.cookies.get("auth")?.value === "true";
+
 const showSite = !isProtected || isAuthenticated;
 const authError = Astro.url.searchParams.has("authError");
 ---

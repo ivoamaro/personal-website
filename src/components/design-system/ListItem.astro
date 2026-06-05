@@ -45,22 +45,30 @@ const skillSections =
     {
       links.length > 0 && (
         <ul class="links">
-          {links.map((link) => (
+          {links.map((link, index) => (
             <li class="link-item">
               <a href={link.href} target="_blank" rel="noreferrer">
                 {link.title}
               </a>
+              {index >= links.length - 1 ? "" : ","}
             </li>
           ))}
+          {tags.length > 0 && (
+            <li>
+              <span class="separator">|</span>
+            </li>
+          )}
         </ul>
       )
     }
+
     {
       tags.length > 0 && (
         <ul class="tags">
-          {tags.map((tag) => (
+          {tags.map((tag, index) => (
             <li>
               <span>{tag}</span>
+              {index >= tags.length - 1 ? "" : ","}
             </li>
           ))}
         </ul>
@@ -100,25 +108,28 @@ const skillSections =
   .tags {
     display: flex;
     gap: var(--space-1);
+    font-size: var(--step--2);
+    font-weight: var(--font-light);
+    letter-spacing: var(--tracking-wide);
+    font-style: italic;
+    li {
+      display: flex;
+    }
     span {
       display: block;
-      font-size: var(--step--2);
-      font-weight: var(--font-light);
-      letter-spacing: var(--tracking-wide);
-      font-style: italic;
     }
   }
   .links {
     display: flex;
     gap: var(--space-1);
     li {
-      display: block;
+      display: flex;
       list-style: none;
+      font-size: var(--step--2);
+      font-weight: var(--font-bold);
+      letter-spacing: var(--tracking-wide);
       a {
         display: block;
-        font-size: var(--step--2);
-        font-weight: var(--font-bold);
-        letter-spacing: var(--tracking-wide);
       }
     }
   }

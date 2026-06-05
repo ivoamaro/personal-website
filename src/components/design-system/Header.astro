@@ -1,15 +1,19 @@
 ---
 import Button from "../ui/Button.astro";
 
-const { title } = Astro.props;
+const { title, showButton = true } = Astro.props;
 ---
 
 <section class="container grid header">
   <div class="col-full md:col-6 lg:col-9">
     <h1 class="title">{title}</h1>
-    <div class="button-container">
-      <Button title="Let's chat" isButton={true} />
-    </div>
+    {
+      showButton && (
+        <div class="button-container">
+          <Button title="Let's chat" isButton={true} />
+        </div>
+      )
+    }
   </div>
 </section>
 

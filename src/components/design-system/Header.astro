@@ -1,21 +1,15 @@
 ---
 import Button from "../ui/Button.astro";
 
-const { title, showButton = true } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<section class="container grid header">
-  <div class="col-full md:col-6 lg:col-9">
+<header class="container grid header">
+  <div class="col-full">
     <h1 class="title">{title}</h1>
-    {
-      showButton && (
-        <div class="button-container">
-          <Button title="Let's chat" isButton={true} />
-        </div>
-      )
-    }
+    <slot />
   </div>
-</section>
+</header>
 
 <style>
   :global(.dark) .header {
@@ -24,20 +18,11 @@ const { title, showButton = true } = Astro.props;
   .header {
     border-bottom: var(--border-width) dashed var(--color-text);
     padding: var(--space-4);
+    padding-block: var(--space-6);
     .title {
       font-size: var(--step-4);
       font-weight: var(--font-bold);
-      margin-top: var(--space-4);
-      margin-bottom: var(--space-6);
-      @media (min-width: 768px) {
-        margin-top: var(--space-6);
-      }
-    }
-    .button-container {
-      margin-bottom: var(--space-6);
-      @media (min-width: 768px) {
-        margin-bottom: var(--space-6);
-      }
+      margin-bottom: var(--space-4);
     }
   }
 </style>

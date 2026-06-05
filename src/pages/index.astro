@@ -4,6 +4,7 @@ import Header from "../components/design-system/Header.astro";
 import Block from "../components/ui/Block.astro";
 import ListItem from "../components/design-system/ListItem.astro";
 import { getCollection, getEntry } from "astro:content";
+import Button from "../components/ui/Button.astro";
 
 // const allHomepage = await getCollection("homepage");
 // console.log(allHomepage);
@@ -129,14 +130,23 @@ const header = {
     ],
   },
   about: {
-    p1: "Creative developer and designer with 5 years of experience working at the intersection of design and code. Over the years, I’ve worked with JavaScript frameworks and technologies such as React (Next.js), Svelte (SvelteKit), and TypeScript. ",
+    p1: "Creative developer and designer with 5 years of experience working at the intersection of design and code. Over the years, I’ve worked with JavaScript frameworks and technologies such as React, Svelte, and Astro. ",
     p2: "A core part of my workflow has been collaborating closely with design teams across both design and development, bridging the gap between visual intent and technical execution.",
   },
 };
 ---
 
 <Layout>
-  <Header title={header.title} />
+  <Header title={header.title}>
+    <div class="button-container">
+      <Button
+        title="Let's chat"
+        isButton={false}
+        isExternal={true}
+        href="mailto:ivo.amaro.97.p@gmail.com"
+      />
+    </div>
+  </Header>
   <section class="container grid gap-0">
     <Block
       class="col-full lg:col-4 b-bottom lg:b-remove-bottom md:b-remove-right lg:b-right"
@@ -160,7 +170,9 @@ const header = {
         }
       </ul>
     </Block>
-    <Block class="b-bottom lg:b-right lg:b-remove-bottom col-full md:col-2">
+    <Block
+      class="b-bottom lg:b-right lg:b-remove-bottom col-full md:col-3 lg:col-2"
+    >
       <h2>{header.skills.title}</h2>
       <ul>
         {header.skills.items.map((item) => <ListItem skillsList={item} />)}

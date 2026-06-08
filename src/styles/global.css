@@ -27,6 +27,12 @@ body {
   position: relative;
 }
 
+ a {
+   &:hover {
+     color: var(--color-primary);
+   }
+ }
+
 
 h1{
   font-family: var(--font-primary);

@@ -6,13 +6,6 @@ import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 import InDevelopmentBanner from "../components/design-system/InDevelopmentBanner.astro";
 
-const isSitePasswordCorrect = (inputPassword: string) => {
-  if (import.meta.env.SITE_PASSWORD === inputPassword) {
-    return Boolean(true);
-  }
-  return Boolean(false);
-};
-
 //const isProtected = isSitePasswordCorrect("");
 
 const showSite = true;

@@ -4,6 +4,7 @@ import Header from "../components/design-system/Header.astro";
 import Block from "../components/ui/Block.astro";
 import ListItem from "../components/design-system/ListItem.astro";
 import { getCollection, getEntry } from "astro:content";
+import Button from "../components/ui/Button.astro";
 
 // const allHomepage = await getCollection("homepage");
 // console.log(allHomepage);
@@ -22,25 +23,43 @@ const header = {
         links: [
           {
             title: "Website",
-            href: "https://www.pollock.com",
+            href: "https://www.pkhouse.org",
           },
           {
-            title: "GitHub",
-            href: "https://github.com/pollock-krasner-house",
+            title: "Figma",
+            href: "https://www.figma.com/design/bi45COsUoJnTZ91zghOng9/Portfolio?node-id=21-4368",
           },
         ],
       },
       {
         title: "Talkhouse",
         tags: ["Design", "Development"],
+        links: [
+          {
+            title: "Website",
+            href: "https://www.stephentalkhouse.com",
+          },
+        ],
       },
       {
         title: "Encore",
         tags: ["Design", "Development"],
+        links: [
+          {
+            title: "Website",
+            href: "https://www.talkencore.com",
+          },
+        ],
       },
       {
         title: "Larota",
         tags: ["Design", "Development"],
+        links: [
+          {
+            title: "Website",
+            href: "https://www.larota.co",
+          },
+        ],
       },
     ],
   },
@@ -111,23 +130,31 @@ const header = {
     ],
   },
   about: {
-    p1: "Creative developer and designer with 5 years of experience working at the intersection of design and code. Over the years, I’ve worked with JavaScript frameworks and technologies such as React (Next.js), Svelte (SvelteKit), and TypeScript. ",
+    p1: "Creative developer and designer with 5 years of experience working at the intersection of design and code. Over the years, I’ve worked with JavaScript frameworks and technologies such as React, Svelte, and Astro. ",
     p2: "A core part of my workflow has been collaborating closely with design teams across both design and development, bridging the gap between visual intent and technical execution.",
   },
 };
 ---
 
 <Layout>
-  <Header title={header.title} />
-  <section class="container grid gap-0">
-    <Block
-      class="col-full lg:col-4 b-bottom lg:b-remove-bottom md:b-remove-right lg:b-right"
-    >
+  <Header title={header.title}>
+    <div class="button-container">
+      <Button
+        title="Let's chat"
+        isButton={false}
+        isExternal={true}
+        href="mailto:ivo.amaro.97.p@gmail.com"
+      />
+    </div>
+  </Header>
+  <section class="container block-frame">
+    <div class="grid gap-0">
+    <Block class="col-full lg:col-4">
       <h2>About</h2>
       <p>{header.about.p1}</p>
       <p>{header.about.p2}</p>
     </Block>
-    <Block class="b-bottom md:b-right lg:b-remove-bottom col-full md:col-3">
+    <Block class="col-full md:col-3">
       <h2>{header.work.title}</h2>
       <ul>
         {
@@ -142,14 +169,14 @@ const header = {
         }
       </ul>
     </Block>
-    <Block class="b-bottom lg:b-right lg:b-remove-bottom col-full md:col-2">
+    <Block class="col-full md:col-3 lg:col-2">
       <h2>{header.skills.title}</h2>
       <ul>
         {header.skills.items.map((item) => <ListItem skillsList={item} />)}
       </ul>
     </Block>
     <Block class="col-full lg:col-3 p-none">
-      <Block class="b-bottom">
+      <Block>
         <h2>{header.experience.title}</h2>
         <ul>
           {
@@ -170,5 +197,6 @@ const header = {
         </ul>
       </Block>
     </Block>
+    </div>
   </section>
 </Layout>

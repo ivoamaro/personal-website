@@ -6,11 +6,9 @@ import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 import InDevelopmentBanner from "../components/design-system/InDevelopmentBanner.astro";
 
-const isProtected = Boolean(import.meta.env.SITE_PASSWORD);
-const isAuthenticated = Astro.cookies.get("auth")?.value === "true";
+//const isProtected = isSitePasswordCorrect("");
 
-const showSite = !isProtected || isAuthenticated;
-const authError = Astro.url.searchParams.has("authError");
+const showSite = true;
 ---
 
 <!doctype html>
@@ -54,13 +52,13 @@ const authError = Astro.url.searchParams.has("authError");
       showSite ? (
         <>
           <Navbar />
-          <div class="content">
+          <main class="content">
             <slot />
-          </div>
+          </main>
           <Footer />
         </>
       ) : (
-        <InDevelopmentBanner error={authError} />
+        <InDevelopmentBanner />
       )
     } -->
 

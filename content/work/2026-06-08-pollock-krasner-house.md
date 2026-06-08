@@ -1,5 +1,5 @@
 ---
-status: Draft
+status: Published
 title: Pollock — Krasner House
 ---
 ## Introduction

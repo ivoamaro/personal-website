@@ -2,6 +2,8 @@
 status: Draft
 title: Pollock — Krasner House
 ---
+## Introduction
+
 Located in Springs, New York, the Pollock-Krasner House and Study Center (PK House) is a National Historic Landmark and the former home and studio of artists Jackson Pollock and Lee Krasner.
 
 The PK House needed a more sustainable way to manage and evolve its digital presence. The existing website, originally built in-house using a limited website builder, lacked the flexibility and functionality required to support the center’s growing editorial and operational needs.

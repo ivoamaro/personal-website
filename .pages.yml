@@ -48,40 +48,6 @@ content:
       - name: seo
         component: seo
         label: SEO
-  - name: homepage
-    label: Homepage
-    type: file
-    path: content/pages/homepage.json
-    fields:
-      - name: title
-        type: string
-      - name: status
-        component: status
-        label: Status
-      - name: about
-        type: rich-text
-      - name: seo
-        component: seo
-        label: SEO
-      
-  - name: pages
-    label: Pages
-    type: collection
-    path: docs
-    fields:
-      - name: status
-        component: status
-        label: Status
-      - name: title
-        type: string
-      - name: body
-        type: rich-text
-      - name: seo
-        component: seo
-        label: SEO
-      - name: button
-        component: link
-        label: Button
 
   - name: work
     label: Work

@@ -23,61 +23,30 @@
   gap: 0;
 }
 
-/* Block dashed borders — base (mobile) */
-.b-left {
-  border-left: var(--border-width) dashed var(--color-text);
+
+.block-frame {
+  overflow: hidden;
 }
-.dark .b-left {
-  border-left: var(--border-width) dashed var(--color-bg);
+
+.block-frame > .grid.gap-0 {
+  margin-right: calc(-1 * var(--border-width));
+  margin-bottom: calc(-1 * var(--border-width));
 }
-.b-right {
+
+.grid.gap-0 > * {
   border-right: var(--border-width) dashed var(--color-text);
-}
-.dark .b-right {
-  border-right: var(--border-width) dashed var(--color-bg);
-}
-.b-top {
-  border-top: var(--border-width) dashed var(--color-text);
-}
-.dark .b-top {
-  border-top: var(--border-width) dashed var(--color-bg);
-}
-.b-bottom {
   border-bottom: var(--border-width) dashed var(--color-text);
 }
-.dark .b-bottom {
-  border-bottom: var(--border-width) dashed var(--color-bg);
-} 
-.b-none {
-  border: none;
+.dark .grid.gap-0 > * {
+  border-color: var(--color-bg);
 }
 
-/* Clear one edge (overrides `b-*` / corner utilities on that side) */
-.b-remove-left {
-  border-left: none;
+/* Divider between stacked nested blocks (e.g. a `p-none` block holding others) */
+.design-system-block > .design-system-block:not(:last-child) {
+  border-bottom: var(--border-width) dashed var(--color-text);
 }
-.b-remove-right {
-  border-right: none;
-}
-.b-remove-top {
-  border-top: none;
-}
-.b-remove-bottom {
-  border-bottom: none;
-}
-
-/* Same specificity as `.dark .b-*` so removes win in dark mode */
-.dark .b-remove-left {
-  border-left: none;
-}
-.dark .b-remove-right {
-  border-right: none;
-}
-.dark .b-remove-top {
-  border-top: none;
-}
-.dark .b-remove-bottom {
-  border-bottom: none;
+.dark .design-system-block > .design-system-block:not(:last-child) {
+  border-color: var(--color-bg);
 }
 
 .col-full {
@@ -178,60 +147,6 @@
   .md\:col-12 {
     grid-column: span 12;
   }
-
-  .md\:b-left {
-    border-left: var(--border-width) dashed var(--color-text);
-  }
-  .dark .md\:b-left {
-    border-left: var(--border-width) dashed var(--color-bg);
-  }
-  .md\:b-right {
-    border-right: var(--border-width) dashed var(--color-text);
-  }
-  .dark .md\:b-right {
-    border-right: var(--border-width) dashed var(--color-bg);
-  }
-  .md\:b-top {
-    border-top: var(--border-width) dashed var(--color-text);
-  }
-  .dark .md\:b-top {
-    border-top: var(--border-width) dashed var(--color-bg);
-  }
-  .md\:b-bottom {
-    border-bottom: var(--border-width) dashed var(--color-text);
-  }
-  .dark .md\:b-bottom {
-    border-bottom: var(--border-width) dashed var(--color-bg);
-  }
-  .md\:b-none {
-    border: none;
-  }
-
-  .md\:b-remove-left {
-    border-left: none;
-  }
-  .md\:b-remove-right {
-    border-right: none;
-  }
-  .md\:b-remove-top {
-    border-top: none;
-  }
-  .md\:b-remove-bottom {
-    border-bottom: none;
-  }
-
-  .dark .md\:b-remove-left {
-    border-left: none;
-  }
-  .dark .md\:b-remove-right {
-    border-right: none;
-  }
-  .dark .md\:b-remove-top {
-    border-top: none;
-  }
-  .dark .md\:b-remove-bottom {
-    border-bottom: none;
-  }
 }
 
 /* lg ≥ 1024px */
@@ -271,59 +186,5 @@
   }
   .lg\:col-12 {
     grid-column: span 12;
-  }
-
-  .lg\:b-left {
-    border-left: var(--border-width) dashed var(--color-text);
-  }
-  .dark .lg\:b-left {
-    border-left: var(--border-width) dashed var(--color-bg);
-  }
-  .lg\:b-right {
-    border-right: var(--border-width) dashed var(--color-text);
-  }
-  .dark .lg\:b-right {
-    border-right: var(--border-width) dashed var(--color-bg);
-  }
-  .lg\:b-top {
-    border-top: var(--border-width) dashed var(--color-text);
-  }
-  .dark .lg\:b-top {
-    border-top: var(--border-width) dashed var(--color-bg);
-  }
-  .lg\:b-bottom {
-    border-bottom: var(--border-width) dashed var(--color-text);
-  }
-  .dark .lg\:b-bottom {
-    border-bottom: var(--border-width) dashed var(--color-bg);
-  }
-  .lg\:b-none {
-    border: none;
-  }
-
-  .lg\:b-remove-left {
-    border-left: none;
-  }
-  .lg\:b-remove-right {
-    border-right: none;
-  }
-  .lg\:b-remove-top {
-    border-top: none;
-  }
-  .lg\:b-remove-bottom {
-    border-bottom: none;
-  }
-
-  .dark .lg\:b-remove-left {
-    border-left: none;
-  }
-  .dark .lg\:b-remove-right {
-    border-right: none;
-  }
-  .dark .lg\:b-remove-top {
-    border-top: none;
-  }
-  .dark .lg\:b-remove-bottom {
-    border-bottom: none;
   }
 }

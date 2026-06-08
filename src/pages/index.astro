@@ -147,15 +147,14 @@ const header = {
       />
     </div>
   </Header>
-  <section class="container grid gap-0">
-    <Block
-      class="col-full lg:col-4 b-bottom lg:b-remove-bottom md:b-remove-right lg:b-right"
-    >
+  <section class="container block-frame">
+    <div class="grid gap-0">
+    <Block class="col-full lg:col-4">
       <h2>About</h2>
       <p>{header.about.p1}</p>
       <p>{header.about.p2}</p>
     </Block>
-    <Block class="b-bottom md:b-right lg:b-remove-bottom col-full md:col-3">
+    <Block class="col-full md:col-3">
       <h2>{header.work.title}</h2>
       <ul>
         {
@@ -170,16 +169,14 @@ const header = {
         }
       </ul>
     </Block>
-    <Block
-      class="b-bottom lg:b-right lg:b-remove-bottom col-full md:col-3 lg:col-2"
-    >
+    <Block class="col-full md:col-3 lg:col-2">
       <h2>{header.skills.title}</h2>
       <ul>
         {header.skills.items.map((item) => <ListItem skillsList={item} />)}
       </ul>
     </Block>
     <Block class="col-full lg:col-3 p-none">
-      <Block class="b-bottom">
+      <Block>
         <h2>{header.experience.title}</h2>
         <ul>
           {
@@ -200,5 +197,6 @@ const header = {
         </ul>
       </Block>
     </Block>
+    </div>
   </section>
 </Layout>

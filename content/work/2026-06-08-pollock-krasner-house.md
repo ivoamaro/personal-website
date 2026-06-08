@@ -17,8 +17,6 @@ At Made by Sea, we worked on a broader rebranding initiative for the Pollock-Kra
 
 How might we design a website management system that empowers museum staff with full autonomy to create and manage new web pages, while ensuring the platform remains clear, intuitive, and accessible for visitors?
 
-![](../../src/assets/ReceiveOSCinPD.png)
-
 ## How I Contributed
 
 I documented requirements, iterated on the sitemap, and helped define the project scope, while also contributing to the design system, component architecture, CMS structure, scalable content modules, and implementation guidelines to ensure consistency and long-term maintainability.

@@ -1,6 +1,6 @@
 media:
   input: src/assets
-  output: assets
+  output: src/assets
 components:
   status:
     type: select

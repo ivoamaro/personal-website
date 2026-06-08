@@ -14,8 +14,8 @@
 	},
 	"kv_namespaces": [
 		{
-			"binding": "BINDING_NAME",
-			"id": "cb4e87e0cdd24e90ab2ef6ca73ab3def",
+			"binding": "personal_website",
+			"id": "2c48b5b4e084443299139fa2dcc53679",
 			"remote": true
 		}
 	]

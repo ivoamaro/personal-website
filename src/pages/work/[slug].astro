@@ -7,14 +7,20 @@ import type { GetStaticPaths } from "astro";
 
 export const getStaticPaths = (async () => {
   const entries = await getCollection("work");
-  return entries.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry },
-  }));
+  return entries
+    .filter((entry) => entry.id === "Published")
+    .map((entry) => ({
+      params: { slug: entry.id },
+      props: { entry },
+    }));
 }) satisfies GetStaticPaths;
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const index = entry.rendered?.metadata?.headings as {
+  slug: string;
+  text: string;
+}[];
 ---
 
 <Layout>
@@ -24,6 +30,20 @@ const { Content } = await render(entry);
       <Block class="col-full lg:col-8">
         <div class="prose">
           <Content />
+        </div>
+      </Block>
+      <Block class="col-full lg:col-4">
+        <div class="index-container">
+          <h2>Index</h2>
+          <ul>
+            {
+              index?.map((heading: any) => (
+                <li>
+                  <a href={`#${heading.slug}`}>{heading.text}</a>
+                </li>
+              ))
+            }
+          </ul>
         </div>
       </Block>
     </div>
@@ -37,8 +57,8 @@ const { Content } = await render(entry);
     margin-bottom: var(--space-3);
   }
 
-  .prose :global(h2),
-  .prose :global(h3) {
+  .prose :global(h2):not(:first-child),
+  .prose :global(h3):not(:first-child) {
     margin-top: var(--space-4);
     margin-bottom: var(--space-2);
   }
@@ -50,5 +70,10 @@ const { Content } = await render(entry);
 
   .prose :global(li) {
     list-style-type: disc;
+  }
+  .index-container {
+    li {
+      margin-bottom: var(--space-1);
+    }
   }
 </style>

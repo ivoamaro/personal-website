@@ -8,7 +8,7 @@ import type { GetStaticPaths } from "astro";
 export const getStaticPaths = (async () => {
   const entries = await getCollection("work");
   return entries
-    .filter((entry) => entry.id === "Published")
+    .filter((entry) => entry.data.status === "Published")
     .map((entry) => ({
       params: { slug: entry.id },
       props: { entry },
@@ -74,6 +74,21 @@ const index = entry.rendered?.metadata?.headings as {
   .index-container {
     li {
       margin-bottom: var(--space-1);
+    }
+  }
+
+  .prose {
+    img {
+      margin-block: var(--space-4);
+    }
+  }
+
+  .prose :global(p:has(> img:first-child:nth-last-child(2))) {
+    display: flex;
+    gap: var(--space-2);
+
+    :global(img) {
+      width: 50%;
     }
   }
 </style>

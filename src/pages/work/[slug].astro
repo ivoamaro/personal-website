@@ -1,0 +1,54 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/design-system/Header.astro";
+import Block from "../../components/ui/Block.astro";
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async () => {
+  const entries = await getCollection("work");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout>
+  <Header title={entry.data.title} />
+  <section class="container block-frame">
+    <div class="grid gap-0">
+      <Block class="col-full lg:col-8">
+        <div class="prose">
+          <Content />
+        </div>
+      </Block>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Markdown body styles. Use :global() because <Content /> renders
+     unscoped HTML that Astro's scoped styles won't otherwise match. */
+  .prose :global(p) {
+    margin-bottom: var(--space-3);
+  }
+
+  .prose :global(h2),
+  .prose :global(h3) {
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-2);
+  }
+
+  .prose :global(ul) {
+    margin-bottom: var(--space-3);
+    padding-left: var(--space-3);
+  }
+
+  .prose :global(li) {
+    list-style-type: disc;
+  }
+</style>

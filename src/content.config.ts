@@ -3,6 +3,15 @@ import { glob, file } from "astro/loaders";
 
 import { z } from "astro/zod";
 
+const work = defineCollection({
+  loader: glob({ base: "./content/work", pattern: "**/*.{md,mdx}" }),
+  schema: z.object({
+    title: z.string(),
+    status: z.string().optional(),
+    intro: z.string().optional(),
+  }),
+});
+
 const homepage = defineCollection({
   loader: glob({ base: "./content/homepage", pattern: "**/*.{md,mdx}" }),
   //   schema: z.object({
@@ -59,4 +68,4 @@ const homepage = defineCollection({
   //   }),
 });
 
-export const collections = { homepage };
+export const collections = { homepage, work };

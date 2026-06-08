@@ -61,6 +61,16 @@ const header = {
           },
         ],
       },
+      {
+        title: "Typographia",
+        tags: ["Development"],
+        links: [
+          {
+            title: "Website",
+            href: "https://typographia.com",
+          },
+        ],
+      },
     ],
   },
   skills: {
@@ -126,6 +136,12 @@ const header = {
       {
         title: "Made by Sea",
         year: "2021-Current",
+        links: [
+          {
+            title: "Website",
+            href: "https://www.madebysea.com",
+          },
+        ],
       },
     ],
   },
@@ -149,54 +165,58 @@ const header = {
   </Header>
   <section class="container block-frame">
     <div class="grid gap-0">
-    <Block class="col-full lg:col-4">
-      <h2>About</h2>
-      <p>{header.about.p1}</p>
-      <p>{header.about.p2}</p>
-    </Block>
-    <Block class="col-full md:col-3">
-      <h2>{header.work.title}</h2>
-      <ul>
-        {
-          header.work.items.map((item) => (
-            <ListItem
-              title={item.title}
-              description={item.description}
-              tags={item.tags}
-              links={item.links}
-            />
-          ))
-        }
-      </ul>
-    </Block>
-    <Block class="col-full md:col-3 lg:col-2">
-      <h2>{header.skills.title}</h2>
-      <ul>
-        {header.skills.items.map((item) => <ListItem skillsList={item} />)}
-      </ul>
-    </Block>
-    <Block class="col-full lg:col-3 p-none">
-      <Block>
-        <h2>{header.experience.title}</h2>
+      <Block class="col-full lg:col-4">
+        <h2>About</h2>
+        <p>{header.about.p1}</p>
+        <p>{header.about.p2}</p>
+      </Block>
+      <Block class="col-full md:col-3">
+        <h2>{header.work.title}</h2>
         <ul>
           {
-            header.experience.items.map((item) => (
-              <ListItem subtitle={item.year} title={item.title} />
+            header.work.items.map((item) => (
+              <ListItem
+                title={item.title}
+                description={item.description}
+                tags={item.tags}
+                links={item.links}
+              />
             ))
           }
         </ul>
       </Block>
-      <Block>
-        <h2>{header.education.title}</h2>
+      <Block class="col-full md:col-3 lg:col-2">
+        <h2>{header.skills.title}</h2>
         <ul>
-          {
-            header.education.items.map((item) => (
-              <ListItem subtitle={item.year} title={item.degree} />
-            ))
-          }
+          {header.skills.items.map((item) => <ListItem skillsList={item} />)}
         </ul>
       </Block>
-    </Block>
+      <Block class="col-full lg:col-3 p-none">
+        <Block>
+          <h2>{header.experience.title}</h2>
+          <ul>
+            {
+              header.experience.items.map((item) => (
+                <ListItem
+                  subtitle={item.year}
+                  title={item.title}
+                  links={item.links}
+                />
+              ))
+            }
+          </ul>
+        </Block>
+        <Block>
+          <h2>{header.education.title}</h2>
+          <ul>
+            {
+              header.education.items.map((item) => (
+                <ListItem subtitle={item.year} title={item.degree} />
+              ))
+            }
+          </ul>
+        </Block>
+      </Block>
     </div>
   </section>
 </Layout>

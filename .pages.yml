@@ -82,3 +82,16 @@ content:
       - name: button
         component: link
         label: Button
+
+  - name: work
+    label: Work
+    type: collection
+    path: content/work
+    fields:
+      - name: status
+        component: status
+        label: Status
+      - name: title
+        type: string
+      - name: body
+    

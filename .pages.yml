@@ -93,5 +93,7 @@ content:
         label: Status
       - name: title
         type: string
+        label: Title
       - name: body
+        type: rich-text
     

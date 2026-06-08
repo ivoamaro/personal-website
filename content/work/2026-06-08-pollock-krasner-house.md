@@ -10,8 +10,11 @@ The PK House needed a more sustainable way to manage and evolve its digital pres
 
 At Made by Sea, we worked on a broader rebranding initiative for the Pollock-Krasner House, which I briefly contributed to. My primary focus within the project was the web experience: designing and developing a scalable design system and CMS architecture, along with front-end implementation, that enabled non-technical staff to independently create, update, and manage content while maintaining consistency across the site. I also ensured a clear and intuitive user experience for visitors, making it easy to access and engage with the content.
 
-![](../../src/assets/ReceiveOSCinPD.png)
-![](../../src/assets/ReceiveOSCinPD.png)
+![](../../src/assets/work-pk-house/pk-house-jackson-pollock.jpg)
+
+![](../../src/assets/work-pk-house/pk-house-jackson-pollock.jpg)
+
+![](../../src/assets/work-pk-house/pk-house-lee-krasner.jpg)
 
 ## Problem Statement
 

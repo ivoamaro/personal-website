@@ -40,15 +40,6 @@ components:
           format: javascript
 
 content:
-  - name: site-settings
-    label: Site Settings
-    path: content/site-settings.json
-    type: file
-    fields:
-      - name: seo
-        component: seo
-        label: SEO
-
   - name: work
     label: Work
     type: collection
@@ -65,4 +56,14 @@ content:
         label: Slug
       - name: body
         type: rich-text
+
+  - name: site-settings
+    label: Site Settings
+    path: content/site-settings.json
+    type: file
+    fields:
+      - name: seo
+        component: seo
+        label: SEO
+
     

@@ -79,6 +79,7 @@ This project follows the Atomic Design methodology, starting with design tokens 
 ![](../../src/assets/work-pk-house/pollock-krasner-house-cms-structure.png)
 
 ## Conclusion
+
 The redesigned platform significantly improved how the Pollock-Krasner House manages and presents its digital content. Staff reported a smoother and more intuitive content management experience, allowing them to independently publish and update exhibitions and editorial content with greater ease.
 
 In 2025, the website reached over 15,000 users, compared to just 1,600 in the previous year, reflecting increased accessibility and engagement with the center’s work.

@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/design-system/Header.astro";
+import Block from "../../components/ui/Block.astro";
+import { getCollection } from "astro:content";
+
+const entries = await getCollection("work");
+---
+
+<Layout>
+  <Header title="Work" />
+  <section class="container block-frame">
+    <div class="grid gap-0">
+      {
+        entries.map((entry) => (
+          <Block class="col-full lg:col-4">
+            <a href={`/work/${entry.id}`}>{entry.data.title}</a>
+          </Block>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

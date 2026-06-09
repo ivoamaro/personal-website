@@ -37,11 +37,16 @@ const index = entry.rendered?.metadata?.headings as {
           <h2>Index</h2>
           <ul>
             {
-              index?.map((heading: any) => (
-                <li>
-                  <a href={`#${heading.slug}`}>{heading.text}</a>
-                </li>
-              ))
+              index?.map((heading: any) => {
+                if (heading.depth === 2) {
+                  return (
+                    <li>
+                      <a href={`#${heading.slug}`}>{heading.text}</a>
+                    </li>
+                  );
+                }
+                return null;
+              })
             }
           </ul>
         </div>
@@ -51,44 +56,50 @@ const index = entry.rendered?.metadata?.headings as {
 </Layout>
 
 <style>
-  /* Markdown body styles. Use :global() because <Content /> renders
-     unscoped HTML that Astro's scoped styles won't otherwise match. */
-  .prose :global(p) {
-    margin-bottom: var(--space-3);
-  }
-
-  .prose :global(h2):not(:first-child),
-  .prose :global(h3):not(:first-child) {
-    margin-top: var(--space-4);
-    margin-bottom: var(--space-2);
-  }
-
-  .prose :global(ul) {
-    margin-bottom: var(--space-3);
-    padding-left: var(--space-3);
-  }
-
-  .prose :global(li) {
-    list-style-type: disc;
-  }
-  .index-container {
-    li {
-      margin-bottom: var(--space-1);
-    }
-  }
-
+  /* Markdown body styles. <Content /> renders unscoped HTML, so its
+     children need :global(). The scoped .prose wrapper keeps these
+     rules limited to this page. */
   .prose {
-    img {
-      margin-block: var(--space-4);
+    :global(p) {
+      margin-bottom: var(--space-4);
+    }
+
+    /* More space above an image paragraph that follows a heading */
+    :global(h2 + p:has(img)) {
+      margin-top: var(--space-4);
+    }
+
+    :global(h2:not(:first-child)) {
+      padding: var(--space-4) var(--space-4) 0;
+      margin: 0 calc(-1 * var(--space-4)) var(--space-2);
+      border-top: var(--border-width) dashed var(--color-text);
+    }
+
+    :global(h3) {
+      margin-bottom: var(--space-4);
+    }
+
+    :global(ul) {
+      margin-bottom: var(--space-3);
+      padding-left: var(--space-3);
+    }
+
+    :global(li) {
+      list-style-type: disc;
+    }
+
+    /* Two images in one paragraph sit side by side */
+    :global(p:has(> img:first-child:nth-last-child(2))) {
+      display: flex;
+      gap: var(--space-4);
+
+      :global(img) {
+        width: 50%;
+      }
     }
   }
 
-  .prose :global(p:has(> img:first-child:nth-last-child(2))) {
-    display: flex;
-    gap: var(--space-4);
-
-    :global(img) {
-      width: 50%;
-    }
+  .index-container li {
+    margin-bottom: var(--space-1);
   }
 </style>

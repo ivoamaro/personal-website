@@ -60,6 +60,9 @@ content:
       - name: title
         type: string
         label: Title
+      - name: slug
+        type: string
+        label: Slug
       - name: body
         type: rich-text
     

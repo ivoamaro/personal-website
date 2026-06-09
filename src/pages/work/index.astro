@@ -13,7 +13,7 @@ const entries = await getCollection("work");
     <div class="grid gap-0">
       {
         entries.map((entry) => (
-          <Block class="col-full lg:col-4">
+          <Block class="col-full">
             <a href={`/work/${entry.id}`}>{entry.data.title}</a>
           </Block>
         ))

@@ -28,3 +28,5 @@ I documented requirements, iterated on the sitemap, and helped define the projec
 
 ## Spacing, Icons and Colors
 
+![](../../src/assets/work-pk-house/pollock-krasner-house-spacing-icons-colors.png)
+

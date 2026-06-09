@@ -40,3 +40,7 @@ I documented requirements, iterated on the sitemap, and helped define the projec
 
 To explore the wireframes in more detail, please refer to the [Figma file](https://www.figma.com/design/bi45COsUoJnTZ91zghOng9/Portfolio?node-id=21-4368). 
 
+## Before & After
+
+![](../../src/assets/work-pk-house/pollock-krasner-house-before-after.png)
+

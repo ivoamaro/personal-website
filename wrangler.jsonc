@@ -17,6 +17,11 @@
 			"binding": "personal_website",
 			"id": "2c48b5b4e084443299139fa2dcc53679",
 			"remote": true
+		},
+		{
+			"binding": "SESSION",
+			"id": "85e88ef04ee54025a4fd27b86c9c362d",
+			"remote": true
 		}
 	]
 }

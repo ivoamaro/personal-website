@@ -3,6 +3,7 @@
 html {
   /* Avoid width jumping when the vertical scrollbar appears (helps near the 768px breakpoint) */
   scrollbar-gutter: stable;
+  scroll-behavior: smooth;
 }
 
 *,
@@ -25,6 +26,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -o-font-smoothing: antialiased; 
   position: relative;
+  max-width: 1920px;
+  margin-inline: auto;
 }
 
  a {

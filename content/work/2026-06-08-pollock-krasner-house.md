@@ -44,3 +44,18 @@ To explore the wireframes in more detail, please refer to the [Figma file](https
 
 ![](../../src/assets/work-pk-house/pollock-krasner-house-before-after.png)
 
+## Development
+
+This project is built with a modern frontend stack using Next.js for a performant and scalable React application, and DatoCMS as a flexible headless CMS to manage and structure content. The interface is designed using the Atomic Design methodology, ensuring a modular and reusable component system that scales consistently across the site. The application is deployed on Vercel, enabling fast, reliable hosting with streamlined continuous deployment.
+
+### Next JS
+Fetches and renders content dynamically and statically where needed. I’ve also used Typescript and Graphql.
+
+### Dato CMS
+Serves as the central source of truth for content. Staff can create new pages using predefined sections and manage events.
+
+### Vercel
+Hosted on Vercel for seamless deployment from Git and to see previews for content and feature changes.
+
+### Git
+Worked with production and staging branches to support a structured workflow and enable effective collaboration within a team environment.

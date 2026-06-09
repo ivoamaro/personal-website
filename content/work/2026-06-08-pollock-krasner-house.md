@@ -58,3 +58,18 @@ This project is built with a modern frontend stack using Next.js for a performan
   - Worked with production and staging branches to support a structured workflow and enable effective collaboration within a team environment.
 
 You can view the live project at [pkhouse.org](https://www.pkhouse.org)
+
+## Styling folder Structure
+
+## CSS Strategy
+
+This project follows the Atomic Design methodology, starting with design tokens as the foundation for colors, spacing, and typography. Global and layout styles build consistent structure across the app, while component-level CSS is applied individually to create modular, reusable UI pieces.
+
+- **Tokens**
+  - Contains design tokens such as CSS variables for colors, spacing, typography scales, etc. It acts as the single source of truth for the design system, enabling consistent theming and easy updates
+- **Layout**
+  - Handles structural and layout-related styles, such as grid systems, flex utilities, containers, breakpoints, and page-level layout patterns. It focuses purely on composition rather than visual identity or theming.
+- **Globals**
+  - Defines global styles and base defaults for the entire application, including resets, typography rules, body styling, and foundational element styles. It ensures a consistent baseline across all pages.
+
+## CMS Structure

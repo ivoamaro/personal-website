@@ -59,7 +59,9 @@ This project is built with a modern frontend stack using Next.js for a performan
 
 You can view the live project at [pkhouse.org](https://www.pkhouse.org)
 
-## Styling folder Structure
+## Components folder Structure
+
+![](../../src/assets/work-pk-house/pollock-krasner-house-components-structure.png)
 
 ## CSS Strategy
 
@@ -73,3 +75,6 @@ This project follows the Atomic Design methodology, starting with design tokens 
   - Defines global styles and base defaults for the entire application, including resets, typography rules, body styling, and foundational element styles. It ensures a consistent baseline across all pages.
 
 ## CMS Structure
+
+![](../../src/assets/work-pk-house/pollock-krasner-house-cms-structure.png)
+

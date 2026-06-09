@@ -47,9 +47,14 @@ const skillSections =
         <ul class="links">
           {links.map((link, index) => (
             <li class="link-item">
-              <a href={link.href} target="_blank" rel="noreferrer">
-                {link.title}
-              </a>
+              {link.href.includes("http") || link.href.includes("https") ? (
+                <a href={link.href} target="_blank" rel="noreferrer">
+                  {link.title}
+                </a>
+              ) : (
+                <a href={link.href}>{link.title}</a>
+              )}
+
               {index >= links.length - 1 ? "" : ","}
             </li>
           ))}

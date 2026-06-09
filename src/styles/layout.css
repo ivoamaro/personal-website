@@ -25,7 +25,10 @@
 
 
 .block-frame {
-  overflow: hidden;
+  /* `clip` (not `hidden`) so it still contains the negative-margin border
+     bleed without becoming a scroll container — keeps descendant
+     `position: sticky` working. */
+  overflow: clip;
 }
 
 .block-frame > .grid.gap-0 {

@@ -102,4 +102,11 @@ const index = entry.rendered?.metadata?.headings as {
   .index-container li {
     margin-bottom: var(--space-1);
   }
+
+  @media (min-width: 1024px) {
+    .index-container {
+      position: sticky;
+      top: var(--space-4);
+    }
+  }
 </style>

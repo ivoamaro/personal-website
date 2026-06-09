@@ -3,11 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/design-system/Header.astro";
 import Block from "../components/ui/Block.astro";
 import ListItem from "../components/design-system/ListItem.astro";
-import { getCollection, getEntry } from "astro:content";
 import Button from "../components/ui/Button.astro";
-
-// const allHomepage = await getCollection("homepage");
-// console.log(allHomepage);
 
 const header = {
   title:
@@ -28,6 +24,10 @@ const header = {
           {
             title: "Figma",
             href: "https://www.figma.com/design/bi45COsUoJnTZ91zghOng9/Portfolio?node-id=21-4368",
+          },
+          {
+            title: "Explore",
+            href: "/work/pollock-krasner-house",
           },
         ],
       },

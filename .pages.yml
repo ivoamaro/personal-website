@@ -1,6 +1,6 @@
 media:
-  input: src/assets
-  output: ../../src/assets
+  input: public/uploads
+  output: /uploads
 components:
   status:
     type: select
@@ -11,15 +11,15 @@ components:
     label: Link
     list: true
     fields:
-     - name: title
-       type: string
-       label: Title
-     - name: href
-       type: string
-     - name: category
-       type: select
-       options:
-         values: [Email, Tel, Hyperlink]
+      - name: title
+        type: string
+        label: Title
+      - name: href
+        type: string
+      - name: category
+        type: select
+        options:
+          values: [Email, Tel, Hyperlink]
   seo:
     type: object
     label: SEO
@@ -65,5 +65,3 @@ content:
       - name: seo
         component: seo
         label: SEO
-
-    

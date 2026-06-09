@@ -24,17 +24,19 @@ I documented requirements, iterated on the sitemap, and helped define the projec
 
 ## Sitemap
 
-![](../../src/assets/work-pk-house/pollock-krasner-house-sitemap.png)
+![Pollock Krasner House Sitemap](../../src/assets/work-pk-house/pollock-krasner-house-sitemap.png)
 
 ## Spacing, Icons and Colors
 
-![](../../src/assets/work-pk-house/pollock-krasner-house-spacing-icons-colors.png)
+![Pollock Krasner House Website Spacing, Icons, and Colors](../../src/assets/work-pk-house/pollock-krasner-house-spacing-icons-colors.png)
 
 ## Typography
 
-![](../../src/assets/work-pk-house/pollock-krasner-house-typography-desktop.png)
+![Pollock Krasner House Typography](../../src/assets/work-pk-house/pollock-krasner-house-typography-desktop.png)
 
 ## Wireframes
 
-![](../../src/assets/work-pk-house/pollock-krasner-house-wireframes.jpg)
+![Pollock Krasner House Wireframes](../../src/assets/work-pk-house/pollock-krasner-house-wireframes.jpg)
+
+To explore the wireframes in more detail, please refer to the [Figma file](https://www.figma.com/design/bi45COsUoJnTZ91zghOng9/Portfolio?node-id=21-4368). 
 

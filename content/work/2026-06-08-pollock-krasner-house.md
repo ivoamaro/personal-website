@@ -1,6 +1,7 @@
 ---
 status: Published
 title: Pollock — Krasner House
+slug: pollock-krasner-house
 ---
 ## Introduction
 

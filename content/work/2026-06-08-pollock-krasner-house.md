@@ -22,3 +22,7 @@ How might we design a website management system that empowers museum staff with 
 
 I documented requirements, iterated on the sitemap, and helped define the project scope, while also contributing to the design system, component architecture, CMS structure, scalable content modules, and implementation guidelines to ensure consistency and long-term maintainability.
 
+## Sitemap
+
+![](../../src/assets/work-pk-house/pollock-krasner-house-sitemap.png)
+

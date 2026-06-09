@@ -24,25 +24,25 @@ I documented requirements, iterated on the sitemap, and helped define the projec
 
 ## Sitemap
 
-![Pollock Krasner House Sitemap](../../src/assets/work-pk-house/pollock-krasner-house-sitemap.png)
+![Pollock Krasner House Sitemap](/uploads/work-pk-house/pollock-krasner-house-sitemap.png)
 
 ## Spacing, Icons and Colors
 
-![Pollock Krasner House Website Spacing, Icons, and Colors](../../src/assets/work-pk-house/pollock-krasner-house-spacing-icons-colors.png)
+![Pollock Krasner House Website Spacing, Icons, and Colors](/uploads/work-pk-house/pollock-krasner-house-spacing-icons-colors.png)
 
 ## Typography
 
-![Pollock Krasner House Typography](../../src/assets/work-pk-house/pollock-krasner-house-typography-desktop.png)
+![Pollock Krasner House Typography](/uploads/work-pk-house/pollock-krasner-house-typography-desktop.png)
 
 ## Wireframes
 
-![Pollock Krasner House Wireframes](../../src/assets/work-pk-house/pollock-krasner-house-wireframes.jpg)
+![Pollock Krasner House Wireframes](/uploads/work-pk-house/pollock-krasner-house-wireframes.jpg)
 
 To explore the wireframes in more detail, please refer to the [Figma file](https://www.figma.com/design/bi45COsUoJnTZ91zghOng9/Portfolio?node-id=21-4368). 
 
 ## Before & After
 
-![](../../src/assets/work-pk-house/pollock-krasner-house-before-after.png)
+![](/uploads/work-pk-house/pollock-krasner-house-before-after.png)
 
 ## Development
 
@@ -61,7 +61,7 @@ You can view the live project at [pkhouse.org](https://www.pkhouse.org)
 
 ## Components folder Structure
 
-![](../../src/assets/work-pk-house/pollock-krasner-house-components-structure.png)
+![](/uploads/work-pk-house/pollock-krasner-house-components-structure.png)
 
 ## CSS Strategy
 
@@ -76,7 +76,7 @@ This project follows the Atomic Design methodology, starting with design tokens 
 
 ## CMS Structure
 
-![](../../src/assets/work-pk-house/pollock-krasner-house-cms-structure.png)
+![](/uploads/work-pk-house/pollock-krasner-house-cms-structure.png)
 
 ## Conclusion
 

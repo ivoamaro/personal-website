@@ -1,5 +1,5 @@
 media:
-  input: public/uploads
+  input: public/
   output: /uploads
 components:
   status:

@@ -26,3 +26,5 @@ I documented requirements, iterated on the sitemap, and helped define the projec
 
 ![](../../src/assets/work-pk-house/pollock-krasner-house-sitemap.png)
 
+## Spacing, Icons and Colors
+

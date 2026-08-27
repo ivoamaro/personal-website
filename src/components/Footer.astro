@@ -34,7 +34,7 @@ import Button from "./ui/Button.astro";
     </li>
     <li>
       <Button
-        title="Linkedin"
+        title="Linked in"
         isButton={false}
         isExternal={true}
         href="https://www.linkedin.com/in/ivo-amaro-9023b516b/"
@@ -45,11 +45,11 @@ import Button from "./ui/Button.astro";
 
 <style>
   footer {
-    padding: var(--space-6);
+    padding-block: var(--space-6);
     .contact-info {
       h1 {
         font-family: var(--font-primary);
-        font-size: 160px;
+        font-size: var(--step-9);
         font-weight: var(--font-regular);
         margin-left: -10px;
         margin-bottom: var(--space-2);
@@ -65,11 +65,8 @@ import Button from "./ui/Button.astro";
 
     ul {
       display: flex;
-
-      > * + * {
-        margin-left: var(--space-4);
-      }
-
+      flex-wrap: wrap;
+      gap: var(--space-4);
       li {
         list-style-type: none;
       }

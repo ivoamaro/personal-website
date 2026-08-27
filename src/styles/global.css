@@ -109,3 +109,7 @@ a {
 .dark a {
   color: var(--color-bg);
 }
+
+.round-corners {
+  border-radius: 20px;
+}

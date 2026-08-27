@@ -1,24 +1,24 @@
 ---
 import { Image } from "astro:assets";
-const { src, alt } = Astro.props;
+const { src, alt, class: className } = Astro.props;
 ---
 
 <Image
-    src={src}
-    alt={alt}
-    class="fade-image"
-    loading="lazy"
-    decoding="async"
-    onload="this.classList.add('is-loaded')"
+  src={src}
+  alt={alt}
+  class={`fade-image ${className ?? ""}`}
+  loading="lazy"
+  decoding="async"
+  onload="this.classList.add('is-loaded')"
 />
 
 <style>
-    .fade-image {
-        opacity: 0;
-        transition: opacity 0.6s ease-in-out;
-    }
+  .fade-image {
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+  }
 
-    .fade-image.is-loaded {
-        opacity: 1;
-    }
+  .fade-image.is-loaded {
+    opacity: 1;
+  }
 </style>

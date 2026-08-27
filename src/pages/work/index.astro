@@ -9,15 +9,15 @@ const entries = await getCollection("work");
 
 <Layout>
   <Header title="Work" />
-  <section class="block-frame">
-    <div class="grid gap-0">
-      {
-        entries.map((entry) => (
-          <Block class="col-full">
+  <section class="grid gap-0">
+    {
+      entries.map((entry) => (
+        <div class="col-full">
+          <p>
             <a href={`/work/${entry.id}`}>{entry.data.title}</a>
-          </Block>
-        ))
-      }
-    </div>
+          </p>
+        </div>
+      ))
+    }
   </section>
 </Layout>

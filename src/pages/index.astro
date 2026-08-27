@@ -4,6 +4,8 @@ import Header from "../components/design-system/Header.astro";
 import Block from "../components/ui/Block.astro";
 import ListItem from "../components/design-system/ListItem.astro";
 import Button from "../components/ui/Button.astro";
+import CustomImage from "../components/ui/CustomImage.astro";
+import ProfileImage from "../assets/photo.jpg";
 
 const header = {
   title:
@@ -166,13 +168,55 @@ const header = {
       />
     </div>
   </Header>
-  <section class="container">
+  <section class="space-y-10">
+    <div class="grid">
+      <div class="col-full md:col-4">
+        <CustomImage src={ProfileImage} alt="Profile" class="round-corners" />
+      </div>
+      <div class="col-full md:col-2"></div>
+      <div class="col-full md:col-6">
+        <h2>Selected Work</h2>
+        <ul>
+          {
+            header.work.items.map((item) => (
+              <li>
+                <p>
+                  <a href={item.links[0].href} target="_blank">
+                    {item.title}
+                  </a>
+                </p>
+                {/* {item.tags.map((tag) => (
+                  <span>{tag}</span>
+                ))} */}
+                {/* <ul class="button-container">
+                  {item.links.map((link) => (
+                    <li class="">
+                      <Button
+                        title={link.title}
+                        href={link.href}
+                        isExternal={true}
+                      />
+                    </li>
+                  ))}
+                </ul> */}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="">
     <div class="grid about-section">
       <div class="col-full lg:col-6">
         <h2>About</h2>
         <p>{header.about.p1}</p>
         <p>{header.about.p2}</p>
         <p>{header.about.p3}</p>
+        <div class="button-container space-y-6">
+          <Button title="Learn more" href="/about" />
+          <Button title="CV" href="/cv.pdf" isExternal={true} />
+        </div>
       </div>
     </div>
   </section>

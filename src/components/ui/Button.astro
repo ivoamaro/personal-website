@@ -1,9 +1,14 @@
 ---
 export interface Props {
+  /** Render a `<button>` when true. Ignored when `href` is set (renders as a link). */
   isButton?: boolean;
+  /** Open the link in a new tab. Only applies when rendering as an `<a>`. */
   isExternal?: boolean;
+  /** URL for internal pages (`/about`) or external destinations. Presence of `href` renders an `<a>`. */
   href?: string;
   title?: string;
+  /** Show or hide the trailing arrow symbol. */
+  showSymbol?: boolean;
 }
 
 let {
@@ -11,12 +16,15 @@ let {
   isExternal = false,
   href = "",
   title = "",
+  showSymbol = true,
 } = Astro.props;
 
-if (title === "" && isButton) title = "Button";
-else if (title === "" && !isButton) title = "Link";
+const isLink = Boolean(href) || !isButton;
 
-const Tag = isButton ? "button" : "a";
+if (title === "" && isLink) title = "Link";
+else if (title === "") title = "Button";
+
+const Tag = isLink ? "a" : "button";
 const arrowPath =
   "M0 4.48H10.304L8.848 5.472L3.36 0H6.416L12 5.6L6.416 11.2H3.36L8.848 5.728L10.304 6.72H0V4.48Z";
 ---
@@ -27,7 +35,7 @@ const arrowPath =
 
     display: inline-flex;
     align-items: center;
-    gap: var(--space-4);
+    gap: var(--space-2);
     width: fit-content;
     padding: var(--space-2) var(--space-4);
     font-family: var(--font-primary);
@@ -94,24 +102,28 @@ const arrowPath =
 
 <Tag
   class="button-component"
-  href={isButton ? undefined : href}
-  target={!isButton && isExternal ? "_blank" : undefined}
-  rel={!isButton && isExternal ? "noreferrer" : undefined}
-  type={isButton ? "button" : undefined}
+  href={isLink ? href : undefined}
+  target={isLink && isExternal ? "_blank" : undefined}
+  rel={isLink && isExternal ? "noreferrer" : undefined}
+  type={isLink ? undefined : "button"}
 >
   <span>{title}</span>
-  <span class="symbol-wrap" aria-hidden="true">
-    <span class="symbol-track">
-      <span class="symbol">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d={arrowPath} fill="currentColor"></path>
-        </svg>
+  {
+    showSymbol && (
+      <span class="symbol-wrap" aria-hidden="true">
+        <span class="symbol-track">
+          <span class="symbol">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d={arrowPath} fill="currentColor" />
+            </svg>
+          </span>
+          <span class="symbol">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d={arrowPath} fill="currentColor" />
+            </svg>
+          </span>
+        </span>
       </span>
-      <span class="symbol">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d={arrowPath} fill="currentColor"></path>
-        </svg>
-      </span>
-    </span>
-  </span>
+    )
+  }
 </Tag>

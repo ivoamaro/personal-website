@@ -148,8 +148,9 @@ const header = {
     ],
   },
   about: {
-    p1: "Creative developer and designer with 5 years of experience working at the intersection of design and code. Over the years, I’ve worked with JavaScript frameworks and technologies such as React, Svelte, and Astro. ",
-    p2: "A core part of my workflow has been collaborating closely with design teams across both design and development, bridging the gap between visual intent and technical execution.",
+    p1: "I’m a designer and developer working at the intersection of design and technology. Over the years, I’ve designed websites in Figma and brought them to life using Javascript frameworks.",
+    p2: "I enjoy working across both design and development, turning visual ideas into thoughtful, functional digital experiences.",
+    p3: "Outside of work, I spend my time watching movies, playing games, creating music and doing some sport.",
   },
 };
 ---
@@ -165,7 +166,17 @@ const header = {
       />
     </div>
   </Header>
-  <section class="container block-frame">
+  <section class="container">
+    <div class="grid about-section">
+      <div class="col-full lg:col-6">
+        <h2>About</h2>
+        <p>{header.about.p1}</p>
+        <p>{header.about.p2}</p>
+        <p>{header.about.p3}</p>
+      </div>
+    </div>
+  </section>
+  <!-- <section class="container block-frame">
     <div class="grid gap-0">
       <Block class="col-full lg:col-4">
         <h2>About</h2>
@@ -220,5 +231,14 @@ const header = {
         </Block>
       </Block>
     </div>
-  </section>
+  </section> -->
 </Layout>
+
+<style>
+  .about-section {
+    margin-block: var(--space-6);
+    p {
+      margin-top: var(--space-4);
+    }
+  }
+</style>

@@ -1,48 +1,78 @@
+---
+import Button from "./ui/Button.astro";
+---
+
 <footer class="container">
-   <div>
-    <a href="mailto:ivo.amaro.97.p@gmail.com" target="_blank" rel="noreferrer">email</a>
+  <div class="contact-info">
+    <h1>Get in touch!</h1>
+    <p>I’d love to chat, hear your ideas, and share a few of my own.</p>
   </div>
-  <ul >
-    <li><a href="https://www.behance.net/ivoamaro" target="_blank" rel="noreferrer">Behance</a></li>
-    <li><a href="https://github.com/ivoamaro" target="_blank" rel="noreferrer">Github</a></li>
-    <li><a href="https://www.linkedin.com/in/ivo-amaro-9023b516b/" target="_blank" rel="noreferrer">Linkedin</a></li>
+  <ul>
+    <li>
+      <Button
+        title="Email"
+        isButton={false}
+        isExternal={true}
+        href="mailto:ivo.amaro.97.p@gmail.com"
+      />
+    </li>
+    <li>
+      <Button
+        title="Behance"
+        isButton={false}
+        isExternal={true}
+        href="https://www.behance.net/ivoamaro"
+      />
+    </li>
+    <li>
+      <Button
+        title="Github"
+        isButton={false}
+        isExternal={true}
+        href="https://github.com/ivoamaro"
+      />
+    </li>
+    <li>
+      <Button
+        title="Linkedin"
+        isButton={false}
+        isExternal={true}
+        href="https://www.linkedin.com/in/ivo-amaro-9023b516b/"
+      />
+    </li>
   </ul>
 </footer>
 
 <style>
-  :global(.dark) footer {
-    border-top: var(--border-width) dashed var(--color-bg);
-  }
   footer {
-    font-family: var(--font-secondary);
-    text-transform: uppercase;
-    font-weight: var(--font-regular);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: calc(100% - var(--space-4));
-    padding-left: calc(var(--space-4) * 2);
-    padding-right: var(--space-4);
-    height: var(--height-navbar);
-    border-top: var(--border-width) dashed var(--color-text);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: var(--space-6);
+    .contact-info {
+      h1 {
+        font-family: var(--font-primary);
+        font-size: 160px;
+        font-weight: var(--font-regular);
+        margin-left: -10px;
+        margin-bottom: var(--space-2);
+      }
+      p {
+        font-family: var(--font-primary);
+        font-size: var(--step-4);
+        font-weight: var(--font-regular);
+        line-height: 1;
+        margin-bottom: var(--space-6);
+      }
+    }
+
     ul {
       display: flex;
+
       > * + * {
         margin-left: var(--space-4);
       }
+
       li {
         list-style-type: none;
       }
     }
-    a {
-      letter-spacing: var(--tracking-wide);
-      text-decoration: none;
-      transition: 0.2s ease-in-out;
-      &:hover {
-        color: var(--color-primary);
-      }
-    }
+  }
 </style>

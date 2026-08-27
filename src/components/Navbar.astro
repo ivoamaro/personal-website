@@ -24,7 +24,6 @@ import ThemeIcon from "./ui/ThemeIcon.astro";
 
 <style>
   :global(.dark) nav {
-    border-bottom: var(--border-width) dashed var(--color-bg);
     .hamburger span {
       background-color: var(--color-bg);
     }
@@ -33,21 +32,12 @@ import ThemeIcon from "./ui/ThemeIcon.astro";
   @media (max-width: 768px) {
     :global(.dark) nav .menu {
       background-color: var(--color-text);
-      border-bottom: var(--border-width) dashed var(--color-bg);
     }
   }
   nav {
-    font-family: var(--font-secondary);
-    text-transform: uppercase;
-    font-weight: var(--font-regular);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: calc(100% - var(--space-4));
-    padding-left: calc(var(--space-4) * 2);
-    padding-right: var(--space-4);
-    height: var(--height-navbar);
-    border-bottom: var(--border-width) dashed var(--color-text);
+    font-family: var(--font-primary);
+    font-weight: var(--font-bold);
+    padding: var(--space-6);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -108,7 +98,6 @@ import ThemeIcon from "./ui/ThemeIcon.astro";
         width: calc(100% - var(--space-4) - (var(--border-width) * 3));
         padding: var(--space-4);
         background-color: var(--color-bg);
-        border-bottom: var(--border-width) dashed var(--color-text);
         /* Fade-in properties */
         opacity: 0;
         visibility: hidden;

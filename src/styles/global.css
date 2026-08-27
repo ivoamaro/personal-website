@@ -93,7 +93,7 @@ h4 {
 
 h2, h3, p {
   font-size: var(--step-0);
-  font-family: var(--font-secondary);
+  font-family: var(--font-primary);
 }
 
 .small {

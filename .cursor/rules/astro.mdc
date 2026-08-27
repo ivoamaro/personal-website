@@ -1,0 +1,24 @@
+---
+description: Astro project conventions
+globs: ["**/*.astro", "**/*.ts", "**/*.js"]
+alwaysApply: false
+---
+
+# Astro Rules
+
+- Prefer Astro components for static UI and server-rendered content.
+- Keep components focused. Reuse existing ones before creating new ones.
+- Prefer Astro's built-in features before introducing additional libraries.
+- Keep client-side JavaScript minimal.
+- Only use client directives such as `client:load`, `client:idle`, or `client:visible` when interactivity actually requires them.
+- Do not introduce a framework such as React, Vue, or Svelte unless the project already uses it or the task explicitly requires it.
+
+## Structure
+
+- Site chrome (`Navbar`, `Footer`) stays at `src/components/`.
+- New components go in `src/components/ui/`, `design-system/`, or `experiments/`.
+- Content lives in repo-root `content/`, not `src/content/`. Collections are defined in `src/content.config.ts`.
+
+## Components
+
+- Define a typed `Props` interface for component props.

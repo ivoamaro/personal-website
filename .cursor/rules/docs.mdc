@@ -1,0 +1,15 @@
+---
+description: Project documentation conventions
+globs: ["docs/**"]
+alwaysApply: false
+---
+
+# Documentation Rules
+
+- Treat `docs/` as optional project context, not a required set of files.
+- Before making significant architectural or structural changes, check `docs/` if it exists.
+- When a change affects architecture or important behavior, update the relevant doc if one exists.
+- When a change is architectural or a convention shift, append a short dated bullet to `docs/changelog.md` (newest first). Do not log routine work.
+- Keep documentation concise and accurate. Do not create stub files.
+- Do not duplicate conventions that already live in Cursor rules.
+- If documentation conflicts with the current code, prioritize the implementation and update the doc.

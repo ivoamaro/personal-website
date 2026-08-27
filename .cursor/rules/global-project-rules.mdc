@@ -1,0 +1,48 @@
+---
+description: Global project rules for clean, maintainable, and reliable code
+alwaysApply: true
+---
+
+# Global Project Rules
+
+## General
+
+- Follow the existing project structure, conventions, and patterns before introducing new ones.
+- Keep changes focused and avoid unnecessary refactoring.
+- Prefer simple, readable, and maintainable solutions over clever or overly complex ones.
+- Do not introduce dependencies unless they provide clear value.
+- Reuse existing utilities, components, types, and patterns when appropriate.
+- Keep code consistent with the surrounding codebase.
+
+## Code Quality
+
+- Write clear, self-explanatory code.
+- Use descriptive names for variables, functions, classes, and files.
+- Keep functions and modules reasonably small and focused.
+- Avoid duplicated logic when it can be cleanly reused.
+- Handle errors explicitly and avoid silently swallowing failures.
+- Avoid premature abstractions and over-engineering.
+- Avoid adding comments that merely restate what the code does.
+- Add comments when they explain non-obvious reasoning or important constraints.
+
+## Changes
+
+- Before modifying code, understand the relevant existing implementation.
+- Make the smallest change that correctly solves the problem.
+- Do not modify unrelated files or behavior.
+- Preserve existing functionality unless the task explicitly requires changing it.
+- Consider edge cases and failure states when implementing new behavior.
+- When a change is architectural or a convention shift, append a short dated bullet to `docs/changelog.md` (newest first). Do not log routine work.
+
+## Dependencies & Configuration
+
+- Prefer existing project dependencies and tooling.
+- Do not change package versions, build configuration, environment configuration, or infrastructure unless necessary.
+- Never expose or commit secrets, credentials, API keys, tokens, or private configuration.
+
+## Communication
+
+- When explaining changes, be concise and clear.
+- Mention important assumptions, trade-offs, or potential issues.
+- If requirements are ambiguous, prefer the safest interpretation and state the assumption.
+- Do not claim something was tested or verified if it was not.

@@ -25,3 +25,8 @@ pnpm-debug.log*
 
 # Cloudflare
 .wrangler/
+
+# Cursor — track rules, ignore the rest
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/**

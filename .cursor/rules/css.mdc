@@ -1,0 +1,30 @@
+---
+description: CSS conventions for Astro components
+globs: ["**/*.astro", "**/*.css"]
+alwaysApply: false
+---
+
+# CSS Rules
+
+- Use regular CSS. Do not introduce Tailwind, CSS-in-JS, CSS modules, or another styling system unless explicitly requested.
+- Prefer `<style>` blocks inside `.astro` components for component-specific styles.
+- Keep styles close to the component they belong to.
+- Use global CSS only for genuinely global concerns such as resets, typography, CSS custom properties, or shared utility styles.
+- Reuse existing CSS custom properties and design tokens before creating new values.
+- Prefer semantic class names over names based on visual appearance.
+- Keep selectors simple and avoid unnecessary specificity.
+- Avoid `!important` unless there is a clear and justified reason.
+- Avoid deeply nested selectors.
+- Prefer modern CSS features when they improve clarity and are appropriate for the project's browser support.
+- Keep responsive styles with the component styles when they are specific to that component.
+- Do not duplicate styles when a shared pattern already exists.
+- Follow the existing project's spacing, typography, breakpoint, and naming conventions.
+- Before creating new styles, check the component and existing styles for reusable patterns.
+
+## Astro Styling
+
+- Remember that Astro component `<style>` blocks are scoped by default.
+- Do not add unnecessary scoping mechanisms or generated class naming systems.
+- Use `:global()` only when intentionally targeting elements outside the component's scoped styles.
+- Keep global styles intentional and limited.
+- Prefer component-local styles unless a style genuinely needs to be shared.

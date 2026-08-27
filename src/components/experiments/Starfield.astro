@@ -1,0 +1,172 @@
+<div class="starfield-container">
+  <div class="content">
+    <blockquote class="retro-type">
+      “The universe seems neither benign nor hostile, merely indifferent to the
+      concerns of such puny creatures as we are.”
+    </blockquote>
+    <p>— Carl Sagan, <cite>Cosmos</cite></p>
+  </div>
+  <canvas id="starfield"></canvas>
+</div>
+<style>
+  :root {
+    --starfield-color: #000000;
+    --type-color: #ffffff;
+  }
+  .starfield-container {
+    position: relative;
+    width: 100%;
+    /* Define the size here — the canvas fills this box. */
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .content {
+    color: var(--type-color);
+    margin: auto;
+    max-width: 75ch;
+    p {
+      margin-top: 20px;
+      text-align: right;
+      filter: blur(1px);
+      text-shadow:
+        -1px -1px 0 var(--type-color),
+        1px -1px 0 var(--type-color),
+        -1px 1px 0 var(--type-color),
+        1px 1px 0 var(--type-color);
+      animation: shadow-glitch 10s infinite steps(1);
+    }
+    .retro-type {
+      font-size: 2rem;
+
+      color: var(--type-color);
+      filter: blur(1px);
+      text-shadow:
+        -1px -1px 0 var(--type-color),
+        1px -1px 0 var(--type-color),
+        -1px 1px 0 var(--type-color),
+        1px 1px 0 var(--type-color);
+      animation: shadow-glitch 10s infinite steps(1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .starfield-container {
+      height: 500px;
+    }
+    .content {
+      padding: 1.5rem;
+    }
+    .retro-type {
+      font-size: 1rem;
+    }
+  }
+
+  @keyframes shadow-glitch {
+    0%,
+    90%,
+    100% {
+      transform: none;
+      text-shadow:
+        -1px -1px 0 var(--type-color),
+        1px -1px 0 var(--type-color),
+        -1px 1px 0 var(--type-color),
+        1px 1px 0 var(--type-color);
+    }
+
+    97% {
+      transform: translateX(2px);
+      text-shadow:
+        -2px -1px 0 var(--type-color),
+        1px -1px 0 var(--type-color),
+        -1px 1px 0 var(--type-color),
+        1px 1px 0 var(--type-color);
+    }
+  }
+
+  canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: var(--starfield-color);
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById("starfield") as HTMLCanvasElement;
+  const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+  let stars: {
+    x: number;
+    y: number;
+    radius: number;
+    phase: number;
+    speed: number;
+  }[] = [];
+  let starCount;
+
+  // Logical (CSS pixel) size, read back from the element's rendered box.
+  let width = 0;
+  let height = 0;
+
+  function resizeCanvas() {
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+
+    width = rect.width;
+    height = rect.height;
+
+    // Bitmap resolution follows the CSS size, scaled for the display.
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    generateStars();
+  }
+
+  function generateStars() {
+    stars = [];
+
+    // Density-based scaling (4K safe)
+    const density = 0.0002;
+    starCount = Math.floor(width * height * density);
+
+    for (let i = 0; i < starCount; i++) {
+      stars.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.5 + 0.5,
+        phase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.02 + 0.005,
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (let star of stars) {
+      star.phase += star.speed;
+
+      const opacity = 0.5 + Math.sin(star.phase) * 0.5;
+
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${opacity})`;
+      ctx.fill();
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  // React to any CSS-driven size change (not just window resizes).
+  const observer = new ResizeObserver(() => resizeCanvas());
+  observer.observe(canvas);
+
+  resizeCanvas();
+  animate();
+</script>

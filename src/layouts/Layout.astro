@@ -51,9 +51,16 @@ const showSite = true;
         localStorage.setItem("theme", theme);
       }
 
-      applyTheme();
+      function applyDocumentState() {
+        applyTheme();
+        // Gates the pre-hide styles for [data-animate] so content stays
+        // visible if scripts fail to load.
+        document.documentElement.classList.add("js");
+      }
+
+      applyDocumentState();
       // ClientRouter resets <html> attributes on swap; re-apply before paint.
-      document.addEventListener("astro:after-swap", applyTheme);
+      document.addEventListener("astro:after-swap", applyDocumentState);
     </script>
   </head>
   <body>
@@ -73,6 +80,10 @@ const showSite = true;
 
     <script>
       import "../scripts/SmoothScroll.ts";
+      import { initAnimations } from "../scripts/animations.ts";
+
+      // Fires on first load and after every ClientRouter navigation.
+      document.addEventListener("astro:page-load", initAnimations);
     </script>
   </body>
 </html>

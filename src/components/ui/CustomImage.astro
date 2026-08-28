@@ -1,15 +1,44 @@
 ---
 import { Image } from "astro:assets";
-const { src, alt, class: className } = Astro.props;
+import type { ImageMetadata } from "astro";
+import type { AnimationName } from "../../scripts/animations";
+
+export interface Props {
+  src: ImageMetadata;
+  alt: string;
+  class?: string;
+  /** Named animation recipe. Maps to `data-animate`. */
+  animate?: AnimationName;
+  /** Seconds to wait before the animation plays. Maps to `data-animate-delay`. */
+  animateDelay?: number;
+  /** ScrollTrigger start position. Maps to `data-animate-start`. */
+  animateStart?: string;
+}
+
+const {
+  src,
+  alt,
+  class: className,
+  animate,
+  animateDelay,
+  animateStart,
+} = Astro.props;
+
+const classes = [animate ? undefined : "fade-image", className]
+  .filter(Boolean)
+  .join(" ");
 ---
 
 <Image
   src={src}
   alt={alt}
-  class={`fade-image ${className ?? ""}`}
+  class={classes}
+  data-animate={animate}
+  data-animate-delay={animateDelay}
+  data-animate-start={animateStart}
   loading="lazy"
   decoding="async"
-  onload="this.classList.add('is-loaded')"
+  onload={animate ? undefined : "this.classList.add('is-loaded')"}
 />
 
 <style>

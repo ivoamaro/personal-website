@@ -158,25 +158,35 @@ const header = {
 ---
 
 <Layout>
-  <Header title={header.title}>
+ <Header title={header.title}>
     <div class="button-container">
       <Button
         title="Let's chat"
         isButton={false}
         isExternal={true}
         href="mailto:ivo.amaro.97.p@gmail.com"
+        animate="fade"
+        animateDelay={1.5}
       />
     </div>
   </Header>
   <section class="space-y-10">
     <div class="grid">
       <div class="col-full md:col-4">
-        <CustomImage src={ProfileImage} alt="Profile" class="round-corners" />
+        <CustomImage
+          src={ProfileImage}
+          alt="Profile"
+          class="round-corners"
+          animate="fade"
+          animateDelay={1.6}
+          animateStart="top bottom"
+        />
       </div>
       <div class="col-full md:col-2"></div>
       <div class="col-full md:col-6">
-        <h2>Selected Work</h2>
-        <ul>
+        <h2 data-animate="fade"  data-animate-delay={1.6}
+        data-animate-start="top bottom" >Selected Work</h2>
+        <ul data-animate="children" data-animate-delay={1.6} >
           {
             header.work.items.map((item) => (
               <li>
@@ -208,7 +218,7 @@ const header = {
   </section>
   <section class="">
     <div class="grid about-section">
-      <div class="col-full lg:col-6">
+      <div class="col-full lg:col-6" data-animate="fade-up">
         <h2>About</h2>
         <p>{header.about.p1}</p>
         <p>{header.about.p2}</p>
@@ -220,62 +230,6 @@ const header = {
       </div>
     </div>
   </section>
-  <!-- <section class="container block-frame">
-    <div class="grid gap-0">
-      <Block class="col-full lg:col-4">
-        <h2>About</h2>
-        <p>{header.about.p1}</p>
-        <p>{header.about.p2}</p>
-      </Block>
-      <Block class="col-full md:col-3">
-        <h2>{header.work.title}</h2>
-        <ul>
-          {
-            header.work.items.map((item) => (
-              <ListItem
-                title={item.title}
-                description={item.description}
-                tags={item.tags}
-                links={item.links}
-              />
-            ))
-          }
-        </ul>
-      </Block>
-      <Block class="col-full md:col-3 lg:col-2">
-        <h2>{header.skills.title}</h2>
-        <ul>
-          {header.skills.items.map((item) => <ListItem skillsList={item} />)}
-        </ul>
-      </Block>
-      <Block class="col-full lg:col-3 p-none">
-        <Block>
-          <h2>{header.experience.title}</h2>
-          <ul>
-            {
-              header.experience.items.map((item) => (
-                <ListItem
-                  subtitle={item.year}
-                  title={item.title}
-                  links={item.links}
-                />
-              ))
-            }
-          </ul>
-        </Block>
-        <Block>
-          <h2>{header.education.title}</h2>
-          <ul>
-            {
-              header.education.items.map((item) => (
-                <ListItem subtitle={item.year} title={item.degree} />
-              ))
-            }
-          </ul>
-        </Block>
-      </Block>
-    </div>
-  </section> -->
 </Layout>
 
 <style>

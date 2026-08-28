@@ -3,7 +3,14 @@
 html {
   /* Avoid width jumping when the vertical scrollbar appears (helps near the 768px breakpoint) */
   scrollbar-gutter: stable;
-  scroll-behavior: smooth;
+}
+
+/* Hide animated elements until GSAP applies their start state, but only when
+   scripts are running and motion is welcome. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-animate] {
+    visibility: hidden;
+  }
 }
 
 *,

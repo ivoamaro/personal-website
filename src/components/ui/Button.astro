@@ -1,4 +1,6 @@
 ---
+import type { AnimationName } from "../../scripts/animations";
+
 export interface Props {
   /** Render a `<button>` when true. Ignored when `href` is set (renders as a link). */
   isButton?: boolean;
@@ -9,6 +11,12 @@ export interface Props {
   title?: string;
   /** Show or hide the trailing arrow symbol. */
   showSymbol?: boolean;
+  /** Named animation recipe. Maps to `data-animate`. */
+  animate?: AnimationName;
+  /** Seconds to wait before the animation plays. Maps to `data-animate-delay`. */
+  animateDelay?: number;
+  /** ScrollTrigger start position. Maps to `data-animate-start`. */
+  animateStart?: string;
 }
 
 let {
@@ -17,6 +25,9 @@ let {
   href = "",
   title = "",
   showSymbol = true,
+  animate,
+  animateDelay,
+  animateStart,
 } = Astro.props;
 
 const isLink = Boolean(href) || !isButton;
@@ -102,6 +113,9 @@ const arrowPath =
 
 <Tag
   class="button-component"
+  data-animate={animate}
+  data-animate-delay={animateDelay}
+  data-animate-start={animateStart}
   href={isLink ? href : undefined}
   target={isLink && isExternal ? "_blank" : undefined}
   rel={isLink && isExternal ? "noreferrer" : undefined}

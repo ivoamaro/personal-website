@@ -36,6 +36,17 @@ if (title === "" && isLink) title = "Link";
 else if (title === "") title = "Button";
 
 const Tag = isLink ? "a" : "button";
+
+// The delay and start attributes are meaningless without a recipe, and an empty
+// `data-animate` would make the runner hide the button and never reveal it.
+const animationAttributes = animate
+  ? {
+      "data-animate": animate,
+      ...(animateDelay !== undefined && { "data-animate-delay": animateDelay }),
+      ...(animateStart !== undefined && { "data-animate-start": animateStart }),
+    }
+  : {};
+
 const arrowPath =
   "M0 4.48H10.304L8.848 5.472L3.36 0H6.416L12 5.6L6.416 11.2H3.36L8.848 5.728L10.304 6.72H0V4.48Z";
 ---
@@ -113,9 +124,7 @@ const arrowPath =
 
 <Tag
   class="button-component"
-  data-animate={animate}
-  data-animate-delay={animateDelay}
-  data-animate-start={animateStart}
+  {...animationAttributes}
   href={isLink ? href : undefined}
   target={isLink && isExternal ? "_blank" : undefined}
   rel={isLink && isExternal ? "noreferrer" : undefined}

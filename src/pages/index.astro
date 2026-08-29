@@ -158,17 +158,13 @@ const header = {
 ---
 
 <Layout>
- <Header title={header.title}>
-    <div class="button-container">
-      <Button
-        title="Let's chat"
-        isButton={false}
-        isExternal={true}
-        href="mailto:ivo.amaro.97.p@gmail.com"
-        animate="fade"
-        animateDelay={1.5}
-      />
-    </div>
+  <Header title={header.title}>
+    <Button
+      title="Let's chat"
+      isButton={false}
+      isExternal={true}
+      href="mailto:ivo.amaro.97.p@gmail.com"
+    />
   </Header>
   <section class="space-y-10">
     <div class="grid">
@@ -178,15 +174,20 @@ const header = {
           alt="Profile"
           class="round-corners"
           animate="fade"
-          animateDelay={1.6}
+          animateDelay={0.2}
           animateStart="top bottom"
         />
       </div>
       <div class="col-full md:col-2"></div>
       <div class="col-full md:col-6">
-        <h2 data-animate="fade"  data-animate-delay={1.6}
-        data-animate-start="top bottom" >Selected Work</h2>
-        <ul data-animate="children" data-animate-delay={1.6} >
+        <h2
+          data-animate="fade"
+          data-animate-delay={0.2}
+          data-animate-start="top bottom"
+        >
+          Selected Work
+        </h2>
+        <ul data-animate="children" data-animate-delay={0.2}>
           {
             header.work.items.map((item) => (
               <li>
@@ -218,7 +219,7 @@ const header = {
   </section>
   <section class="">
     <div class="grid about-section">
-      <div class="col-full lg:col-6" data-animate="fade-up">
+      <div class="col-full lg:col-6" data-animate="children">
         <h2>About</h2>
         <p>{header.about.p1}</p>
         <p>{header.about.p2}</p>

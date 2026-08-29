@@ -19,7 +19,7 @@ const recipes = {
     gsap.from(el, {
       opacity: 0,
       duration: 0.6,
-      ease: "power2.out",
+      ease: "cubic-bezier(0.4, 0, 0.2, 1)",
     }),
 
   "fade-up": (el) =>
@@ -27,7 +27,7 @@ const recipes = {
       opacity: 0,
       y: 24,
       duration: 0.8,
-      ease: "expo.out",
+      ease: "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
     }),
 
   words: (el) =>
@@ -35,7 +35,15 @@ const recipes = {
       opacity: 0,
       stagger: 0.05,
       duration: 0.3,
-      ease: "expo.out",
+      ease: "cubic-bezier(0.4, 0, 0.2, 1)",
+    }),
+
+  lines: (el) =>
+    gsap.from(SplitText.create(el, { type: "lines" }).lines, {
+      opacity: 0,
+      stagger: 0.15,
+      duration: 1,
+      ease: "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
     }),
 
   children: (el) =>
@@ -44,13 +52,14 @@ const recipes = {
       y: 16,
       stagger: 0.08,
       duration: 0.6,
-      ease: "expo.out",
+      ease: "cubic-bezier(0.4, 0, 0.2, 1)",
     }),
 } satisfies Record<string, Recipe>;
 
 export type AnimationName = keyof typeof recipes;
 
 let context: ReturnType<typeof gsap.matchMedia> | undefined;
+let hasAnimated = false;
 
 /**
  * Binds every `[data-animate]` element on the page to its named recipe,
@@ -61,6 +70,8 @@ let context: ReturnType<typeof gsap.matchMedia> | undefined;
  * - `data-animate-delay` — seconds to wait before playing, honoured only when
  *   the element is already on screen at init; defaults to 0
  * - `data-animate-start` — ScrollTrigger start position, defaults to "top 85%"
+ * - `data-animate-once` — play on the visitor's first page only, for chrome that
+ *   is repeated on every page
  *
  * Safe to call on every navigation. All work happens inside a `matchMedia`
  * context, so nothing is created for users who prefer reduced motion and a
@@ -72,6 +83,8 @@ export function initAnimations(): void {
 
   context.add("(prefers-reduced-motion: no-preference)", () => {
     const elements = document.querySelectorAll<HTMLElement>("[data-animate]");
+    const isFirstRun = !hasAnimated;
+    hasAnimated = true;
 
     elements.forEach((el) => {
       const name = el.dataset.animate as AnimationName;
@@ -84,6 +97,10 @@ export function initAnimations(): void {
         console.warn(`Unknown data-animate value: "${name}"`, el);
         return;
       }
+
+      // Chrome that is present on every page would otherwise replay its intro on
+      // each navigation, so leave it in its revealed state after the first page.
+      if (!isFirstRun && el.hasAttribute("data-animate-once")) return;
 
       // Delays sequence the initial load; on elements revealed by scrolling
       // they only read as lag, so ignore them when off screen at init.

@@ -1,11 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/design-system/Header.astro";
-import Block from "../components/ui/Block.astro";
-import ListItem from "../components/design-system/ListItem.astro";
 import Button from "../components/ui/Button.astro";
 import CustomImage from "../components/ui/CustomImage.astro";
-import ProfileImage from "../assets/photo.jpg";
+import ProfileImage from "../assets/photo.jpeg";
 
 const header = {
   title:
@@ -192,7 +190,7 @@ const header = {
             header.work.items.map((item) => (
               <li>
                 <p>
-                  <a href={item.links[0].href} target="_blank">
+                  <a href={item.links[0].href} target="_blank" class="no-underline">
                     {item.title}
                   </a>
                 </p>
@@ -205,7 +203,7 @@ const header = {
                       <Button
                         title={link.title}
                         href={link.href}
-                        isExternal={true}
+                        isExternal={link.href.includes("https://") ? true : false}
                       />
                     </li>
                   ))}

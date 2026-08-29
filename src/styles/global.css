@@ -105,6 +105,10 @@ a {
   color: var(--color-bg);
 }
 
+.no-underline {
+  text-decoration: none;
+}
+
 .round-corners {
   border-radius: 20px;
 }

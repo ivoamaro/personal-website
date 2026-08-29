@@ -84,28 +84,43 @@ const arrowPath =
   }
 
   .symbol-wrap {
+    /* Direction the symbols travel on hover, matching where the arrow points. */
+    --symbol-shift-x: 100%;
+    --symbol-shift-y: 0%;
+
+    position: relative;
     width: var(--button-symbol-size);
     height: var(--button-symbol-size);
     overflow: hidden;
   }
 
-  .symbol-track {
-    display: flex;
-    width: max-content;
-    transform: translateX(calc(-1 * var(--button-symbol-size)));
-    transition: transform 0.4s ease;
+  .symbol-wrap.is-external {
+    --symbol-shift-y: -100%;
   }
 
   .symbol {
-    width: var(--button-symbol-size);
-    height: var(--button-symbol-size);
-    flex-shrink: 0;
+    position: absolute;
+    inset: 0;
     display: grid;
     place-items: center;
+    transition: transform 0.4s ease;
+  }
+
+  /* Waits just outside the wrap, opposite the exit direction. */
+  .symbol-incoming {
+    transform: translate(
+      calc(-1 * var(--symbol-shift-x)),
+      calc(-1 * var(--symbol-shift-y))
+    );
   }
 
   .symbol svg {
     display: block;
+  }
+
+  /* Rotating the svg instead of the symbol keeps the slide animation intact. */
+  .symbol-wrap.is-external .symbol svg {
+    transform: rotate(-45deg);
   }
 
   .button-component:hover {
@@ -113,8 +128,12 @@ const arrowPath =
     transform: scale(1.1);
   }
 
-  .button-component:hover .symbol-track {
-    transform: translateX(0);
+  .button-component:hover .symbol-outgoing {
+    transform: translate(var(--symbol-shift-x), var(--symbol-shift-y));
+  }
+
+  .button-component:hover .symbol-incoming {
+    transform: translate(0, 0);
   }
 
   :global(.dark) .button-component:hover {
@@ -133,18 +152,19 @@ const arrowPath =
   <span>{title}</span>
   {
     showSymbol && (
-      <span class="symbol-wrap" aria-hidden="true">
-        <span class="symbol-track">
-          <span class="symbol">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d={arrowPath} fill="currentColor" />
-            </svg>
-          </span>
-          <span class="symbol">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d={arrowPath} fill="currentColor" />
-            </svg>
-          </span>
+      <span
+        class:list={["symbol-wrap", { "is-external": isLink && isExternal }]}
+        aria-hidden="true"
+      >
+        <span class="symbol symbol-incoming">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d={arrowPath} fill="currentColor" />
+          </svg>
+        </span>
+        <span class="symbol symbol-outgoing">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d={arrowPath} fill="currentColor" />
+          </svg>
         </span>
       </span>
     )

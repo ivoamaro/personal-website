@@ -85,7 +85,7 @@ import ThemeIcon from "./ui/ThemeIcon.astro";
         width: 25px;
         height: 1px;
         background-color: var(--color-text);
-        transition: all 0.3s;
+        transition: all var(--motion-fast) var(--motion-ease-standard);
         transform-origin: center;
       }
     }
@@ -112,9 +112,9 @@ import ThemeIcon from "./ui/ThemeIcon.astro";
         opacity: 0;
         visibility: hidden;
         transition:
-          opacity 0.3s ease,
-          transform 0.3s ease,
-          visibility 0.3s;
+          opacity var(--motion-fast) var(--motion-ease-standard),
+          transform var(--motion-fast) var(--motion-ease-standard),
+          visibility var(--motion-fast);
       }
 
       .menu li {

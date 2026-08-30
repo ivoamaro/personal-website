@@ -65,4 +65,11 @@
   --space-9: clamp(5rem, 4rem + 3.5vw, 6rem);
   --space-10: clamp(6rem, 4.8rem + 4vw, 8rem);
 
+  /* MOTION */
+  /* Mirrors the scale at the top of `src/scripts/animations.ts`. Change both so
+     CSS transitions and GSAP tweens keep the same rhythm. */
+  --motion-fast: 0.25s;
+  --motion-base: 0.4s;
+  --motion-slow: 0.6s;
+  --motion-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 }

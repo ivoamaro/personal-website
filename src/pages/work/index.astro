@@ -1,15 +1,19 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/design-system/Header.astro";
-import Block from "../../components/ui/Block.astro";
 import { getCollection } from "astro:content";
 
-const entries = await getCollection("work");
+// Must match the filter in `[slug].astro`; listing an unpublished entry here
+// links to a route that was never generated.
+const entries = await getCollection(
+  "work",
+  (entry) => entry.data.status === "Published",
+);
 ---
 
 <Layout>
   <Header title="Work" />
-  <section class="grid gap-0">
+  <section class="grid gap-0" data-animate="children" data-animate-group="page">
     {
       entries.map((entry) => (
         <div class="col-full">

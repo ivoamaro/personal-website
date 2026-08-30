@@ -13,7 +13,9 @@ export interface Props {
   showSymbol?: boolean;
   /** Named animation recipe. Maps to `data-animate`. */
   animate?: AnimationName;
-  /** Seconds to wait before the animation plays. Maps to `data-animate-delay`. */
+  /** Sequence group; on-screen members animate in document order. Maps to `data-animate-group`. */
+  animateGroup?: string;
+  /** Seconds to wait before the animation plays, overriding group order. Maps to `data-animate-delay`. */
   animateDelay?: number;
   /** ScrollTrigger start position. Maps to `data-animate-start`. */
   animateStart?: string;
@@ -26,6 +28,7 @@ let {
   title = "",
   showSymbol = true,
   animate,
+  animateGroup,
   animateDelay,
   animateStart,
 } = Astro.props;
@@ -37,11 +40,12 @@ else if (title === "") title = "Button";
 
 const Tag = isLink ? "a" : "button";
 
-// The delay and start attributes are meaningless without a recipe, and an empty
-// `data-animate` would make the runner hide the button and never reveal it.
+// The group, delay and start attributes are meaningless without a recipe, and an
+// empty `data-animate` would make the runner hide the button and never reveal it.
 const animationAttributes = animate
   ? {
       "data-animate": animate,
+      ...(animateGroup !== undefined && { "data-animate-group": animateGroup }),
       ...(animateDelay !== undefined && { "data-animate-delay": animateDelay }),
       ...(animateStart !== undefined && { "data-animate-start": animateStart }),
     }

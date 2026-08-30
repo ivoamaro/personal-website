@@ -172,20 +172,14 @@ const header = {
           alt="Profile"
           class="round-corners"
           animate="fade"
-          animateDelay={0.2}
-          animateStart="top bottom"
+          animateGroup="page"
+          priority
         />
       </div>
       <div class="col-full md:col-2"></div>
       <div class="col-full md:col-6">
-        <h2
-          data-animate="fade"
-          data-animate-delay={0.2}
-          data-animate-start="top bottom"
-        >
-          Selected Work
-        </h2>
-        <ul data-animate="children" data-animate-delay={0.2}>
+        <h2 data-animate="fade" data-animate-group="page">Selected Work</h2>
+        <ul data-animate="children" data-animate-group="page">
           {
             header.work.items.map((item) => (
               <li>

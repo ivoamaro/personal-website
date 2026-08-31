@@ -112,3 +112,19 @@ a {
 .round-corners {
   border-radius: 20px;
 }
+
+.font-regular {
+  font-weight: var(--font-regular);
+}
+
+.font-medium {
+  font-weight: var(--font-medium);
+}
+
+.font-bold {
+  font-weight: var(--font-bold);
+}
+
+.last {
+  margin: 0 !important;
+}

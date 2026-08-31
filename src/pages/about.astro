@@ -1,13 +1,142 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/design-system/Header.astro";
+
+const aboutPage = {
+  skills: {
+    title: "Skills",
+    items: [
+      {
+        title: "Design",
+        skills: [
+          {
+            title: "Figma",
+          },
+          {
+            title: "Adobe",
+          },
+        ],
+      },
+      {
+        title: "Development",
+        skills: [
+          {
+            title: "React",
+          },
+          {
+            title: "Svelte",
+          },
+          {
+            title: "Astro",
+          },
+          {
+            title: "JavaScript",
+          },
+          {
+            title: "HTML",
+          },
+          {
+            title: "CSS",
+          },
+          {
+            title: "Webflow",
+          },
+        ],
+      },
+    ],
+  },
+  education: {
+    title: "Education",
+    items: [
+      {
+        degree: "Bachelor’s degree in Design and Multimedia",
+        year: "University of Coimbra | 2015 - 2018 ",
+      },
+      {
+        degree: "Master’s degree in Multimedia",
+        year: "University of Porto | 2018 - 2020",
+      },
+    ],
+  },
+  experience: {
+    title: "Experience",
+    items: [
+      {
+        title: "Freelancer",
+        year: "2021",
+        description:
+          "Built and refined websites in Squarespace and Webflow using the visual builders alongside custom code to extend functionality.",
+      },
+      {
+        title: "Made by Sea",
+        year: "2021-Current",
+        description:
+          "Helped co-found the Made by Sea agency as part of a four-person team delivering digital platforms for companies based in New York and Portugal. My role focuses on bridging the gap between concept and delivery, ensuring a smooth translation of design intent into functional products. I am involved in the full end-to-end development process, from planning and implementation to launch and refinement.",
+        links: [
+          {
+            title: "Website",
+            href: "https://www.madebysea.com",
+          },
+        ],
+      },
+    ],
+  },
+  about: {
+    p1: "I’m a designer and developer working at the intersection of design and technology. Over the years, I’ve designed websites in Figma and brought them to life using Javascript frameworks.",
+    p2: "I enjoy working across both design and development, turning visual ideas into thoughtful, functional digital experiences.",
+    p3: "Outside of work, I spend my time watching movies, playing games, creating music and doing some sport.",
+  },
+};
 ---
 
 <Layout>
   <Header title="About" />
 
-
   <section class="">
-  
+    <div class="grid about-section">
+      <div class="col-full lg:col-6" data-animate="children">
+        <h2>Intro</h2>
+        <p>{aboutPage.about.p1}</p>
+        <p>{aboutPage.about.p2}</p>
+        <p>{aboutPage.about.p3}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="space-y-10">
+    <div class="grid about-section">
+      <div class="col-full lg:col-6" data-animate="children">
+        <h2>Education</h2>
+        {
+          aboutPage.education.items.map((item, index) => (
+            <div
+              class={`space-b-6 ${index === aboutPage.education.items.length - 1 ? "last" : ""}`}
+            >
+              <h3>{item.degree}</h3>
+              <p>{item.year}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="space-y-10">
+    <div class="grid about-section">
+      <div class="col-full lg:col-6" data-animate="children">
+        <h2>Experience</h2>
+        {
+          aboutPage.experience.items.map((item) => (
+            <div class="space-b-6">
+              <h3 class="font-medium">
+                {item.title} | <span>{item.year}</span>
+              </h3>
+
+              <p class="space-t-2">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
   </section>
 </Layout>

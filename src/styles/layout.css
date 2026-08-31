@@ -67,6 +67,67 @@
   margin-block: var(--space-10);
 }
 
+.space-b-1 {
+  margin-bottom: var(--space-1);
+}
+.space-b-2 {
+  margin-bottom: var(--space-2);
+}
+.space-b-3 {
+  margin-bottom: var(--space-3);
+}
+.space-b-4 {
+  margin-bottom: var(--space-4);
+}
+.space-b-5 {
+  margin-bottom: var(--space-5);
+}
+.space-b-6 {
+  margin-bottom: var(--space-6);
+}
+.space-b-7 {
+  margin-bottom: var(--space-7);
+}
+.space-b-8 {
+  margin-bottom: var(--space-8);
+}
+.space-b-9 {
+  margin-bottom: var(--space-9);
+}
+.space-b-10 {
+  margin-bottom: var(--space-10);
+}
+.space-t-1 {
+  margin-top: var(--space-1);
+}
+.space-t-2 {
+  margin-top: var(--space-2);
+}
+.space-t-3 {
+  margin-top: var(--space-3);
+}
+.space-t-4 {
+  margin-top: var(--space-4);
+}
+.space-t-5 {
+  margin-top: var(--space-5);
+}
+.space-t-6 {
+  margin-top: var(--space-6);
+}
+.space-t-7 {
+  margin-top: var(--space-7);
+}
+.space-t-8 {
+  margin-top: var(--space-8);
+}
+.space-t-9 {  
+  margin-top: var(--space-9);
+}
+.space-t-10 {
+  margin-top: var(--space-10);
+}
+
 /* GRID LAYOUT */
 
 .col-full {

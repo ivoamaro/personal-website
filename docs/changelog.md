@@ -2,6 +2,11 @@
 
 Significant project changes only (architecture, conventions, decisions).
 
+## 2026-09-01
+
+- Homepage work items carry a `slug`, and their hover preview is resolved by filename from `src/assets/work/` via `import.meta.glob`. Add a preview by dropping `<slug>.jpg` in that folder; an item with no matching file simply has no preview instead of failing the build.
+- Previews render up front as stacked transparent layers over the profile image; `src/scripts/workPreview.ts` only toggles `is-active`, so hovering never triggers a fetch.
+
 ## 2026-08-30
 
 - Motion has a token scale: `--motion-*` in `src/styles/tokens.css` for CSS transitions, mirrored by the `duration`/`stagger`/`ease`/`shift` consts at the top of `src/scripts/animations.ts` for GSAP. Change both together; recipes no longer hard-code durations.

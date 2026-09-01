@@ -73,17 +73,7 @@ const header = {
           },
         ],
       },
-      {
-        title: "Larota",
-        slug: "larota",
-        tags: ["Design", "Development"],
-        links: [
-          {
-            title: "Website",
-            href: "https://www.larota.co",
-          },
-        ],
-      },
+     
       {
         title: "Typographia",
         slug: "typographia",
@@ -144,7 +134,7 @@ const header = {
   about: {
     p1: "I’m a designer and developer working at the intersection of design and technology. Over the years, I’ve designed websites in Figma and brought them to life using Javascript frameworks.",
     p2: "I enjoy working across both design and development, turning visual ideas into thoughtful, functional digital experiences.",
-    p3: "Outside of work, I spend my time watching movies, playing games, creating music and doing some sport.",
+    p3: "Outside of work, I spend my time watching movies, playing games and doing some sport.",
   },
 };
 ---
@@ -158,7 +148,7 @@ const header = {
       href="mailto:ivo.amaro.97.p@gmail.com"
     />
   </Header>
-  <section class="space-y-10">
+  <section class="space-y-8 md:space-y-10">
     <div class="grid">
       <div class="col-full md:col-4">
         <div class="work-preview">
@@ -187,7 +177,7 @@ const header = {
         </div>
       </div>
       <div class="col-full md:col-2"></div>
-      <div class="col-full md:col-6">
+      <div class="col-full md:col-6 space-t-6 md:space-t-0">
         <h2 data-animate="fade" data-animate-group="page">Selected Work</h2>
         <ul data-animate="children" data-animate-group="page" data-work-list>
           {
@@ -198,20 +188,7 @@ const header = {
                     {item.title}
                   </a>
                 </p>
-                {/* {item.tags.map((tag) => (
-                  <span>{tag}</span>
-                ))} */}
-                {/* <ul class="button-container">
-                  {item.links.map((link) => (
-                    <li class="">
-                      <Button
-                        title={link.title}
-                        href={link.href}
-                        isExternal={link.href.includes("https://") ? true : false}
-                      />
-                    </li>
-                  ))}
-                </ul> */}
+              
               </li>
             ))
           }

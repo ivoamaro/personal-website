@@ -4,6 +4,8 @@ Significant project changes only (architecture, conventions, decisions).
 
 ## 2026-09-01
 
+- Never put `data-animate` on an element whose visibility is CSS-state-driven. The runner writes inline `opacity`/`visibility`, which outranks any stylesheet rule, so the element can no longer be opened or closed by CSS. The navbar's fade moved from `ul.menu` onto its `li` items for this reason.
+- Spacing utilities (`space-y-*`, `space-b-*`, `space-t-*`) follow the same mobile-first prefixes as columns: base, `md:` at 768px, `lg:` at 1024px.
 - Homepage work items carry a `slug`, and their hover preview is resolved by filename from `src/assets/work/` via `import.meta.glob`. Add a preview by dropping `<slug>.jpg` in that folder; an item with no matching file simply has no preview instead of failing the build.
 - Previews render up front as stacked transparent layers over the profile image; `src/scripts/workPreview.ts` only toggles `is-active`, so hovering never triggers a fetch.
 

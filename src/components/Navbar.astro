@@ -15,13 +15,16 @@ import ThemeIcon from "./ui/ThemeIcon.astro";
     <span></span>
   </label>
 
-  <ul class="menu" data-animate="fade" data-animate-once>
+  <!-- The fade sits on the items, not on .menu: the runner writes inline
+       opacity and visibility on every [data-animate] element, which would
+       outrank the #mobile-menu-toggle:checked rules that open the menu. -->
+  <ul class="menu">
     <!-- <li><a href="/exploratory">Exploratory</a></li> -->
-    <li><a href="/work">Work</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/blog">Blog</a></li>
+    <li data-animate="fade" data-animate-once><a href="/work">Work</a></li>
+    <li data-animate="fade" data-animate-once><a href="/about">About</a></li>
+    <li data-animate="fade" data-animate-once><a href="/blog">Blog</a></li>
     <!-- <li><Button title="Work" href="/work" showSymbol={false} /></li> -->
-    <li><ThemeIcon /></li>
+    <li data-animate="fade" data-animate-once><ThemeIcon /></li>
   </ul>
 </nav>
 
@@ -37,6 +40,13 @@ import ThemeIcon from "./ui/ThemeIcon.astro";
       background-color: var(--color-text);
     }
   }
+
+  #themeToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+    	
   nav {
     font-family: var(--font-primary);
     font-weight: var(--font-bold);
@@ -78,12 +88,11 @@ import ThemeIcon from "./ui/ThemeIcon.astro";
       height: 25px; */
       justify-content: center;
       align-items: center;
-      border: var(--border-width) solid var(--color-text);
-      border-radius: 999px;
       padding: var(--space-4);
+      padding-right:0;
       span {
         width: 25px;
-        height: 1px;
+        height: 2px;
         background-color: var(--color-text);
         transition: all var(--motion-fast) var(--motion-ease-standard);
         transform-origin: center;
@@ -97,7 +106,8 @@ import ThemeIcon from "./ui/ThemeIcon.astro";
       }
 
       .menu {
-        flex-direction: column;
+        align-items: center;
+  
         position: absolute;
         z-index: 100;
         width: calc(100% - var(--space-4) * 2);
@@ -117,12 +127,8 @@ import ThemeIcon from "./ui/ThemeIcon.astro";
           visibility var(--motion-fast);
       }
 
-      .menu li {
-        margin-bottom: var(--space-3);
-        margin-left: 0;
-        &:last-child {
-          margin-bottom: 0;
-        }
+      .menu li:last-child {
+        margin-left: auto;
       }
 
       /* Toggle menu */
@@ -141,7 +147,7 @@ import ThemeIcon from "./ui/ThemeIcon.astro";
       }
 
       #mobile-menu-toggle:checked + .hamburger span:nth-child(3) {
-        transform: rotate(-45deg) translate(4px, -4px);
+        transform: rotate(-45deg) translate(6px, -6px);
       }
     }
   }

@@ -36,6 +36,9 @@
 
 /* SPACING */
 
+.space-y-0 {
+  margin-block: 0;
+}
 .space-y-1 {
   margin-block: var(--space-1);
 }
@@ -67,6 +70,9 @@
   margin-block: var(--space-10);
 }
 
+.space-b-0 {
+  margin-bottom: 0;
+}
 .space-b-1 {
   margin-bottom: var(--space-1);
 }
@@ -97,6 +103,9 @@
 .space-b-10 {
   margin-bottom: var(--space-10);
 }
+.space-t-0 {
+  margin-top: 0;
+}
 .space-t-1 {
   margin-top: var(--space-1);
 }
@@ -126,6 +135,216 @@
 }
 .space-t-10 {
   margin-top: var(--space-10);
+}
+
+/* md ≥ 768px (matches `.grid` tablet column count) */
+@media (min-width: 768px) {
+  .md\:space-y-0 {
+    margin-block: 0;
+  }
+  .md\:space-y-1 {
+    margin-block: var(--space-1);
+  }
+  .md\:space-y-2 {
+    margin-block: var(--space-2);
+  }
+  .md\:space-y-3 {
+    margin-block: var(--space-3);
+  }
+  .md\:space-y-4 {
+    margin-block: var(--space-4);
+  }
+  .md\:space-y-5 {
+    margin-block: var(--space-5);
+  }
+  .md\:space-y-6 {
+    margin-block: var(--space-6);
+  }
+  .md\:space-y-7 {
+    margin-block: var(--space-7);
+  }
+  .md\:space-y-8 {
+    margin-block: var(--space-8);
+  }
+  .md\:space-y-9 {
+    margin-block: var(--space-9);
+  }
+  .md\:space-y-10 {
+    margin-block: var(--space-10);
+  }
+
+  .md\:space-b-0 {
+    margin-bottom: 0;
+  }
+  .md\:space-b-1 {
+    margin-bottom: var(--space-1);
+  }
+  .md\:space-b-2 {
+    margin-bottom: var(--space-2);
+  }
+  .md\:space-b-3 {
+    margin-bottom: var(--space-3);
+  }
+  .md\:space-b-4 {
+    margin-bottom: var(--space-4);
+  }
+  .md\:space-b-5 {
+    margin-bottom: var(--space-5);
+  }
+  .md\:space-b-6 {
+    margin-bottom: var(--space-6);
+  }
+  .md\:space-b-7 {
+    margin-bottom: var(--space-7);
+  }
+  .md\:space-b-8 {
+    margin-bottom: var(--space-8);
+  }
+  .md\:space-b-9 {
+    margin-bottom: var(--space-9);
+  }
+  .md\:space-b-10 {
+    margin-bottom: var(--space-10);
+  }
+
+  .md\:space-t-0 {
+    margin-top: 0;
+  }
+  .md\:space-t-1 {
+    margin-top: var(--space-1);
+  }
+  .md\:space-t-2 {
+    margin-top: var(--space-2);
+  }
+  .md\:space-t-3 {
+    margin-top: var(--space-3);
+  }
+  .md\:space-t-4 {
+    margin-top: var(--space-4);
+  }
+  .md\:space-t-5 {
+    margin-top: var(--space-5);
+  }
+  .md\:space-t-6 {
+    margin-top: var(--space-6);
+  }
+  .md\:space-t-7 {
+    margin-top: var(--space-7);
+  }
+  .md\:space-t-8 {
+    margin-top: var(--space-8);
+  }
+  .md\:space-t-9 {
+    margin-top: var(--space-9);
+  }
+  .md\:space-t-10 {
+    margin-top: var(--space-10);
+  }
+}
+
+/* lg ≥ 1024px */
+@media (min-width: 1024px) {
+  .lg\:space-y-0 {
+    margin-block: 0;
+  }
+  .lg\:space-y-1 {
+    margin-block: var(--space-1);
+  }
+  .lg\:space-y-2 {
+    margin-block: var(--space-2);
+  }
+  .lg\:space-y-3 {
+    margin-block: var(--space-3);
+  }
+  .lg\:space-y-4 {
+    margin-block: var(--space-4);
+  }
+  .lg\:space-y-5 {
+    margin-block: var(--space-5);
+  }
+  .lg\:space-y-6 {
+    margin-block: var(--space-6);
+  }
+  .lg\:space-y-7 {
+    margin-block: var(--space-7);
+  }
+  .lg\:space-y-8 {
+    margin-block: var(--space-8);
+  }
+  .lg\:space-y-9 {
+    margin-block: var(--space-9);
+  }
+  .lg\:space-y-10 {
+    margin-block: var(--space-10);
+  }
+
+  .lg\:space-b-0 {
+    margin-bottom: 0;
+  }
+  .lg\:space-b-1 {
+    margin-bottom: var(--space-1);
+  }
+  .lg\:space-b-2 {
+    margin-bottom: var(--space-2);
+  }
+  .lg\:space-b-3 {
+    margin-bottom: var(--space-3);
+  }
+  .lg\:space-b-4 {
+    margin-bottom: var(--space-4);
+  }
+  .lg\:space-b-5 {
+    margin-bottom: var(--space-5);
+  }
+  .lg\:space-b-6 {
+    margin-bottom: var(--space-6);
+  }
+  .lg\:space-b-7 {
+    margin-bottom: var(--space-7);
+  }
+  .lg\:space-b-8 {
+    margin-bottom: var(--space-8);
+  }
+  .lg\:space-b-9 {
+    margin-bottom: var(--space-9);
+  }
+  .lg\:space-b-10 {
+    margin-bottom: var(--space-10);
+  }
+
+  .lg\:space-t-0 {
+    margin-top: 0;
+  }
+  .lg\:space-t-1 {
+    margin-top: var(--space-1);
+  }
+  .lg\:space-t-2 {
+    margin-top: var(--space-2);
+  }
+  .lg\:space-t-3 {
+    margin-top: var(--space-3);
+  }
+  .lg\:space-t-4 {
+    margin-top: var(--space-4);
+  }
+  .lg\:space-t-5 {
+    margin-top: var(--space-5);
+  }
+  .lg\:space-t-6 {
+    margin-top: var(--space-6);
+  }
+  .lg\:space-t-7 {
+    margin-top: var(--space-7);
+  }
+  .lg\:space-t-8 {
+    margin-top: var(--space-8);
+  }
+  .lg\:space-t-9 {
+    margin-top: var(--space-9);
+  }
+  .lg\:space-t-10 {
+    margin-top: var(--space-10);
+  }
 }
 
 /* GRID LAYOUT */

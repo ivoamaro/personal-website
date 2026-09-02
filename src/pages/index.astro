@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/design-system/Header.astro";
 import Button from "../components/ui/Button.astro";
 import CustomImage from "../components/ui/CustomImage.astro";
-import ProfileImage from "../assets/photo.jpeg";
+
 
 interface WorkItem {
   title: string;
@@ -148,7 +148,7 @@ const header = {
       <div class="col-full md:col-4">
         <div class="work-preview">
           <CustomImage
-            src={ProfileImage}
+            src="/photo.jpeg"
             alt="Profile"
             class="round-corners"
             animate="fade"

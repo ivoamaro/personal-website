@@ -1,91 +1,86 @@
 ---
-import type { ImageMetadata } from "astro";
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/design-system/Header.astro";
 import Button from "../components/ui/Button.astro";
 import CustomImage from "../components/ui/CustomImage.astro";
 import ProfileImage from "../assets/photo.jpeg";
 
-/**
- * Hover previews are matched to work items by filename, so a new preview is
- * added by dropping `<slug>.jpg` into `src/assets/work/`. Resolving through a
- * glob instead of static imports means an item without an image simply has no
- * preview rather than failing the build.
- */
-const previewModules = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/work/*.{jpg,jpeg,png,webp}",
-  { eager: true },
-);
+interface WorkItem {
+  title: string;
+  description?: string;
+  tags: string[];
+  links: { title: string; href: string }[];
+  /**
+   * Served straight from `public/work/`, so it is a URL rather than an import
+   * and cannot be checked at build time. Leave it off and the item renders
+   * without a hover preview instead of pointing at a missing file.
+   */
+  preview?: string;
+}
 
-const previews = new Map(
-  Object.entries(previewModules).map(([path, module]) => [
-    path.split("/").pop()!.replace(/\.[^.]+$/, ""),
-    module.default,
-  ]),
-);
+const workItems: WorkItem[] = [
+  {
+    title: "Pollock — Krasner House",
+    description:
+      "A website for the Pollock — Krasner House, a museum and research center dedicated to the life and work of the artists Jackson Pollock and Lee Krasner.",
+    tags: ["Design", "Development"],
+    preview: "/work/pollock.jpg",
+    links: [
+      {
+        title: "Website",
+        href: "https://www.pkhouse.org",
+      },
+      {
+        title: "Figma",
+        href: "https://www.figma.com/design/bi45COsUoJnTZ91zghOng9/Portfolio?node-id=21-4368",
+      },
+      {
+        title: "More",
+        href: "/work/pollock-krasner-house",
+      },
+    ],
+  },
+  {
+    title: "Talkhouse",
+    tags: ["Design", "Development"],
+    preview: "/work/talkhouse.jpg",
+    links: [
+      {
+        title: "Website",
+        href: "https://www.stephentalkhouse.com",
+      },
+    ],
+  },
+  {
+    title: "Encore",
+    tags: ["Design", "Development"],
+    preview: "/work/encore.jpg",
+    links: [
+      {
+        title: "Website",
+        href: "https://www.talkencore.com",
+      },
+    ],
+  },
+  {
+    title: "Typographia",
+    tags: ["Development"],
+    preview: "/work/typographia.jpg",
+    links: [
+      {
+        title: "Website",
+        href: "https://typographia.com",
+      },
+    ],
+  },
+];
 
 const header = {
   title:
     "Creative designer and developer working at the intersection of design and code. I’m naturally curious and love learning and discovering new things.",
   work: {
     title: "Work",
-    items: [
-      {
-        title: "Pollock — Krasner House",
-        slug: "pollock",
-        description:
-          "A website for the Pollock — Krasner House, a museum and research center dedicated to the life and work of the artists Jackson Pollock and Lee Krasner.",
-        tags: ["Design", "Development"],
-        links: [
-          {
-            title: "Website",
-            href: "https://www.pkhouse.org",
-          },
-          {
-            title: "Figma",
-            href: "https://www.figma.com/design/bi45COsUoJnTZ91zghOng9/Portfolio?node-id=21-4368",
-          },
-          {
-            title: "More",
-            href: "/work/pollock-krasner-house",
-          },
-        ],
-      },
-      {
-        title: "Talkhouse",
-        slug: "talkhouse",
-        tags: ["Design", "Development"],
-        links: [
-          {
-            title: "Website",
-            href: "https://www.stephentalkhouse.com",
-          },
-        ],
-      },
-      {
-        title: "Encore",
-        slug: "encore",
-        tags: ["Design", "Development"],
-        links: [
-          {
-            title: "Website",
-            href: "https://www.talkencore.com",
-          },
-        ],
-      },
-     
-      {
-        title: "Typographia",
-        slug: "typographia",
-        tags: ["Development"],
-        links: [
-          {
-            title: "Website",
-            href: "https://typographia.com",
-          },
-        ],
-      },
-    ],
+    items: workItems,
   },
   skills: {
     title: "Skills",
@@ -161,18 +156,19 @@ const header = {
             priority
           />
           {
-            header.work.items.map((item, index) => {
-              const preview = previews.get(item.slug);
-              return preview ? (
+            header.work.items.map((item, index) =>
+              item.preview ? (
                 <div class="work-preview-layer" data-work-preview={index}>
-                  <CustomImage
-                    src={preview}
+                  <img
+                    src={item.preview}
                     alt={item.title}
                     class="round-corners"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
-              ) : null;
-            })
+              ) : null,
+            )
           }
         </div>
       </div>
@@ -236,8 +232,7 @@ const header = {
     opacity: 1;
   }
 
-  /* The <img> is rendered by CustomImage, so it falls outside this scope. */
-  .work-preview-layer :global(img) {
+  .work-preview-layer img {
     width: 100%;
     height: 100%;
     object-fit: cover;

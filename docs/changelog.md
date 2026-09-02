@@ -2,6 +2,10 @@
 
 Significant project changes only (architecture, conventions, decisions).
 
+## 2026-09-02
+
+- Homepage hover previews live in `public/work/` and are served as plain `<img>` URLs, replacing the `src/assets/work/` glob from 2026-09-01. Each work item names its own file via `preview`; omitting it drops the preview, since a public path cannot be validated at build time. These images bypass Astro's image pipeline, so size and compress them before committing.
+
 ## 2026-09-01
 
 - Never put `data-animate` on an element whose visibility is CSS-state-driven. The runner writes inline `opacity`/`visibility`, which outranks any stylesheet rule, so the element can no longer be opened or closed by CSS. The navbar's fade moved from `ul.menu` onto its `li` items for this reason.

@@ -9,12 +9,103 @@ const entries = await getCollection(
   "work",
   (entry) => entry.data.status === "Published",
 );
+
+
+interface WorkItem {
+  title: string;
+  description?: string;
+  tags: string[];
+  links: { title: string; href: string }[];
+  /**
+   * Served straight from `public/work/`, so it is a URL rather than an import
+   * and cannot be checked at build time. Leave it off and the item renders
+   * without a hover preview instead of pointing at a missing file.
+   */
+  preview?: string;
+}
+
+const workItems: WorkItem[] = [
+  {
+    title: "Pollock — Krasner House",
+    description:
+      "A website for the Pollock — Krasner House, a museum and research center dedicated to the life and work of the artists Jackson Pollock and Lee Krasner.",
+    tags: ["Design", "Development"],
+    preview: "/work/pollock.jpg",
+    links: [
+      {
+        title: "Website",
+        href: "https://www.pkhouse.org",
+      },
+      {
+        title: "Figma",
+        href: "https://www.figma.com/design/bi45COsUoJnTZ91zghOng9/Portfolio?node-id=21-4368",
+      },
+      {
+        title: "More",
+        href: "/work/pollock-krasner-house",
+      },
+    ],
+  },
+  {
+    title: "Talkhouse",
+    tags: ["Design", "Development"],
+    preview: "/work/talkhouse.jpg",
+    links: [
+      {
+        title: "Website",
+        href: "https://www.stephentalkhouse.com",
+      },
+    ],
+  },
+  {
+    title: "Encore",
+    tags: ["Design", "Development"],
+    preview: "/work/encore.jpg",
+    links: [
+      {
+        title: "Website",
+        href: "https://www.talkencore.com",
+      },
+    ],
+  },
+  {
+    title: "Typographia",
+    tags: ["Development"],
+    preview: "/work/typographia.jpg",
+    links: [
+      {
+        title: "Website",
+        href: "https://typographia.com",
+      },
+    ],
+  },
+];
 ---
 
 <Layout>
-  <Header title="Work" />
-  <section class="grid gap-0" data-animate="children" data-animate-group="page">
-    {
+  <Header title="Work">
+    <div class="grid ">
+    <p class="disclaimer col-full lg:col-6">This page is currently under construction. More details about the projects will be added soon.
+    </p></div>
+  </Header>
+  <section class="grid gap-0 space-y-10" data-animate="children" data-animate-group="page">
+    <ul class="col-full " data-animate="children" data-animate-group="page" data-work-list>
+      {
+        workItems.map((item: WorkItem, index: number) => (
+          <li data-work-item={index}>
+            <p>
+              <a href={item.links[0].href} target="_blank" class="no-underline">
+                {item.title}
+              </a>
+            </p>
+          
+          </li>
+        ))
+      }
+    </ul>
+
+
+    {/*{
       entries.map((entry) => (
         <div class="col-full">
           <p>
@@ -22,6 +113,13 @@ const entries = await getCollection(
           </p>
         </div>
       ))
-    }
+    }*/}
   </section>
 </Layout>
+
+<style>
+  .disclaimer {
+    
+    font-style: italic;
+  }
+</style>

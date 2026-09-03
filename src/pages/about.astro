@@ -15,6 +15,9 @@ const aboutPage = {
           {
             title: "Adobe",
           },
+          {
+            title: "Affinity",
+          },
         ],
       },
       {
@@ -92,51 +95,68 @@ const aboutPage = {
 <Layout>
   <Header title="About" />
 
+
   <section class="">
-    <div class="grid about-section">
-      <div class="col-full lg:col-6" data-animate="children">
-        <h2>Intro</h2>
-        <p>{aboutPage.about.p1}</p>
-        <p>{aboutPage.about.p2}</p>
-        <p>{aboutPage.about.p3}</p>
+    <div class="grid">
+      <div class="col-full lg:col-6" >
+        <div class="about-section" data-animate="children">
+          <h2>Intro</h2>
+          <p>{aboutPage.about.p1}</p>
+          <p>{aboutPage.about.p2}</p>
+          <p>{aboutPage.about.p3}</p>
+        </div>
+
+        <div class="education-section space-y-10" data-animate="children">
+          <h2>Education</h2>
+          {
+            aboutPage.education.items.map((item, index) => (
+              <div
+                class={`space-b-6 ${index === aboutPage.education.items.length - 1 ? "last" : ""}`}
+              >
+                <h3>{item.degree}</h3>
+                <p>{item.year}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="experience-section" data-animate="children">
+          <h2>Experience</h2>
+          {
+            aboutPage.experience.items.map((item) => (
+              <div class="space-b-6">
+                <h3 class="font-medium">
+                  {item.title} | <span>{item.year}</span>
+                </h3>
+  
+                <p class="space-t-2">{item.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="col-full lg:col-1"></div>
+      <div class="col-full lg:col-5" >
+        <div class="skills-section" data-animate="children">
+        
+          {
+            aboutPage.skills.items.map((item) => (
+              <div class="space-b-6">
+                <h2>{item.title}</h2>
+                {
+                  item.skills.map((skill) => (
+                    <p>{skill.title}</p>
+                  ))
+                }
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="space-y-10">
-    <div class="grid about-section">
-      <div class="col-full lg:col-6" data-animate="children">
-        <h2>Education</h2>
-        {
-          aboutPage.education.items.map((item, index) => (
-            <div
-              class={`space-b-6 ${index === aboutPage.education.items.length - 1 ? "last" : ""}`}
-            >
-              <h3>{item.degree}</h3>
-              <p>{item.year}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
 
-  <section class="space-y-10">
-    <div class="grid about-section">
-      <div class="col-full lg:col-6" data-animate="children">
-        <h2>Experience</h2>
-        {
-          aboutPage.experience.items.map((item) => (
-            <div class="space-b-6">
-              <h3 class="font-medium">
-                {item.title} | <span>{item.year}</span>
-              </h3>
 
-              <p class="space-t-2">{item.description}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+
 </Layout>

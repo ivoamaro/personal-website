@@ -3,6 +3,10 @@
 html {
   /* Avoid width jumping when the vertical scrollbar appears (helps near the 768px breakpoint) */
   scrollbar-gutter: stable;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  /* Keep the transition on html (not html.dark) so it runs in both directions. */
+  transition: background-color 500ms, color 500ms;
 }
 
 /* Hide animated elements until GSAP applies their start state, but only when
@@ -22,8 +26,7 @@ html {
 
 html.dark {
   color: var(--color-bg);
-  background: var(--color-text);
-  transition: background-color 500ms;
+  background-color: var(--color-text);
 }
 
 body {

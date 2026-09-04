@@ -1,30 +1,40 @@
 ---
 import ThemeIcon from "./ui/ThemeIcon.astro";
+
+const links = [
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
+];
 ---
 
-<nav class="container">
+<nav class="container"  aria-label="Main navigation">
   <div data-animate="fade" data-animate-once>
-    <a class="logo" href="/">Ivo Amaro</a>
+    <a class="logo" href="/" aria-label="Ivo Amaro | Homepage">Ivo Amaro</a>
   </div>
 
   <!-- Hamburger toggle -->
-  <input type="checkbox" id="mobile-menu-toggle" />
+  <input type="checkbox" id="mobile-menu-toggle"  aria-label="Toggle navigation menu"/>
   <label for="mobile-menu-toggle" class="hamburger">
     <span></span>
     <span></span>
     <span></span>
   </label>
 
-  <!-- The fade sits on the items, not on .menu: the runner writes inline
-       opacity and visibility on every [data-animate] element, which would
-       outrank the #mobile-menu-toggle:checked rules that open the menu. -->
   <ul class="menu">
-    <!-- <li><a href="/exploratory">Exploratory</a></li> -->
-    <li data-animate="fade" data-animate-once><a href="/work">Work</a></li>
-    <li data-animate="fade" data-animate-once><a href="/about">About</a></li>
-   <!-- <li data-animate="fade" data-animate-once><a href="/blog">Blog</a></li>-->
-    <!-- <li><Button title="Work" href="/work" showSymbol={false} /></li> -->
-    <li data-animate="fade" data-animate-once><ThemeIcon /></li>
+    {links.map(({ href, label }) => (
+      <li data-animate="fade" data-animate-once>
+        <a
+          href={href}
+          aria-current={Astro.url.pathname === href ? "page" : undefined}
+        >
+          {label}
+        </a>
+      </li>
+    ))}
+  
+    <li data-animate="fade" data-animate-once>
+      <ThemeIcon />
+    </li>
   </ul>
 </nav>
 

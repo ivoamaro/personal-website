@@ -5,8 +5,14 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 import InDevelopmentBanner from "../components/design-system/InDevelopmentBanner.astro";
+import { SEO } from "astro-seo";
 
-//const isProtected = isSitePasswordCorrect("");
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Ivo Amaro", description = "Ivo Amaro is a designer and developer working at the intersection of design and technology. Over the years, he has designed websites in Figma and brought them to life using Javascript frameworks." } = Astro.props;
 
 const showSite = true;
 ---
@@ -29,7 +35,14 @@ const showSite = true;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>Ivo Amaro</title>
+ 
+
+    <SEO
+      title={title}
+      description={description}
+    />
+
+
     <ClientRouter />
 
     <script is:inline>
